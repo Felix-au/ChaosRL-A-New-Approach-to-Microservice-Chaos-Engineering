@@ -65,7 +65,7 @@ The comparative validation performance of meta-ensembles versus the single best 
 - **Figure 2 (`stage8_ensemble_vs_single_discovery.png`):**
   - *What it shows:* Comparative validation normalized AUDC between the Top-1 single agent and the three meta-ensemble combinators (Soft Vote, Borda Rank, Gated Controller).
   - *How to read it:* The horizontal axis displays the evaluation methods; the vertical axis shows normalized AUDC. Taller bars indicate superior vulnerability discovery efficiency.
-  - *The takeaway:* Meta-ensembles decisively beat the best single agent, with Soft Voting achieving an AUDC of {{fact:ensemble.best_ensemble_audc|0.2110}} (a +{{fact:ensemble.audc_gain|0.0260}} gain over single Top-1 {{fact:ensemble.top1_single_audc|0.1850}}), answering RQ3 affirmatively on validation systems.
+  - *The takeaway:* Meta-ensembles decisively beat the best single agent, with {{fact:ensemble.best_ensemble_name|E3: Gated Controller}} achieving an AUDC of {{fact:ensemble.best_ensemble_audc|0.0980}} (a +{{fact:ensemble.audc_gain|0.0230}} gain over single Top-1 {{fact:ensemble.top1_single_audc|0.0750}}), answering RQ3 affirmatively on validation systems.
 
 ## 6. How to Reproduce
 

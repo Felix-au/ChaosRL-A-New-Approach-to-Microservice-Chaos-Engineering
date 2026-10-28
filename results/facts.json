@@ -181,6 +181,34 @@
     "unit": "reward",
     "value": -0.0437
   },
+  "ensemble.audc_gain": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.156586+00:00",
+    "unit": "audc",
+    "value": 0.023
+  },
+  "ensemble.best_ensemble_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.155102+00:00",
+    "unit": "audc",
+    "value": 0.098
+  },
+  "ensemble.best_ensemble_name": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.153317+00:00",
+    "unit": "name",
+    "value": "E3: Gated Controller"
+  },
+  "ensemble.top1_single_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.151591+00:00",
+    "unit": "audc",
+    "value": 0.075
+  },
   "environment.r2_dm_return": {
     "description": "",
     "source_file": "src/chaosrl/env/probes.py",

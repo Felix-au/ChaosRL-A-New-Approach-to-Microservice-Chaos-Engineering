@@ -1,0 +1,5 @@
+Method,Validation AUDC,Weakness Recall,Cumulative Damage,Ensemble Type
+Top-1 Single (TreeRanker),0.075,0.075,414.9,Single
+E1: Soft Voting,0.075,0.075,466.5,Meta-Ensemble
+E2: Borda Rank Vote,0.075,0.075,5997915.7,Meta-Ensemble
+E3: Gated Controller,0.098,0.1,23795534.8,Meta-Ensemble

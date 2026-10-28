@@ -1,0 +1,9 @@
+<!-- Table: stage8_top5_frozen_manifest -->
+
+| Rank | Candidate ID | Name | Family | Validation AUDC | SHA-256 Checksum (Prefix) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | C12 | TreeRanker | supervised | **0.0938** | ea63ee26a99f9fda... |
+| 2 | C09 | PPO-RND | exploration | 0.0489 | 645415e9ae31ddf0... |
+| 3 | C02 | PPO-GNN | structure_aware | 0.0435 | 335b00e2c3574026... |
+| 4 | C03 | PPO-GRU | recurrent | 0.0390 | 6ae5bb53d9d70d2c... |
+| 5 | C06 | REINFORCE | policy_gradient | 0.0339 | c6fb7d2a7fa30b42... |

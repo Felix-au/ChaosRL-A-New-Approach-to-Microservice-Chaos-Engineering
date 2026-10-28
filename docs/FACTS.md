@@ -31,6 +31,10 @@ It contains every verified number produced by experiment runs.
 | `candidates.mean_throughput` | 88.2000 | steps/sec | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
 | `candidates.pool_size` | 12 | candidates | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
 | `candidates.sb3_ppo_reward` | -0.0437 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
+| `ensemble.audc_gain` | 0.0230 | audc | `src/chaosrl/agents/ensemble/eval_ensembles.py` | 2026-10-28T14:44:36 |
+| `ensemble.best_ensemble_audc` | 0.0980 | audc | `src/chaosrl/agents/ensemble/eval_ensembles.py` | 2026-10-28T14:44:36 |
+| `ensemble.best_ensemble_name` | E3: Gated Controller | name | `src/chaosrl/agents/ensemble/eval_ensembles.py` | 2026-10-28T14:44:36 |
+| `ensemble.top1_single_audc` | 0.0750 | audc | `src/chaosrl/agents/ensemble/eval_ensembles.py` | 2026-10-28T14:44:36 |
 | `environment.r2_dm_return` | -3.8247 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.r2_rnd_return` | -20.8542 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.scale100_action_count` | 1800 | actions | `src/chaosrl/env/chaos_env.py` | 2026-10-28T12:45:35 |

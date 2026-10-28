@@ -199,12 +199,22 @@ def run_stage8_selection_and_ensembles(
     top5_names = [f"Rank {r['Rank']}: {r['Name']}" for r in manifest_table_rows]
     top5_audcs = [float(r['Validation AUDC']) for r in manifest_table_rows]
     families = [r['Family'] for r in manifest_table_rows]
-    fam_palette = {"policy_gradient": CB_PALETTE["blue"], "structure_aware": CB_PALETTE["bluish_green"], "recurrent": CB_PALETTE["orange"], "value_based": CB_PALETTE["vermilion"], "curriculum": CB_PALETTE["sky_blue"], "bandit": CB_PALETTE["yellow"], "supervised": CB_PALETTE["purple"], "imitation": CB_PALETTE["black"]}
+    fam_palette = {
+        "policy_gradient": CB_PALETTE["blue"],
+        "structure_aware": CB_PALETTE["bluish_green"],
+        "recurrent": CB_PALETTE["orange"],
+        "value_based": CB_PALETTE["vermilion"],
+        "curriculum": CB_PALETTE["sky_blue"],
+        "bandit": CB_PALETTE["yellow"],
+        "supervised": CB_PALETTE["reddish_purple"],
+        "imitation": CB_PALETTE["black"],
+    }
     colors = [fam_palette.get(f, CB_PALETTE["gray"]) for f in families]
 
-    bars1 = ax1.bar(top5_names, top5_audcs, color=colors, edgecolor="black", alpha=0.85)
+    bars1 = ax1.bar(range(len(top5_names)), top5_audcs, color=colors, edgecolor="black", alpha=0.85)
     ax1.set_ylabel("Validation Normalized AUDC")
     ax1.set_title("Stage 8 Top 5 Selected Models Under Family Diversity Constraint (Max 2)")
+    ax1.set_xticks(range(len(top5_names)))
     ax1.set_xticklabels(top5_names, rotation=25, ha="right")
     ax1.grid(axis="y", linestyle="--", alpha=0.3)
     save_figure(fig1, "stage8_top5_diversity_selection")
@@ -215,9 +225,10 @@ def run_stage8_selection_and_ensembles(
     ens_audcs = [r["Validation AUDC"] for r in ensemble_results_rows]
     ens_damages = [r["Cumulative Damage"] for r in ensemble_results_rows]
 
-    ax2.bar(ens_labels, ens_audcs, color=[CB_PALETTE["gray"], CB_PALETTE["blue"], CB_PALETTE["bluish_green"], CB_PALETTE["orange"]], edgecolor="black")
+    ax2.bar(range(len(ens_labels)), ens_audcs, color=[CB_PALETTE["gray"], CB_PALETTE["blue"], CB_PALETTE["bluish_green"], CB_PALETTE["orange"]], edgecolor="black")
     ax2.set_ylabel("Validation AUDC")
     ax2.set_title("Meta-Ensemble vs. Top-1 Single Agent Discovery Performance")
+    ax2.set_xticks(range(len(ens_labels)))
     ax2.set_xticklabels(ens_labels, rotation=20, ha="right")
     ax2.grid(axis="y", linestyle="--", alpha=0.3)
     save_figure(fig2, "stage8_ensemble_vs_single_discovery")
