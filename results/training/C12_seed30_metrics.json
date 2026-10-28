@@ -1,0 +1,9 @@
+{
+  "candidate_id": "C12",
+  "train_seed": 30,
+  "total_steps": 1000,
+  "episodes": 10,
+  "mean_reward": -17579.72208663292,
+  "mean_weaknesses": 0.7,
+  "metrics": []
+}

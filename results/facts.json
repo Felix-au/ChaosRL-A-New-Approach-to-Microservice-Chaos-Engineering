@@ -107,35 +107,35 @@
   "calibration.fit_cases_ob": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:14:48.593722+00:00",
+    "timestamp": "2026-10-28T13:31:57.779923+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.held_out_cases_ss": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:14:48.595048+00:00",
+    "timestamp": "2026-10-28T13:31:57.781863+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.mean_held_out_wasserstein": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:14:48.596341+00:00",
+    "timestamp": "2026-10-28T13:31:57.783745+00:00",
     "unit": "dist",
-    "value": 35.47751624454339
+    "value": 36.11615433504797
   },
   "calibration.status": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:14:48.597624+00:00",
+    "timestamp": "2026-10-28T13:31:57.785088+00:00",
     "unit": "",
     "value": "CALIBRATED"
   },
   "calibration.total_cases": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:14:48.592204+00:00",
+    "timestamp": "2026-10-28T13:31:57.777754+00:00",
     "unit": "cases",
     "value": 250
   },
@@ -271,5 +271,40 @@
     "timestamp": "2026-10-28T12:27:15.786337+00:00",
     "unit": "",
     "value": "COMPLETED"
+  },
+  "training.best_candidate_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.497783+00:00",
+    "unit": "audc",
+    "value": 0.0938
+  },
+  "training.best_candidate_id": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.496119+00:00",
+    "unit": "candidate",
+    "value": "C12"
+  },
+  "training.shuffled_control_drop": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.501927+00:00",
+    "unit": "audc",
+    "value": 0.0587
+  },
+  "training.shuffled_obs_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.500614+00:00",
+    "unit": "audc",
+    "value": 0.035
+  },
+  "training.tuning_rounds_completed": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.499282+00:00",
+    "unit": "rounds",
+    "value": 6
   }
 }

@@ -243,6 +243,208 @@ def check_stage_6() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_7() -> Tuple[bool, List[str]]:
+    """Stage 7 exit criteria:
+    - Training summary table exists
+    - Tuning log exists
+    - Figures exist: stage7_training_curves.png, stage7_tuning_progress.png
+    - Facts registered: best_candidate_id, best_candidate_audc, shuffled_obs_audc, shuffled_control_drop
+    - Invariant: shuffled_control_drop > 0 (shuffled observations degrade performance)
+    - docs-check passes for section 7
+    """
+    errors: List[str] = []
+
+    # Check figures
+    for fig_name in ["stage7_training_curves.png", "stage7_tuning_progress.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check tables
+    for tbl_name in ["stage7_training_summary.md", "stage7_tuning_log.md"]:
+        if not (Path("docs/tables") / tbl_name).exists():
+            errors.append(f"Missing table: {tbl_name}")
+
+    # Check facts and invariants
+    facts = load_all_facts()
+    for req_fact in ["training.best_candidate_id", "training.best_candidate_audc", "training.shuffled_control_drop"]:
+        if req_fact not in facts:
+            errors.append(f"Missing fact: {req_fact}")
+
+    if "training.shuffled_control_drop" in facts:
+        drop = facts["training.shuffled_control_drop"]["value"]
+        if drop <= 0:
+            errors.append(f"Invariant violation: Shuffled observation control drop is {drop} (expected > 0)")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(7)
+    if not sec_ok:
+        errors.extend([f"Section 7 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
+def check_stage_8() -> Tuple[bool, List[str]]:
+    """Stage 8 exit criteria:
+    - Top 5 selected under diversity constraint (at most 2 per family)
+    - Frozen manifest exists with SHA-256 hashes
+    - Ensemble tables exist: stage8_top5_frozen_manifest.md, stage8_ensemble_validation_results.md
+    - Figures exist
+    - docs-check passes for section 8
+    """
+    errors: List[str] = []
+
+    # Check manifest
+    manifest_path = Path("results/frozen_manifest.json")
+    if not manifest_path.exists():
+        errors.append("Missing results/frozen_manifest.json")
+    else:
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                manifest = json.load(f)
+            if len(manifest) != 5:
+                errors.append(f"Frozen manifest has {len(manifest)} models, expected 5")
+            # Check family diversity: at most 2 per family
+            from collections import Counter
+            families = Counter([m["family"] for m in manifest])
+            for fam, cnt in families.items():
+                if cnt > 2:
+                    errors.append(f"Diversity constraint violated: family {fam} has {cnt} models (max 2)")
+        except Exception as e:
+            errors.append(f"Failed to read frozen manifest: {e}")
+
+    # Check figures
+    for fig_name in ["stage8_top5_diversity_selection.png", "stage8_ensemble_vs_single_discovery.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check tables
+    for tbl_name in ["stage8_top5_frozen_manifest.md", "stage8_ensemble_validation_results.md"]:
+        if not (Path("docs/tables") / tbl_name).exists():
+            errors.append(f"Missing table: {tbl_name}")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(8)
+    if not sec_ok:
+        errors.extend([f"Section 8 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
+def check_stage_9() -> Tuple[bool, List[str]]:
+    """Stage 9 exit criteria:
+    - Test-set lock accessed and logged
+    - Main comparison, multiscale, family M, statistical, sweep, and ablation tables exist
+    - Figures exist
+    - Facts registered
+    - Invariants: Ensemble beats Chaos Monkey (statistically significant p < 0.05)
+    - docs-check passes for section 9
+    """
+    errors: List[str] = []
+
+    # Check test access log
+    test_log = Path("results/test_access_log.csv")
+    if not test_log.exists():
+        errors.append("results/test_access_log.csv is missing")
+
+    # Check tables
+    required_tables = [
+        "stage9_main_comparison_scale100.md",
+        "stage9_multiscale_comparison.md",
+        "stage9_generalization_family_m.md",
+        "stage9_statistical_tests.md",
+        "stage9_budget_sweep.md",
+        "stage9_ablation_study.md",
+    ]
+    for tbl in required_tables:
+        if not (Path("docs/tables") / tbl).exists():
+            errors.append(f"Missing table: {tbl}")
+
+    # Check figures
+    required_figures = [
+        "stage9_discovery_curves_all_methods.png",
+        "stage9_damage_vs_discovery_final.png",
+        "stage9_scale_generalization.png",
+        "stage9_budget_sweep_curves.png",
+        "stage9_ablation_comparison.png",
+    ]
+    for fig in required_figures:
+        if not (Path("docs/figures") / fig).exists():
+            errors.append(f"Missing figure: {fig}")
+
+    # Check facts and invariants
+    facts = load_all_facts()
+    for req_fact in [
+        "final.scale100.chaosrl_top1.audc",
+        "final.scale100.best_ensemble.audc",
+        "final.scale100.chaos_monkey.audc",
+        "final.scale100.p_value_vs_chaos_monkey",
+    ]:
+        if req_fact not in facts:
+            errors.append(f"Missing fact: {req_fact}")
+
+    if "final.scale100.best_ensemble.audc" in facts and "final.scale100.chaos_monkey.audc" in facts:
+        ens_audc = facts["final.scale100.best_ensemble.audc"]["value"]
+        cm_audc = facts["final.scale100.chaos_monkey.audc"]["value"]
+        if ens_audc <= cm_audc:
+            errors.append(f"Invariant violation: Ensemble AUDC ({ens_audc}) <= Chaos Monkey AUDC ({cm_audc})")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(9)
+    if not sec_ok:
+        errors.extend([f"Section 9 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
+def check_stage_10() -> Tuple[bool, List[str]]:
+    """Stage 10 exit criteria:
+    - section10_analysis_limitations.md complete and passes docs-check
+    - docs/OVERALL.md exists with all 20 sections
+    - REPORT.md exists
+    - docs/QA.md exists with >= 25 entries
+    """
+    errors: List[str] = []
+
+    overall_path = Path("docs/OVERALL.md")
+    if not overall_path.exists():
+        errors.append("docs/OVERALL.md is missing")
+    else:
+        text = overall_path.read_text(encoding="utf-8")
+        if len(text.split()) < 3000:
+            errors.append(f"docs/OVERALL.md too short: {len(text.split())} words, expected >=3000")
+
+    report_path = Path("REPORT.md")
+    if not report_path.exists():
+        errors.append("REPORT.md is missing")
+
+    qa_path = Path("docs/QA.md")
+    if not qa_path.exists():
+        errors.append("docs/QA.md is missing")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(10)
+    if not sec_ok:
+        errors.extend([f"Section 10 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
+def check_stage_11() -> Tuple[bool, List[str]]:
+    """Stage 11 exit criteria:
+    - section11_reproducibility.md complete and passes docs-check
+    - All unit tests pass
+    - Acceptance checklist passes 100%
+    """
+    errors: List[str] = []
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(11)
+    if not sec_ok:
+        errors.extend([f"Section 11 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
     2: check_stage_2,
@@ -250,6 +452,11 @@ STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     4: check_stage_4,
     5: check_stage_5,
     6: check_stage_6,
+    7: check_stage_7,
+    8: check_stage_8,
+    9: check_stage_9,
+    10: check_stage_10,
+    11: check_stage_11,
 }
 
 

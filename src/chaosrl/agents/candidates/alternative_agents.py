@@ -122,6 +122,10 @@ class LinUCBBanditAgent(BaseCandidateAgent):
         best_score = -float("inf")
         best_act = valid_indices[0]
 
+        # Precompute pseudo-inverses and thetas once per step across the 6 fault types
+        A_invs = [np.linalg.pinv(self.A[i]) for i in range(6)]
+        thetas = [A_invs[i] @ self.b[i] for i in range(6)]
+
         # Score candidate actions
         for act in valid_indices:
             svc_id = act // 18
@@ -129,8 +133,8 @@ class LinUCBBanditAgent(BaseCandidateAgent):
             ft_idx = slot // 3  # fault type 0..5
 
             x = node_feat[svc_id]  # (16,)
-            A_inv = np.linalg.pinv(self.A[ft_idx])
-            theta = A_inv @ self.b[ft_idx]
+            A_inv = A_invs[ft_idx]
+            theta = thetas[ft_idx]
 
             expected_reward = float(x @ theta)
             confidence_bound = float(self.alpha * np.sqrt(x @ A_inv @ x))

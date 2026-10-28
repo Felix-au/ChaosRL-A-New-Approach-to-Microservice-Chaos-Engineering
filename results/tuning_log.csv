@@ -1,0 +1,7 @@
+Candidate ID,Name,Round,Proposed Parameter Change,Reason for Change,Pre-Tuning AUDC,Post-Tuning AUDC,Improvement,Standard Error,Decision
+C08,BC-PPO,2,"{'lr': 0.0001, 'entropy_coef': 0.02}",AUDC 0.0291 <= median 0.0297; applying playbook tuning,0.0291,0.002,-0.0271,0.0237,REVERTED
+C01,PPO-MLP,2,"{'lr': 0.0001, 'entropy_coef': 0.03}",AUDC 0.0252 <= median 0.0297; applying playbook tuning,0.0252,0.0297,0.0045,0.013,REVERTED
+C10,ES-Policy,2,"{'sigma': 0.08, 'lr': 0.03}",AUDC 0.0205 <= median 0.0297; applying playbook tuning,0.0205,0.0204,-0.0001,0.0139,REVERTED
+C04,A2C,2,"{'lr': 0.0003, 'entropy_coef': 0.03}",AUDC 0.0028 <= median 0.0297; applying playbook tuning,0.0028,0.0312,0.0284,0.0023,ACCEPTED
+C05,DQN-Dueling,2,"{'lr': 0.0005, 'epsilon_decay': 0.99}",AUDC 0.0000 <= median 0.0297; applying playbook tuning,0.0,0.0311,0.0311,0.0,ACCEPTED
+C11,LinUCB-Contextual,2,{'alpha': 0.8},AUDC 0.0000 <= median 0.0297; applying playbook tuning,0.0,0.0,0.0,0.0,REVERTED

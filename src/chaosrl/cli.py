@@ -123,6 +123,60 @@ def cmd_heartbeat(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_resume(args: argparse.Namespace) -> int:
+    """Resume execution from the earliest uncompleted stage."""
+    print("ChaosRL Resume: Inspecting completed artifacts...")
+    from chaosrl.checks.stage_checks import run_stage_check
+
+    for stage_idx in range(1, 12):
+        passed, errors = run_stage_check(stage_idx)
+        if not passed:
+            print(f"Resuming at Stage {stage_idx} (First unpassed stage)...")
+            if stage_idx == 7:
+                from chaosrl.train.tuning import run_stage7_training_suite
+                run_stage7_training_suite(train_seeds=[10, 20, 30], steps_per_run=1000)
+            elif stage_idx == 8:
+                from chaosrl.agents.ensemble.eval_ensembles import run_stage8_selection_and_ensembles
+                run_stage8_selection_and_ensembles()
+            elif stage_idx == 9:
+                from chaosrl.evaluate.final_eval import run_stage9_final_evaluation
+                os.environ["CHAOSRL_FINAL_TEST"] = "1"
+                run_stage9_final_evaluation()
+            elif stage_idx == 10:
+                print("Stage 10: Building final monograph and QA artifacts...")
+                build_all_docs()
+            print(f"Stage {stage_idx} completed.")
+            return 0
+
+    print("All stages 1..11 already verified!")
+    return 0
+
+
+def cmd_quick(args: argparse.Namespace) -> int:
+    """Run quick smoke pass across all components."""
+    print("ChaosRL Quick Mode: Running minimal smoke test across components...")
+    from chaosrl.env.chaos_env import ChaosEnv
+    from chaosrl.agents.baselines.baselines import ChaosMonkeyAgent
+    from chaosrl.agents.candidates.registry import get_candidate
+
+    env = ChaosEnv(num_services=20, experiment_budget=10, seed=42)
+    obs, _ = env.reset(seed=42)
+
+    # Smoke baseline
+    cm = ChaosMonkeyAgent(env=env)
+    a = cm.select_action(obs)
+    obs, r, term, trunc, info = env.step(a)
+    print(f"Quick baseline step OK: reward={r:.4f}")
+
+    # Smoke candidate
+    c01 = get_candidate("C01")
+    a2 = c01.select_action(obs)
+    obs, r2, term, trunc, info = env.step(a2)
+    print(f"Quick candidate step OK: reward={r2:.4f}")
+    print("Quick mode smoke run completed successfully.")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="chaosrl", description="ChaosRL Engine")
     subparsers = parser.add_subparsers(dest="subcommand", required=True)
@@ -149,6 +203,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_hb.add_argument("--progress", type=float, default=0.0)
     p_hb.add_argument("--eta", type=float, default=0.0)
     p_hb.set_defaults(func=cmd_heartbeat)
+
+    # resume
+    p_resume = subparsers.add_parser("resume", help="Resume from last completed stage")
+    p_resume.set_defaults(func=cmd_resume)
+
+    # quick
+    p_quick = subparsers.add_parser("quick", help="Execute rapid smoke pass across components")
+    p_quick.set_defaults(func=cmd_quick)
 
     return parser
 

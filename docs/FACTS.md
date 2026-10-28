@@ -20,11 +20,11 @@ It contains every verified number produced by experiment runs.
 | `baseline.random_all.damage` | 169221.92 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.audc` | 0.0955 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.damage` | 568691.78 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
-| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
-| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
-| `calibration.mean_held_out_wasserstein` | 35.3505 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T13:03:46 |
-| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T13:03:46 |
-| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
+| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
+| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
+| `calibration.mean_held_out_wasserstein` | 36.1162 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T13:31:57 |
+| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T13:31:57 |
+| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
 | `candidates.cross_check_diff` | 0.0019 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
 | `candidates.custom_ppo_reward` | -0.0418 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
 | `candidates.max_parameter_count` | 47123 | parameters | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
@@ -44,3 +44,8 @@ It contains every verified number produced by experiment runs.
 | `stage1.planned_hours` | 36.0000 | hours | `configs/budget.yaml` | 2026-10-28T12:27:15 |
 | `stage1.risks_count` | 10 | risks | `generate_stage1.py` | 2026-10-28T12:27:15 |
 | `stage1.status` | COMPLETED |  | `generate_stage1.py` | 2026-10-28T12:27:15 |
+| `training.best_candidate_audc` | 0.0938 | audc | `src/chaosrl/train/tuning.py` | 2026-10-28T14:38:01 |
+| `training.best_candidate_id` | C12 | candidate | `src/chaosrl/train/tuning.py` | 2026-10-28T14:38:01 |
+| `training.shuffled_control_drop` | 0.0587 | audc | `src/chaosrl/train/tuning.py` | 2026-10-28T14:38:01 |
+| `training.shuffled_obs_audc` | 0.0350 | audc | `src/chaosrl/train/tuning.py` | 2026-10-28T14:38:01 |
+| `training.tuning_rounds_completed` | 6 | rounds | `src/chaosrl/train/tuning.py` | 2026-10-28T14:38:01 |
