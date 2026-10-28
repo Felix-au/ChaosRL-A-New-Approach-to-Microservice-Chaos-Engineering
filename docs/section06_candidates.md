@@ -135,3 +135,4 @@ Stage 7 (Training and Automated Tuning) directly builds upon the candidate pool:
 - **Full Candidate Training:** Training all 12 candidates across three random seeds (`configs/training.yaml`).
 - **Playbook Auto-Tuning:** Executing up to 3 automated hyperparameter tuning rounds (learning rate, entropy, network width) evaluated on validation systems.
 - **Tuning Logging:** Logging all trial trajectories, losses, and AUDC scores in `results/tuning_log.csv`.
+

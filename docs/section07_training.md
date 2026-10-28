@@ -114,3 +114,4 @@ Stage 8 (Selection, Freeze, and Ensembles) directly consumes:
 - The candidate validation rankings and AUDC scores from `stage7_training_summary.md`.
 - The trained model checkpoints from `results/checkpoints/` for selecting the Top 5 models under family diversity constraints.
 - The cryptographic freeze manifest (`results/frozen_manifest.json`) locking model weights prior to final evaluation.
+

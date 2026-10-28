@@ -64,3 +64,4 @@ def test_candidate_save_and_load():
         # Check actor weights match
         for p1, p2 in zip(agent.actor.parameters(), new_agent.actor.parameters()):
             assert torch.allclose(p1, p2)
+

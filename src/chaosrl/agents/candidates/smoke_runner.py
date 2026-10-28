@@ -196,3 +196,4 @@ def run_smoke_benchmark(
         "mean_throughput": mean_thr,
         "max_parameters": max_params,
     }
+

@@ -1,0 +1,6 @@
+Ablation Dimension,Configuration,AUDC,Weakness Recall,Cumulative Damage
+Reward Formulation,Sparse R1 (No Penalty),0.062,0.0625,780.7
+Reward Formulation,Regularized R2 (Default),0.0625,0.0625,781.2
+Reward Formulation,Dense Shaped R3,0.0625,0.0625,781.8
+Observation Mode,Black-Box (Telemetry Only),0.0622,0.0625,738.9
+Observation Mode,Gray-Box (Static Flags Exposed),0.0241,0.0312,19254974.6

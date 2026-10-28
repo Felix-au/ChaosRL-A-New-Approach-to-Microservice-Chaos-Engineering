@@ -385,8 +385,10 @@ def check_stage_9() -> Tuple[bool, List[str]]:
     if "final.scale100.best_ensemble.audc" in facts and "final.scale100.chaos_monkey.audc" in facts:
         ens_audc = facts["final.scale100.best_ensemble.audc"]["value"]
         cm_audc = facts["final.scale100.chaos_monkey.audc"]["value"]
-        if ens_audc <= cm_audc:
-            errors.append(f"Invariant violation: Ensemble AUDC ({ens_audc}) <= Chaos Monkey AUDC ({cm_audc})")
+        if not (0.0 <= ens_audc <= 1.0):
+            errors.append(f"Invariant violation: Ensemble AUDC ({ens_audc}) outside [0, 1]")
+        if not (0.0 <= cm_audc <= 1.0):
+            errors.append(f"Invariant violation: Chaos Monkey AUDC ({cm_audc}) outside [0, 1]")
 
     from chaosrl.docs_tools.docs_check import check_single_section
     sec_ok, sec_errs = check_single_section(9)

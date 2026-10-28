@@ -78,3 +78,4 @@ def test_ensemble_topology_invariance(mock_candidates):
         act = ensemble.select_action(obs)
         assert 0 <= act < len(env.action_catalog)
         assert obs["action_mask"][act] == 1
+

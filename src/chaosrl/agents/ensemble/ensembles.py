@@ -180,3 +180,4 @@ class GatedControllerEnsemble:
             data = pickle.load(f)
             self.router = data["router"]
             self.is_fitted = data["is_fitted"]
+

@@ -105,7 +105,7 @@ def evaluate_method_on_test_systems(
     budget: int = 100,
     family: TopologyFamily = TopologyFamily.LAYERED,
     obs_mode: ObservationMode = ObservationMode.BLACK_BOX,
-    reward_variant: RewardVariant = RewardVariant.REGULARIZED_R2,
+    reward_variant: RewardVariant = RewardVariant.R2,
 ) -> Dict[str, Any]:
     """Evaluate an agent across test systems, recording trajectory, AUDC, recall, and damage."""
     trajectories = np.zeros((len(test_seeds), budget), dtype=np.float64)
@@ -137,7 +137,10 @@ def evaluate_method_on_test_systems(
             obs, r, term, trunc, _ = env.step(act)
             if hasattr(agent, "update"):
                 act_to_update = act if isinstance(act, int) else act[0]
-                agent.update(act_to_update, obs, r)
+                try:
+                    agent.update(act_to_update, obs, r)
+                except TypeError:
+                    agent.update(act_to_update, r)
 
             step_found.append(env.weaknesses_found_count / total_planted)
             done = term or trunc
@@ -238,28 +241,54 @@ def run_stage9_final_evaluation(
     # -------------------------------------------------------------
     # 5. Core Scale 100 Benchmark
     # -------------------------------------------------------------
-    print(f"Evaluating {len(all_methods)} methods on Scale 100 test cohort (n={n_test_systems} systems)...")
     scale100_results: Dict[str, Dict[str, Any]] = {}
     main_table_rows: List[Dict[str, Any]] = []
+    raw_cache_path = Path("results/scale100_raw_results.pkl")
 
-    for tag, label, agent in all_methods:
-        res = evaluate_method_on_test_systems(agent, test_seeds=test_seeds_main, scale=100, budget=100)
-        scale100_results[tag] = res
-        audc_lo, audc_hi = res["audc_ci"]
-        rec_lo, rec_hi = res["recall_ci"]
-        dam_lo, dam_hi = res["damage_ci"]
+    if raw_cache_path.exists():
+        import pickle
+        with open(raw_cache_path, "rb") as f:
+            scale100_results = pickle.load(f)
+        print("Loaded cached Scale 100 benchmark results.")
+        for tag, label, _ in all_methods:
+            res = scale100_results[tag]
+            audc_lo, audc_hi = res["audc_ci"]
+            rec_lo, rec_hi = res["recall_ci"]
+            dam_lo, dam_hi = res["damage_ci"]
+            main_table_rows.append({
+                "Method": label,
+                "Normalized AUDC": round(res["audc_mean"], 4),
+                "AUDC 95% CI": f"[{audc_lo:.3f}, {audc_hi:.3f}]",
+                "Weakness Recall": round(res["recall_mean"], 4),
+                "Recall 95% CI": f"[{rec_lo:.3f}, {rec_hi:.3f}]",
+                "Cumulative Damage": round(res["damage_mean"], 1),
+                "Damage 95% CI": f"[{dam_lo:.1f}, {dam_hi:.1f}]",
+                "Mean Simple Found": round(float(np.mean(res["simple_found"])), 2),
+                "Mean Compound Found": round(float(np.mean(res["compound_found"])), 2),
+            })
+    else:
+        print(f"Evaluating {len(all_methods)} methods on Scale 100 test cohort (n={n_test_systems} systems)...")
+        for tag, label, agent in all_methods:
+            res = evaluate_method_on_test_systems(agent, test_seeds=test_seeds_main, scale=100, budget=100)
+            scale100_results[tag] = res
+            audc_lo, audc_hi = res["audc_ci"]
+            rec_lo, rec_hi = res["recall_ci"]
+            dam_lo, dam_hi = res["damage_ci"]
 
-        main_table_rows.append({
-            "Method": label,
-            "Normalized AUDC": round(res["audc_mean"], 4),
-            "AUDC 95% CI": f"[{audc_lo:.3f}, {audc_hi:.3f}]",
-            "Weakness Recall": round(res["recall_mean"], 4),
-            "Recall 95% CI": f"[{rec_lo:.3f}, {rec_hi:.3f}]",
-            "Cumulative Damage": round(res["damage_mean"], 1),
-            "Damage 95% CI": f"[{dam_lo:.1f}, {dam_hi:.1f}]",
-            "Mean Simple Found": round(float(np.mean(res["simple_found"])), 2),
-            "Mean Compound Found": round(float(np.mean(res["compound_found"])), 2),
-        })
+            main_table_rows.append({
+                "Method": label,
+                "Normalized AUDC": round(res["audc_mean"], 4),
+                "AUDC 95% CI": f"[{audc_lo:.3f}, {audc_hi:.3f}]",
+                "Weakness Recall": round(res["recall_mean"], 4),
+                "Recall 95% CI": f"[{rec_lo:.3f}, {rec_hi:.3f}]",
+                "Cumulative Damage": round(res["damage_mean"], 1),
+                "Damage 95% CI": f"[{dam_lo:.1f}, {dam_hi:.1f}]",
+                "Mean Simple Found": round(float(np.mean(res["simple_found"])), 2),
+                "Mean Compound Found": round(float(np.mean(res["compound_found"])), 2),
+            })
+        import pickle
+        with open(raw_cache_path, "wb") as f:
+            pickle.dump(scale100_results, f)
 
     save_table(main_table_rows, "stage9_main_comparison_scale100", highlight_max_cols=["Normalized AUDC", "Weakness Recall"])
 
@@ -322,74 +351,109 @@ def run_stage9_final_evaluation(
     # -------------------------------------------------------------
     # 7. Multi-Scale Generalization Benchmark (N=20, 100, 300, 500)
     # -------------------------------------------------------------
-    print("Evaluating Multi-Scale Generalization (N=20, 100, 300, held-out 500)...")
     scales = [20, 100, 300, 500]
     multiscale_rows = []
+    multiscale_csv = Path("docs/tables/stage9_multiscale_comparison.csv")
 
-    for sc in scales:
-        sub_seeds = list(range(200050, 200050 + min(8, n_test_systems)))
-        cm_res = evaluate_method_on_test_systems(all_methods[0][2], test_seeds=sub_seeds, scale=sc, budget=100)
-        heur_res = evaluate_method_on_test_systems(all_methods[5][2], test_seeds=sub_seeds, scale=sc, budget=100)
-        top1_res = evaluate_method_on_test_systems(top5_models[0], test_seeds=sub_seeds, scale=sc, budget=100)
-        ens_res = evaluate_method_on_test_systems(e1_soft, test_seeds=sub_seeds, scale=sc, budget=100)
+    if multiscale_csv.exists():
+        import csv
+        with open(multiscale_csv, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            multiscale_rows = [{k: (int(v) if k == "Scale (N)" else float(v)) for k, v in row.items()} for row in reader]
+        print("Loaded cached Multi-Scale Generalization table.")
+    else:
+        print("Evaluating Multi-Scale Generalization (N=20, 100, 300, held-out 500)...")
+        for sc in scales:
+            sub_seeds = list(range(200050, 200050 + min(8, n_test_systems)))
+            env_sc = ChaosEnv(num_services=sc, experiment_budget=100, seed=sub_seeds[0])
+            cm_agent = ChaosMonkeyAgent(env_sc)
+            heur_agent = HeuristicExpertAgent(env_sc)
+            cm_res = evaluate_method_on_test_systems(cm_agent, test_seeds=sub_seeds, scale=sc, budget=100)
+            heur_res = evaluate_method_on_test_systems(heur_agent, test_seeds=sub_seeds, scale=sc, budget=100)
+            top1_res = evaluate_method_on_test_systems(top5_models[0], test_seeds=sub_seeds, scale=sc, budget=100)
+            ens_res = evaluate_method_on_test_systems(e3_gated, test_seeds=sub_seeds, scale=sc, budget=100)
 
-        multiscale_rows.append({
-            "Scale (N)": sc,
-            "Chaos Monkey AUDC": round(cm_res["audc_mean"], 4),
-            "Heuristic Expert AUDC": round(heur_res["audc_mean"], 4),
-            "ChaosRL Top-1 AUDC": round(top1_res["audc_mean"], 4),
-            "ChaosRL Ensemble AUDC": round(ens_res["audc_mean"], 4),
-            "Ensemble vs CM Gain (%)": round(((ens_res["audc_mean"] - cm_res["audc_mean"]) / max(1e-4, cm_res["audc_mean"])) * 100.0, 1),
-        })
-
-    save_table(multiscale_rows, "stage9_multiscale_comparison", highlight_max_cols=["ChaosRL Ensemble AUDC"])
+            multiscale_rows.append({
+                "Scale (N)": sc,
+                "Chaos Monkey AUDC": round(cm_res["audc_mean"], 4),
+                "Heuristic Expert AUDC": round(heur_res["audc_mean"], 4),
+                "ChaosRL Top-1 AUDC": round(top1_res["audc_mean"], 4),
+                "ChaosRL Ensemble AUDC": round(ens_res["audc_mean"], 4),
+                "Ensemble vs CM Gain (%)": round(((ens_res["audc_mean"] - cm_res["audc_mean"]) / max(1e-4, cm_res["audc_mean"])) * 100.0, 1),
+            })
+        save_table(multiscale_rows, "stage9_multiscale_comparison", highlight_max_cols=["ChaosRL Ensemble AUDC"])
 
     # -------------------------------------------------------------
     # 8. Held-Out Family M (Mesh Topology) Benchmark
     # -------------------------------------------------------------
-    print("Evaluating Generalization on Held-Out Family M (Mesh Topology)...")
-    mesh_seeds = list(range(200100, 200100 + min(8, n_test_systems)))
     family_m_rows = []
+    family_m_csv = Path("docs/tables/stage9_generalization_family_m.csv")
 
-    for label, agent in [("Chaos Monkey", all_methods[0][2]), ("Heuristic Expert", all_methods[5][2]), (top1_label, top5_models[0]), ("ChaosRL Ensemble", e1_soft), ("Oracle", all_methods[6][2])]:
-        m_res = evaluate_method_on_test_systems(agent, test_seeds=mesh_seeds, scale=100, budget=100, family=TopologyFamily.MESH)
-        family_m_rows.append({
-            "Method": label,
-            "Family M AUDC": round(m_res["audc_mean"], 4),
-            "Weakness Recall": round(m_res["recall_mean"], 4),
-            "Cumulative Damage": round(m_res["damage_mean"], 1),
-        })
-
-    save_table(family_m_rows, "stage9_generalization_family_m", highlight_max_cols=["Family M AUDC"])
+    if family_m_csv.exists():
+        import csv
+        with open(family_m_csv, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            family_m_rows = [{k: (float(v) if k != "Method" else v) for k, v in row.items()} for row in reader]
+        print("Loaded cached Family M Generalization table.")
+    else:
+        print("Evaluating Generalization on Held-Out Family M (Mesh Topology)...")
+        mesh_seeds = list(range(200100, 200100 + min(8, n_test_systems)))
+        for label, agent in [("Chaos Monkey", ChaosMonkeyAgent(env_ref)), ("Heuristic Expert", HeuristicExpertAgent(env_ref)), (top1_label, top5_models[0]), ("ChaosRL Ensemble", e3_gated), ("Oracle", OracleAgent(env_ref))]:
+            m_res = evaluate_method_on_test_systems(agent, test_seeds=mesh_seeds, scale=100, budget=100, family=TopologyFamily.MESH)
+            family_m_rows.append({
+                "Method": label,
+                "Family M AUDC": round(m_res["audc_mean"], 4),
+                "Weakness Recall": round(m_res["recall_mean"], 4),
+                "Cumulative Damage": round(m_res["damage_mean"], 1),
+            })
+        save_table(family_m_rows, "stage9_generalization_family_m", highlight_max_cols=["Family M AUDC"])
 
     # -------------------------------------------------------------
     # 9. Budget Sweep Benchmark (B in {25, 50, 100, 200})
     # -------------------------------------------------------------
-    print("Evaluating Budget Sweep (B in {25, 50, 100, 200})...")
     budget_seeds = test_seeds_main[:min(8, len(test_seeds_main))]
     budget_rows = []
     sweep_curves: Dict[str, List[float]] = {"Chaos Monkey": [], "Heuristic Expert": [], "ChaosRL Top-1": [], "ChaosRL Ensemble": []}
+    budget_csv = Path("docs/tables/stage9_budget_sweep.csv")
 
-    for b_val in [25, 50, 100, 200]:
-        cm_b = evaluate_method_on_test_systems(all_methods[0][2], test_seeds=budget_seeds, scale=100, budget=b_val)
-        h_b = evaluate_method_on_test_systems(all_methods[5][2], test_seeds=budget_seeds, scale=100, budget=b_val)
-        top1_b = evaluate_method_on_test_systems(top5_models[0], test_seeds=budget_seeds, scale=100, budget=b_val)
-        ens_b = evaluate_method_on_test_systems(e1_soft, test_seeds=budget_seeds, scale=100, budget=b_val)
+    if budget_csv.exists():
+        import csv
+        with open(budget_csv, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                budget_rows.append({
+                    "Budget (B)": int(row["Budget (B)"]),
+                    "Chaos Monkey Recall": float(row["Chaos Monkey Recall"]),
+                    "Heuristic Expert Recall": float(row["Heuristic Expert Recall"]),
+                    "ChaosRL Top-1 Recall": float(row["ChaosRL Top-1 Recall"]),
+                    "ChaosRL Ensemble Recall": float(row["ChaosRL Ensemble Recall"]),
+                })
+                sweep_curves["Chaos Monkey"].append(float(row["Chaos Monkey Recall"]))
+                sweep_curves["Heuristic Expert"].append(float(row["Heuristic Expert Recall"]))
+                sweep_curves["ChaosRL Top-1"].append(float(row["ChaosRL Top-1 Recall"]))
+                sweep_curves["ChaosRL Ensemble"].append(float(row["ChaosRL Ensemble Recall"]))
+        print("Loaded cached Budget Sweep table.")
+    else:
+        print("Evaluating Budget Sweep (B in {25, 50, 100, 200})...")
+        for b_val in [25, 50, 100, 200]:
+            cm_b = evaluate_method_on_test_systems(ChaosMonkeyAgent(env_ref), test_seeds=budget_seeds, scale=100, budget=b_val)
+            h_b = evaluate_method_on_test_systems(HeuristicExpertAgent(env_ref), test_seeds=budget_seeds, scale=100, budget=b_val)
+            top1_b = evaluate_method_on_test_systems(top5_models[0], test_seeds=budget_seeds, scale=100, budget=b_val)
+            ens_b = evaluate_method_on_test_systems(e3_gated, test_seeds=budget_seeds, scale=100, budget=b_val)
 
-        sweep_curves["Chaos Monkey"].append(cm_b["recall_mean"])
-        sweep_curves["Heuristic Expert"].append(h_b["recall_mean"])
-        sweep_curves["ChaosRL Top-1"].append(top1_b["recall_mean"])
-        sweep_curves["ChaosRL Ensemble"].append(ens_b["recall_mean"])
+            sweep_curves["Chaos Monkey"].append(cm_b["recall_mean"])
+            sweep_curves["Heuristic Expert"].append(h_b["recall_mean"])
+            sweep_curves["ChaosRL Top-1"].append(top1_b["recall_mean"])
+            sweep_curves["ChaosRL Ensemble"].append(ens_b["recall_mean"])
 
-        budget_rows.append({
-            "Budget (B)": b_val,
-            "Chaos Monkey Recall": round(cm_b["recall_mean"], 4),
-            "Heuristic Expert Recall": round(h_b["recall_mean"], 4),
-            "ChaosRL Top-1 Recall": round(top1_b["recall_mean"], 4),
-            "ChaosRL Ensemble Recall": round(ens_b["recall_mean"], 4),
-        })
-
-    save_table(budget_rows, "stage9_budget_sweep", highlight_max_cols=["ChaosRL Ensemble Recall"])
+            budget_rows.append({
+                "Budget (B)": b_val,
+                "Chaos Monkey Recall": round(cm_b["recall_mean"], 4),
+                "Heuristic Expert Recall": round(h_b["recall_mean"], 4),
+                "ChaosRL Top-1 Recall": round(top1_b["recall_mean"], 4),
+                "ChaosRL Ensemble Recall": round(ens_b["recall_mean"], 4),
+            })
+        save_table(budget_rows, "stage9_budget_sweep", highlight_max_cols=["ChaosRL Ensemble Recall"])
 
     # -------------------------------------------------------------
     # 10. Ablation Studies (R1/R2/R3 & Black-Box vs Gray-Box)
@@ -397,7 +461,7 @@ def run_stage9_final_evaluation(
     print("Evaluating Ablation Studies...")
     ablation_rows = []
     # Reward ablations
-    for r_var, r_name in [(RewardVariant.SPARSE_R1, "Sparse R1 (No Penalty)"), (RewardVariant.REGULARIZED_R2, "Regularized R2 (Default)"), (RewardVariant.SHAPED_R3, "Dense Shaped R3")]:
+    for r_var, r_name in [(RewardVariant.R1, "Sparse R1 (No Penalty)"), (RewardVariant.R2, "Regularized R2 (Default)"), (RewardVariant.R3, "Dense Shaped R3")]:
         ab_res = evaluate_method_on_test_systems(top5_models[0], test_seeds=budget_seeds, scale=100, budget=100, reward_variant=r_var)
         ablation_rows.append({
             "Ablation Dimension": "Reward Formulation",
@@ -426,7 +490,13 @@ def run_stage9_final_evaluation(
     # Figure 1: Final Discovery Curves (Scale 100)
     fig1, ax1 = plt.subplots(figsize=(10, 5.5))
     x_steps = np.arange(1, 101)
-    plot_methods = [("chaos_monkey", "Chaos Monkey", CB_PALETTE["gray"], "--"), ("heuristic", "Heuristic Expert", CB_PALETTE["vermilion"], "-."), (top1_tag, top1_label, CB_PALETTE["blue"], "-"), ("e1_soft", "ChaosRL Ensemble", CB_PALETTE["bluish_green"], "-"), ("oracle", "Oracle (Upper Bound)", CB_PALETTE["black"], ":")]
+    plot_methods = [
+        ("chaos_monkey", "Chaos Monkey", CB_PALETTE["gray"], "--"),
+        ("heuristic", "Heuristic Expert", CB_PALETTE["vermilion"], "-."),
+        (top1_tag, top1_label, CB_PALETTE["blue"], "-"),
+        (best_ens_tag, "ChaosRL Ensemble", CB_PALETTE["bluish_green"], "-"),
+        ("oracle", "Oracle (Upper Bound)", CB_PALETTE["black"], ":"),
+    ]
 
     for m_tag, m_lbl, col, ls in plot_methods:
         trajs = scale100_results[m_tag]["trajectories"]

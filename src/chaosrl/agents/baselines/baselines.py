@@ -21,10 +21,11 @@ class ChaosMonkeyAgent:
 
     def select_action(self, obs: Dict[str, np.ndarray]) -> int:
         mask = obs["action_mask"]
-        valid = [a for a in self.kill_actions if mask[a] == 1]
+        valid = [a for a in self.kill_actions if a < len(mask) and mask[a] == 1]
         if valid:
             return int(np.random.choice(valid))
-        return 0
+        fallback = np.where(mask == 1)[0]
+        return int(fallback[0]) if len(fallback) > 0 else 0
 
 
 class ChaosMonkey2Agent:
@@ -39,12 +40,13 @@ class ChaosMonkey2Agent:
 
     def select_action(self, obs: Dict[str, np.ndarray]) -> List[int]:
         mask = obs["action_mask"]
-        valid = [a for a in self.kill_actions if mask[a] == 1]
+        valid = [a for a in self.kill_actions if a < len(mask) and mask[a] == 1]
         if len(valid) >= 2:
             return [int(x) for x in np.random.choice(valid, size=2, replace=False)]
         elif valid:
-            return [valid[0]]
-        return [0]
+            return [int(valid[0])]
+        fallback = np.where(mask == 1)[0]
+        return [int(fallback[0])] if len(fallback) > 0 else [0]
 
 
 class RandomAllAgent:
@@ -115,7 +117,7 @@ class UCBBanditAgent:
         best_idx = np.argmax(ucb_scores)
         return int(valid[best_idx])
 
-    def update(self, action: int, reward: float) -> None:
+    def update(self, action: int, reward: float, obs: Any = None) -> None:
         self.counts[action] += 1.0
         n = self.counts[action]
         self.values[action] += (reward - self.values[action]) / n
@@ -153,7 +155,7 @@ class HeuristicExpertAgent:
         # Match action in catalog
         matching = [
             idx for idx, (s, f, inten) in enumerate(self.env.action_catalog)
-            if s == svc_target and f == ft and mask[idx] == 1
+            if s == svc_target and f == ft and idx < len(mask) and mask[idx] == 1
         ]
         if matching:
             a1 = matching[0]
@@ -166,7 +168,7 @@ class HeuristicExpertAgent:
             svc2 = int(ranked_services[(self.step_count // 3 + 1) % n])
             matching2 = [
                 idx for idx, (s, f, inten) in enumerate(self.env.action_catalog)
-                if s == svc2 and f == FaultType.CPU_STRESS and mask[idx] == 1
+                if s == svc2 and f == FaultType.CPU_STRESS and idx < len(mask) and mask[idx] == 1
             ]
             if matching2 and matching2[0] != a1:
                 return [a1, matching2[0]]

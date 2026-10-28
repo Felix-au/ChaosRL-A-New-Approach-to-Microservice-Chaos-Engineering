@@ -38,6 +38,16 @@ It contains every verified number produced by experiment runs.
 | `environment.r2_dm_return` | -3.8247 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.r2_rnd_return` | -20.8542 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.scale100_action_count` | 1800 | actions | `src/chaosrl/env/chaos_env.py` | 2026-10-28T12:45:35 |
+| `final.generalization.family_m_audc` | 0.0448 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.generalization.scale500_audc` | 0.0007 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.best_ensemble.audc` | 0.0500 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.best_ensemble.recall` | 0.0500 | recall | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.chaos_monkey.audc` | 0.0853 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.chaosrl_top1.audc` | 0.0500 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.chaosrl_top1.recall` | 0.0500 | recall | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.heuristic.audc` | 0.0489 | audc | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.p_value_vs_chaos_monkey` | 1.0000 | p-value | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
+| `final.scale100.p_value_vs_heuristic` | 1.0000 | p-value | `src/chaosrl/evaluate/final_eval.py` | 2026-10-28T15:36:32 |
 | `simulator.scale100_compound_weaknesses` | 2 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
 | `simulator.scale100_decoys` | 13 | decoys | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
 | `simulator.scale100_simple_weaknesses` | 6 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |

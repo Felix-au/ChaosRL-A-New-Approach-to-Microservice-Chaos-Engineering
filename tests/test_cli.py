@@ -43,3 +43,4 @@ def test_cli_quick() -> None:
     args = parser.parse_args(["quick"])
     ret = cmd_quick(args)
     assert ret == 0
+

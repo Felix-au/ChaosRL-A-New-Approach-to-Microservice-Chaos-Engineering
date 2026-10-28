@@ -99,3 +99,4 @@ python -m chaosrl docs-check --section 10
 Stage 11 (Reproducibility Verification and Wrap-up) directly consumes:
 - The completed monograph documentation in `docs/OVERALL.md`, `REPORT.md`, `QA.md`, and `PRESENTATION_OUTLINE.md`.
 - The clean-slate verification script (`python -m chaosrl quick`) confirming that the entire repository can be re-run cleanly from scratch.
+

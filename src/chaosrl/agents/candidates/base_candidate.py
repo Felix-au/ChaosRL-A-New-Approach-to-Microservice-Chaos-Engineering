@@ -55,3 +55,4 @@ class BaseCandidateAgent(ABC):
     def load(self, path: Union[str, Path]) -> None:
         """Load model parameters from disk."""
         pass
+

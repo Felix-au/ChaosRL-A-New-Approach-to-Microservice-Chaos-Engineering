@@ -290,3 +290,4 @@ class REINFORCEAgent(BaseCandidateAgent):
         ckpt = torch.load(path, map_location="cpu", weights_only=True)
         self.actor.load_state_dict(ckpt["actor"])
         self.critic.load_state_dict(ckpt["critic"])
+

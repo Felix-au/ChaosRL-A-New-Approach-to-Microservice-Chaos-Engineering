@@ -255,3 +255,4 @@ class RNDModule(nn.Module):
         pred_feat = self.predictor(pooled)
         loss = F.mse_loss(pred_feat, target_feat)
         return float(loss.item())
+

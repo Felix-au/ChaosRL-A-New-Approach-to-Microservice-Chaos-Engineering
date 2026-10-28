@@ -116,3 +116,4 @@ def get_candidate(candidate_id: str, **kwargs: Any) -> BaseCandidateAgent:
     if candidate_id not in CANDIDATE_REGISTRY:
         raise KeyError(f"Unknown candidate ID: {candidate_id}. Registered: {list(CANDIDATE_REGISTRY.keys())}")
     return CANDIDATE_REGISTRY[candidate_id]["factory"](**kwargs)
+

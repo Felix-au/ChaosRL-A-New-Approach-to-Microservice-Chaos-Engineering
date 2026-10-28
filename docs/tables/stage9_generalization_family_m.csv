@@ -1,0 +1,6 @@
+Method,Family M AUDC,Weakness Recall,Cumulative Damage
+Chaos Monkey,0.0152,0.0469,121.1
+Heuristic Expert,0.0513,0.0938,119.1
+ChaosRL Top-1 (TreeRanker),0.0305,0.0312,1141.0
+ChaosRL Ensemble,0.0448,0.125,142.9
+Oracle,0.0,0.0,67.4

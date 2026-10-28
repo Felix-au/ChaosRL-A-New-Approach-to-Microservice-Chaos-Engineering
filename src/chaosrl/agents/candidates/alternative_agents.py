@@ -213,7 +213,13 @@ class SupervisedRankerAgent(BaseCandidateAgent):
             features.append(vec)
 
         features_arr = np.array(features)
-        probs = self.clf.predict_proba(features_arr)[:, 1] if self.clf.n_classes_ > 1 else np.zeros(len(valid_indices))
+        if hasattr(self.clf, "n_features_in_") and features_arr.shape[1] != self.clf.n_features_in_:
+            if features_arr.shape[1] > self.clf.n_features_in_:
+                features_arr = features_arr[:, :self.clf.n_features_in_]
+            else:
+                pad = np.zeros((features_arr.shape[0], self.clf.n_features_in_ - features_arr.shape[1]))
+                features_arr = np.hstack([features_arr, pad])
+        probs = self.clf.predict_proba(features_arr)[:, 1] if getattr(self.clf, "n_classes_", 0) > 1 else np.zeros(len(valid_indices))
 
         if deterministic or np.random.random() < 0.8:
             best_idx = np.argmax(probs)
