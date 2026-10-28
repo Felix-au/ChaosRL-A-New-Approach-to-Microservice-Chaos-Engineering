@@ -1,0 +1,5 @@
+total_wallclock_hours: 36        # hard budget for all runs combined
+scope: auto                      # auto | minimum | full
+run_docker_validation: false     # optional stretch, see section 21
+download_limit_gb: 3             # largest single download allowed without fallback
+

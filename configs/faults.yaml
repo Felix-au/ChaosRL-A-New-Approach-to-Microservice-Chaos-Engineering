@@ -1,0 +1,52 @@
+fault_types:
+  1:
+    name: "container_kill"
+    description: "Container/pod kill (faithful Chaos Monkey fault)"
+    targets: "service"
+    intensities:
+      low: 1
+      medium: 1
+      high: 2
+  2:
+    name: "node_failure"
+    description: "Node failure affecting all co-located replicas"
+    targets: "node"
+    intensities:
+      low: 1
+      medium: 1
+      high: 1
+  3:
+    name: "latency_injection"
+    description: "Added artificial delay to service calls"
+    targets: "service"
+    intensities:
+      low: 50.0   # ms
+      medium: 200.0
+      high: 600.0
+  4:
+    name: "packet_loss"
+    description: "Network packet drop/error probability on service calls"
+    targets: "service"
+    intensities:
+      low: 0.10
+      medium: 0.30
+      high: 0.70
+  5:
+    name: "cpu_stress"
+    description: "CPU stress / resource exhaustion causing queueing delay"
+    targets: "service"
+    intensities:
+      low: 0.40   # extra CPU load fraction
+      medium: 0.75
+      high: 0.95
+  6:
+    name: "dependency_error"
+    description: "Forced HTTP 500 error on outbound requests"
+    targets: "service"
+    intensities:
+      low: 0.20
+      medium: 0.50
+      high: 0.90
+duration_ticks_default: 10
+compound_max_faults: 2
+

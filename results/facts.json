@@ -1,0 +1,30 @@
+{
+  "stage1.hypotheses_count": {
+    "description": "",
+    "source_file": "docs/section01_design.md",
+    "timestamp": "2026-10-28T12:27:15.789908+00:00",
+    "unit": "hypotheses",
+    "value": 4
+  },
+  "stage1.planned_hours": {
+    "description": "",
+    "source_file": "configs/budget.yaml",
+    "timestamp": "2026-10-28T12:27:15.789071+00:00",
+    "unit": "hours",
+    "value": 36.0
+  },
+  "stage1.risks_count": {
+    "description": "",
+    "source_file": "generate_stage1.py",
+    "timestamp": "2026-10-28T12:27:15.788072+00:00",
+    "unit": "risks",
+    "value": 10
+  },
+  "stage1.status": {
+    "description": "",
+    "source_file": "generate_stage1.py",
+    "timestamp": "2026-10-28T12:27:15.786337+00:00",
+    "unit": "",
+    "value": "COMPLETED"
+  }
+}

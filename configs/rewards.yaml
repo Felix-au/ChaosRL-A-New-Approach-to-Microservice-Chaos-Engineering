@@ -1,0 +1,24 @@
+rewards:
+  R1:
+    description: "Binary sparse reward: +1 per newly found weakness, 0 otherwise"
+    weakness_bonus: 1.0
+    damage_penalty_weight: 0.0
+    repeat_penalty: 0.0
+    shaping_weight: 0.0
+
+  R2:
+    description: "Default: R1 minus damage penalty, minus repeated-fault cost"
+    weakness_bonus: 1.0
+    damage_penalty_weight: 0.05
+    repeat_penalty: 0.02
+    shaping_weight: 0.0
+
+  R3:
+    description: "R2 plus small shaping bonus for informative partial degradation"
+    weakness_bonus: 1.0
+    damage_penalty_weight: 0.05
+    repeat_penalty: 0.02
+    shaping_weight: 0.05
+
+default_variant: "R2"
+

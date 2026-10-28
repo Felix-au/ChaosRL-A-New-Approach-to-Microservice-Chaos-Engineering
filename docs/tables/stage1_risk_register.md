@@ -1,0 +1,14 @@
+<!-- Table: stage1_risk_register -->
+
+| ID | Risk Description | Likelihood | Impact | Mitigation Strategy |
+| --- | --- | --- | --- | --- |
+| R01 | Out-of-memory crash under parallel workers on 16GB host | Med | High | Cap workers at 6, enforce psutil monitor, reduce parallelism if free RAM < 2GB |
+| R02 | Public calibration dataset (Zenodo) network timeout or rate limit | Med | Med | Try 3 retrieval methods; fallback to documented UNCALIBRATED parameter bounds |
+| R03 | Simulator execution speed < 1,000 exp/min at scale 100 | Med | High | Vectorize discrete-time propagation with NumPy; batch graph updates |
+| R04 | Reward hacking: agent triggers repeated catastrophic damage for reward | Med | High | R2 incorporates explicit damage penalty and repeat penalty; verified with damage probe |
+| R05 | Hidden ground-truth weakness leaks into observation vector | Low | Critical | Automated leak test in pytest asserting observation vectors never correlate with planted weakness bitmask |
+| R06 | Heuristic expert solves all weaknesses due to trivial topology | Med | High | Add well-protected hub decoys and fragile low-degree leaves to generator |
+| R07 | PPO training instability (policy collapse or exploding gradient) | Med | Med | Apply gradient clipping (0.5), GAE advantage normalization, and automated tuning playbook |
+| R08 | Ensemble E3 overfits to validation systems | Med | Med | Cross-validation across systems; freeze model hashes before final evaluation |
+| R09 | Test set contamination or early snooping | Low | Critical | Strict code lock requiring CHAOSRL_FINAL_TEST=1 and logging access to test_access_log.csv |
+| R10 | Host machine sleep or throttling during overnight run | High | Med | Hourly heartbeat to results/heartbeat.json and automatic resumption command |

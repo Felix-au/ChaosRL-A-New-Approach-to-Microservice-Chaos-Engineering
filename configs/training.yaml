@@ -1,0 +1,20 @@
+training:
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.20
+  entropy_coef: 0.02
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  learning_rate: 0.0003
+  lr_schedule: "linear"
+  batch_size: 64
+  n_epochs: 4
+  rollout_steps: 256
+  episodes_per_seed: 50
+  quick_episodes: 5
+  training_seeds: [42, 101, 777]
+  evaluation_seeds: [123, 456, 789, 1011, 1213]
+  max_workers: 6
+  memory_limit_gb: 9.0
+  min_free_ram_gb: 2.0
+

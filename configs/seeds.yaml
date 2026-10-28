@@ -1,0 +1,15 @@
+seeds:
+  training:
+    start: 0
+    end: 99999
+  validation:
+    start: 100000
+    end: 100099
+    count: 100
+  test:
+    start: 200000
+    end: 200199
+    count: 200
+    scales: [20, 100, 300, 500]
+    families: ["L", "M"]
+

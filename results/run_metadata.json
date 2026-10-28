@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-10-28T12:26:33.260760+00:00",
+  "os": "Windows-11-10.0.26200-SP0",
+  "system": "Windows",
+  "release": "11",
+  "machine": "AMD64",
+  "processor": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+  "cpu_count_logical": 12,
+  "cpu_count_physical": 6,
+  "ram_total_gb": 13.85,
+  "ram_available_gb": 4.11,
+  "python_version": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "torch": "2.14.1+cpu",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "psutil": "7.2.2",
+    "pandas": "disabled_by_smart_app_control_policy"
+  }
+}

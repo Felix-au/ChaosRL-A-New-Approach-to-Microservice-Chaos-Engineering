@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Project specifics
+data_raw/
+results/checkpoints/
+results/logs/*.log
+*.tmp
+
+# System
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

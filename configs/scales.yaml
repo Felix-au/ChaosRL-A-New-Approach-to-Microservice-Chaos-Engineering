@@ -1,0 +1,16 @@
+scales:
+  tiny_train: [5, 10, 15]
+  main: [20, 100, 300]
+  held_out_scale: 500
+families:
+  training: ["L"]
+  held_out: ["M"]
+budget:
+  default_experiments_per_episode: 100
+  sweep_budgets: [25, 50, 100, 200]
+ticks_per_experiment: 20
+recovery_ticks: 10
+slo:
+  gateway_p99_latency_ms: 500.0
+  gateway_error_rate_threshold: 0.02
+

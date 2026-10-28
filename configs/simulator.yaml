@@ -1,0 +1,15 @@
+simulator:
+  base_latency_range_ms: [5.0, 35.0]
+  base_capacity_per_replica: 150.0  # requests per second
+  default_replicas_min: 1
+  default_replicas_max: 4
+  nodes_ratio: 0.20 # nodes count = round(N * 0.20), minimum 3
+  timeout_ms_default: 400.0
+  max_retries_default: 2
+  retry_backoff_ms_default: 50.0
+  circuit_breaker_error_threshold: 0.25
+  circuit_breaker_min_volume: 15
+  measurement_noise_std: 0.03
+  queue_saturation_power: 2.0
+  calibration_status: "CALIBRATED_OR_FALLBACK"
+
