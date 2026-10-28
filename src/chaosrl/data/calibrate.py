@@ -31,8 +31,9 @@ def load_parsed_cases() -> List[Dict[str, Any]]:
         return json.load(f)
 
 
-def fit_fault_distributions() -> Dict[str, Any]:
+def fit_fault_distributions(random_seed: int = 42) -> Dict[str, Any]:
     """Fit empirical fault response parameters and evaluate on held-out systems."""
+    np.random.seed(random_seed)
     setup_matplotlib_style()
     RESULTS_CALIB_DIR.mkdir(parents=True, exist_ok=True)
     cases = load_parsed_cases()

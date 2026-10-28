@@ -35,3 +35,8 @@ chaosrl = "chaosrl.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.pytest.ini_options]
+markers = [
+    "audit: independent research audit tests"
+]
+
