@@ -30,3 +30,4 @@ This document enumerates all fundamental modeling assumptions, fidelity boundari
 ## 4. Empirical Calibration Scope
 - **Assumption:** Fault effect distributions (latency elevation, CPU saturation, packet loss propagation) are fitted to empirical measurements from the public RCAEval microservice benchmark.
 - **Realism Limits:** The calibration dataset grounds the *response functions* of individual faults in empirical measurements, but the planted weaknesses themselves remain synthetic. ChaosRL is therefore classified as a **data-calibrated simulator**, not a physical container cluster.
+

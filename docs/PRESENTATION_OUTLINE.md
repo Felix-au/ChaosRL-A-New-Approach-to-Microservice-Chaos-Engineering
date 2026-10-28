@@ -66,3 +66,4 @@ This outline specifies an 8-to-10 slide presentation deck summarizing ChaosRL fo
 - **Title:** Rigorous Methodology and Practical Roadmaps
 - **Visuals:** Test set lock verification, ablation studies, and roadmap diagram toward live Kubernetes integration.
 - **Key Message:** All results are produced under a strict test-set lock with pre-registered hypotheses. Future work will extend the framework to open-telemetry distributed tracing and continuous action throttling.
+

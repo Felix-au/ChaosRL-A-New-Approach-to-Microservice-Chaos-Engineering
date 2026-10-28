@@ -5,6 +5,11 @@ It contains every verified number produced by experiment runs.
 
 | Key | Value | Unit | Source File | Timestamp |
 |---|---|---|---|---|
+| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
+| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
+| `calibration.mean_held_out_wasserstein` | 35.8036 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
+| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
+| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
 | `stage1.hypotheses_count` | 4 | hypotheses | `docs/section01_design.md` | 2026-10-28T12:27:15 |
 | `stage1.planned_hours` | 36.0000 | hours | `configs/budget.yaml` | 2026-10-28T12:27:15 |
 | `stage1.risks_count` | 10 | risks | `generate_stage1.py` | 2026-10-28T12:27:15 |

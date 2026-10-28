@@ -25,3 +25,4 @@ This index catalogs all technical documentation, experimental monographs, logs, 
 - [section09_final_evaluation.md](section09_final_evaluation.md): Stage 9 — Locked test set evaluation, statistical significance testing, OOD generalization, budget sweep, and ablations.
 - [section10_analysis_limitations.md](section10_analysis_limitations.md): Stage 10 — Hypothesis testing verdicts (RQ1–RQ4), interpretability analysis, failure cases, and threats to validity.
 - [section11_reproducibility.md](section11_reproducibility.md): Stage 11 — Clean-copy verification, reproduction commands, and execution ledger.
+

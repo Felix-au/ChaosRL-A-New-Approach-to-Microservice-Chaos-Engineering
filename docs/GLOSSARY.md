@@ -39,3 +39,4 @@ This glossary provides formal definitions for concepts in distributed microservi
 - **Area Under the Discovery Curve (AUDC):** The integral of the weakness discovery count plotted against the cumulative experiment budget, normalized by budget and total planted weaknesses.
 - **GNN Scorer:** A Graph Neural Network that performs message passing across the microservice call graph to produce action candidate logits.
 - **Ensemble Controller:** A meta-policy combining the predictions of multiple diverse models (Soft Voting, Borda Rank Voting, or Random Forest Gating).
+

@@ -224,3 +224,4 @@ ChaosRL benchmarks 7 baseline approaches against 12 learned candidates and 3 met
 
 ## 20. Appendices
 *(Populated during Stage 11: configuration listings, full candidate parameter tables, and file inventories.)*
+

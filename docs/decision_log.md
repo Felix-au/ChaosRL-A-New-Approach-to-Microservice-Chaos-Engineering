@@ -32,3 +32,4 @@ This ledger documents architectural choices, deviations from default configurati
   - Validation: `100,000` to `100,099` (100 systems)
   - Test: `200,000` to `200,199` (200 systems across scales 20, 100, 300, 500 and families L and M)
 - **Rationale:** Eliminates data leakage and guarantees generalization testing occurs strictly out-of-distribution.
+

@@ -65,3 +65,4 @@ The top 5 performing agents are selected and combined into **ensembles**:
 - **Weakness Discovery Curve (Figure 1):** The horizontal axis shows the experiment budget (number of tests injected, from 0 to 100), while the vertical axis shows the cumulative percentage of planted weaknesses found. A curve that rises steeply in early experiments indicates an efficient agent.
 - **Damage vs. Discovery Scatter:** Compares safety against effectiveness. The ideal agent appears in the top-left quadrant (high discovery, low cumulative damage).
 - **Out-of-Distribution Generalization:** Shows whether an agent trained on smaller layered systems can discover weaknesses in large, unfamiliar mesh networks without retraining.
+

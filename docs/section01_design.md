@@ -139,3 +139,4 @@ Stage 2 (Real Data and Calibration) directly depends on:
 - The 6-fault taxonomy defined in `configs/faults.yaml`.
 - The download budget and file size constraints defined in `configs/budget.yaml` (`download_limit_gb: 3`).
 - The empirical distribution fitting interfaces that will provide calibrated response parameters to the Stage 3 simulator.
+

@@ -1,4 +1,39 @@
 {
+  "calibration.fit_cases_ob": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T12:37:06.597481+00:00",
+    "unit": "cases",
+    "value": 125
+  },
+  "calibration.held_out_cases_ss": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T12:37:06.599450+00:00",
+    "unit": "cases",
+    "value": 125
+  },
+  "calibration.mean_held_out_wasserstein": {
+    "description": "",
+    "source_file": "results/calibration/fitted_parameters.json",
+    "timestamp": "2026-10-28T12:37:06.600853+00:00",
+    "unit": "dist",
+    "value": 35.80357052875415
+  },
+  "calibration.status": {
+    "description": "",
+    "source_file": "results/calibration/fitted_parameters.json",
+    "timestamp": "2026-10-28T12:37:06.601975+00:00",
+    "unit": "",
+    "value": "CALIBRATED"
+  },
+  "calibration.total_cases": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T12:37:06.595036+00:00",
+    "unit": "cases",
+    "value": 250
+  },
   "stage1.hypotheses_count": {
     "description": "",
     "source_file": "docs/section01_design.md",

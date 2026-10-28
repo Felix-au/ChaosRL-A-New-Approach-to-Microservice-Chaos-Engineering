@@ -54,8 +54,41 @@ def check_stage_1() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_2() -> Tuple[bool, List[str]]:
+    """Stage 2 exit criteria:
+    - RCAEval data downloaded and parsed (or documented fallback)
+    - Per-fault-type effect distributions saved
+    - Fitted parameters saved in results/calibration/fitted_parameters.json
+    - docs-check passes for section 2
+    """
+    errors: List[str] = []
+    parsed_path = Path("data_raw/parsed_cases.json")
+    if not parsed_path.exists():
+        errors.append("data_raw/parsed_cases.json is missing")
+    else:
+        try:
+            with open(parsed_path, "r", encoding="utf-8") as f:
+                cases = json.load(f)
+            if len(cases) < 100:
+                errors.append(f"Insufficient cases parsed: found {len(cases)}, expected >=100")
+        except Exception as e:
+            errors.append(f"Failed to read parsed cases: {e}")
+
+    calib_params = Path("results/calibration/fitted_parameters.json")
+    if not calib_params.exists():
+        errors.append("results/calibration/fitted_parameters.json is missing")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(2)
+    if not sec_ok:
+        errors.extend([f"Section 2 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
+    2: check_stage_2,
 }
 
 
