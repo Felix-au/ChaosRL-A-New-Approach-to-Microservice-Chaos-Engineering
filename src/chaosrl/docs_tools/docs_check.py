@@ -127,7 +127,7 @@ def check_captions(text: str) -> Tuple[bool, List[str]]:
 
 
 def check_media_and_tables(
-    text: str, base_dir: Path = Path(".")
+    text: str, doc_dir: Path = Path("docs"), base_dir: Path = Path(".")
 ) -> Tuple[bool, List[str], int, int]:
     """Check existence of referenced figures and count figures/tables."""
     errors: List[str] = []
@@ -137,8 +137,10 @@ def check_media_and_tables(
     for fig_path_str in figures:
         # Strip potential title
         clean_path = fig_path_str.split()[0].strip()
-        fig_path = base_dir / clean_path
-        if not fig_path.exists():
+        # Check relative to doc_dir first, then relative to base_dir
+        path_in_doc = doc_dir / clean_path
+        path_in_base = base_dir / clean_path
+        if not path_in_doc.exists() and not path_in_base.exists():
             errors.append(f"Referenced figure does not exist: {clean_path}")
 
     # Check table count (markdown tables with at least 2 rows)

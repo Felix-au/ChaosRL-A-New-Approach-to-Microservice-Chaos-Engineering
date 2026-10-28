@@ -39,9 +39,10 @@ def check_stage_1() -> Tuple[bool, List[str]]:
         errors.append("docs/section01_design.md is missing")
     else:
         content = sec1_path.read_text(encoding="utf-8")
-        if "Hypothesis" not in content or "RQ1" not in content:
+        content_lower = content.lower()
+        if "hypothesis" not in content_lower or "rq1" not in content_lower:
             errors.append("Falsifiable hypotheses missing from docs/section01_design.md")
-        if "Risk Register" not in content:
+        if "risk register" not in content_lower:
             errors.append("Risk register missing from docs/section01_design.md")
 
     # Check docs-check for section 1
