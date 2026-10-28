@@ -6,8 +6,8 @@
 | S02 | Data & Calibration | `section02_data_calibration.md` | 2026-10-28 12:35 | 2026-10-28 12:45 | COMPLETED | PASS | [S02_data_calibration.md](self_evaluations/S02_data_calibration.md) |
 | S03 | Simulator Engine | `section03_simulator.md` | 2026-10-28 12:45 | 2026-10-28 12:55 | COMPLETED | PASS | [S03_simulator.md](self_evaluations/S03_simulator.md) |
 | S04 | Gym Environment | `section04_environment.md` | 2026-10-28 12:55 | 2026-10-28 13:05 | COMPLETED | PASS | [S04_environment.md](self_evaluations/S04_environment.md) |
-| S05 | Non-Learned Baselines | `section05_baselines.md` | - | - | PENDING | - | - |
-| S06 | Candidate Pool | `section06_candidates.md` | - | - | PENDING | - | - |
+| S05 | Non-Learned Baselines | `section05_baselines.md` | 2026-10-28 13:05 | 2026-10-28 13:30 | COMPLETED | PASS | [S05_baselines.md](self_evaluations/S05_baselines.md) |
+| S06 | Candidate Pool | `section06_candidates.md` | 2026-10-28 13:30 | - | IN_PROGRESS | - | - |
 | S07 | Training & Auto-Tuning | `section07_training.md` | - | - | PENDING | - | - |
 | S08 | Selection & Ensembles | `section08_selection_ensembles.md` | - | - | PENDING | - | - |
 | S09 | Final Evaluation | `section09_final_evaluation.md` | - | - | PENDING | - | - |

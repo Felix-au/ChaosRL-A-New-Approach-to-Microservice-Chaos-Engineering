@@ -119,3 +119,4 @@ def benchmark_engine_throughput(
 
     experiments_per_min = (num_experiments / elapsed_sec) * 60.0
     return float(experiments_per_min)
+

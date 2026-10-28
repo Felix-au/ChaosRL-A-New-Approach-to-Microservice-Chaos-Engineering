@@ -138,3 +138,4 @@ Stage 3 (The Simulator) directly consumes:
 - The fitted parametric models in `results/calibration/fitted_parameters.json`.
 - The empirical queue saturation and latency scaling factors for `inject(fault)`.
 - The baseline metric bounds (500 ms p99 gateway SLO and 2% error threshold) verified in this section.
+

@@ -112,3 +112,4 @@ def test_test_set_lock():
     finally:
         if old_env is not None:
             os.environ["CHAOSRL_FINAL_TEST"] = old_env
+

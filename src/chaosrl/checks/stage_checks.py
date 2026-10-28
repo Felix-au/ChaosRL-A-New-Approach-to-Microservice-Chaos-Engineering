@@ -148,11 +148,58 @@ def check_stage_4() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_5() -> Tuple[bool, List[str]]:
+    """Stage 5 exit criteria:
+    - All 7 baselines implemented
+    - Validation results and breakdown tables exist
+    - Figures exist
+    - Invariants: Oracle AUDC > baselines, Heuristic recall < 1.0
+    - docs-check passes for section 5
+    """
+    errors: List[str] = []
+
+    # Check figures
+    for fig_name in ["stage5_baseline_discovery_curves.png", "stage5_baseline_damage_vs_discovery.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check tables
+    for tbl_name in ["stage5_baseline_validation_results.md", "stage5_weakness_breakdown_by_baseline.md"]:
+        if not (Path("docs/tables") / tbl_name).exists():
+            errors.append(f"Missing table: {tbl_name}")
+
+    # Check facts and invariants
+    facts = load_all_facts()
+    if "baseline.oracle.audc" not in facts:
+        errors.append("Missing fact: baseline.oracle.audc")
+    if "baseline.heuristic.audc" not in facts:
+        errors.append("Missing fact: baseline.heuristic.audc")
+
+    if "baseline.oracle.audc" in facts and "baseline.heuristic.audc" in facts:
+        oracle_audc = facts["baseline.oracle.audc"]["value"]
+        heuristic_audc = facts["baseline.heuristic.audc"]["value"]
+        if oracle_audc <= heuristic_audc:
+            errors.append(f"Invariant violation: Oracle AUDC ({oracle_audc}) <= Heuristic AUDC ({heuristic_audc})")
+
+    if "baseline.heuristic.recall" in facts:
+        h_rec = facts["baseline.heuristic.recall"]["value"]
+        if h_rec >= 1.0:
+            errors.append(f"Invariant violation: Heuristic recall is 1.0 (decoys failed): {h_rec}")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(5)
+    if not sec_ok:
+        errors.extend([f"Section 5 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
     2: check_stage_2,
     3: check_stage_3,
     4: check_stage_4,
+    5: check_stage_5,
 }
 
 

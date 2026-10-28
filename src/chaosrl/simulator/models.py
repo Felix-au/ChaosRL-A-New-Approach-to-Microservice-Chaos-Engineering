@@ -82,3 +82,4 @@ class ExperimentResult:
     emergent_violation: bool
     duration_ticks: int
     metrics_history: Dict[str, np.ndarray] = field(default_factory=dict)
+

@@ -5,11 +5,26 @@ It contains every verified number produced by experiment runs.
 
 | Key | Value | Unit | Source File | Timestamp |
 |---|---|---|---|---|
-| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
-| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
-| `calibration.mean_held_out_wasserstein` | 35.8036 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
-| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
-| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
+| `baseline.bandit_ucb.audc` | 0.0364 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.chaos_monkey.audc` | 0.0395 | audc | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
+| `baseline.chaos_monkey.damage` | 178.2600 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.chaos_monkey.recall` | 0.0750 | recall | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.chaos_monkey_2.audc` | 0.0663 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.heuristic.audc` | 0.1054 | audc | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
+| `baseline.heuristic.damage` | 262.5400 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.heuristic.recall` | 0.1750 | recall | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
+| `baseline.oracle.audc` | 0.2482 | audc | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
+| `baseline.oracle.damage` | 42.9300 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.oracle.recall` | 0.2500 | recall | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.random_all.audc` | 0.0909 | audc | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
+| `baseline.random_all.damage` | 169221.92 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.round_robin.audc` | 0.0955 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `baseline.round_robin.damage` | 568691.78 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
+| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
+| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
+| `calibration.mean_held_out_wasserstein` | 35.3894 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:54:16 |
+| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:54:16 |
+| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
 | `environment.r2_dm_return` | -3.8247 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.r2_rnd_return` | -20.8542 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.scale100_action_count` | 1800 | actions | `src/chaosrl/env/chaos_env.py` | 2026-10-28T12:45:35 |

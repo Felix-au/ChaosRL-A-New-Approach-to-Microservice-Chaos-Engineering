@@ -147,3 +147,4 @@ Stage 4 (Gymnasium Environment) directly depends on:
 - The `SimulatorEngine` execution lifecycle and fault injection interface.
 - The observation telemetry vectors (`p50_latency`, `p99_latency`, `error_rate`, `cpu_utilization`, `request_rate`, `healthy_replicas`) exposed per service.
 - The `WeaknessMatcher` interface for calculating reward signals $R_1$, $R_2$, and $R_3$.
+

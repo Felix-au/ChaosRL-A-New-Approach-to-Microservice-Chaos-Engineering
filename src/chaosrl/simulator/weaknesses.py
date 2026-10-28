@@ -91,3 +91,4 @@ class WeaknessMatcher:
     @property
     def discovery_rate(self) -> float:
         return float(len(self.discovered_ids) / len(self.weaknesses)) if self.weaknesses else 0.0
+

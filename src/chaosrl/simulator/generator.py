@@ -298,3 +298,4 @@ class MicroserviceSystem:
     def ground_truth_weaknesses(self) -> List[PlantedWeakness]:
         """Internal simulator accessor for evaluation; NEVER exposed to agents."""
         return self._ground_truth_weaknesses
+

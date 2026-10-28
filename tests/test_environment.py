@@ -93,3 +93,4 @@ def test_random_policy_stability():
             action = int(np.random.choice(np.where(mask == 1)[0]))
             obs, r, term, trunc, info = env.step(action)
             done = term or trunc
+

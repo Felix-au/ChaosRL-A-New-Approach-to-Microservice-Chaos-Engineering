@@ -80,7 +80,8 @@ class SystemDynamics:
 
         if fault.fault_type == FaultType.CONTAINER_KILL:
             if 0 <= target < self.n:
-                self.healthy_replicas[target] = max(0.0, self.healthy_replicas[target] - int(np.round(1 * scale)))
+                kill_count = max(1, int(np.ceil(1.0 * scale)))
+                self.healthy_replicas[target] = max(0.0, self.healthy_replicas[target] - kill_count)
 
         elif fault.fault_type == FaultType.NODE_FAILURE:
             # Kill all replicas residing on this physical node
@@ -156,6 +157,21 @@ class SystemDynamics:
             self.active_error_fault + self.active_loss_fault + (0.8 * timeout_mask) + (1.0 * (~pos_cap)),
             0.0, 1.0
         )
+
+        # 5. Backward Propagation to Callers (Cascading Call Chain Impact)
+        # In microservices (Tail at Scale), p99 tail latency is driven by the slowest critical path branch
+        # and downstream callee errors propagate upstream to callers
+        for u in range(self.n - 1, -1, -1):
+            downstream = np.where(self.adj[u, :] > 0)[0]
+            if len(downstream) > 0:
+                active_callees = [v for v in downstream if self.cb_open[v] == 0.0]
+                if active_callees:
+                    max_callee_lat = float(np.max([p99_latency[v] for v in active_callees]))
+                    avg_callee_lat = float(np.mean([p50_latency[v] for v in active_callees]))
+                    callee_err = float(np.mean([error_rate[v] for v in active_callees]))
+                    p99_latency[u] += max_callee_lat * 0.85
+                    p50_latency[u] += avg_callee_lat * 0.60
+                    error_rate[u] = np.clip(error_rate[u] + callee_err * 0.80, 0.0, 1.0)
 
         # Circuit breaker trips if error rate > 0.25 and has_cb is True
         trip_mask = (error_rate > 0.25) & (self.has_cb == 1.0)

@@ -181,3 +181,4 @@ def fit_fault_distributions() -> Dict[str, Any]:
         "results_table": results_table,
         "mean_held_out_wasserstein": mean_w_held,
     }
+

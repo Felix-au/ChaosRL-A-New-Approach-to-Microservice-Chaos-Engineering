@@ -1,36 +1,141 @@
 {
+  "baseline.bandit_ucb.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.521089+00:00",
+    "unit": "audc",
+    "value": 0.036375
+  },
+  "baseline.chaos_monkey.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.474954+00:00",
+    "unit": "audc",
+    "value": 0.0395
+  },
+  "baseline.chaos_monkey.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.526276+00:00",
+    "unit": "damage",
+    "value": 178.26
+  },
+  "baseline.chaos_monkey.recall": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.523522+00:00",
+    "unit": "recall",
+    "value": 0.075
+  },
+  "baseline.chaos_monkey_2.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.518334+00:00",
+    "unit": "audc",
+    "value": 0.06625
+  },
+  "baseline.heuristic.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.477746+00:00",
+    "unit": "audc",
+    "value": 0.10537500000000002
+  },
+  "baseline.heuristic.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.527471+00:00",
+    "unit": "damage",
+    "value": 262.54
+  },
+  "baseline.heuristic.recall": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.479012+00:00",
+    "unit": "recall",
+    "value": 0.175
+  },
+  "baseline.oracle.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.473579+00:00",
+    "unit": "audc",
+    "value": 0.24825
+  },
+  "baseline.oracle.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.524954+00:00",
+    "unit": "damage",
+    "value": 42.93
+  },
+  "baseline.oracle.recall": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.522278+00:00",
+    "unit": "recall",
+    "value": 0.25
+  },
+  "baseline.random_all.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.476382+00:00",
+    "unit": "audc",
+    "value": 0.090875
+  },
+  "baseline.random_all.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.530595+00:00",
+    "unit": "damage",
+    "value": 169221.92
+  },
+  "baseline.round_robin.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.519898+00:00",
+    "unit": "audc",
+    "value": 0.0955
+  },
+  "baseline.round_robin.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.528748+00:00",
+    "unit": "damage",
+    "value": 568691.78
+  },
   "calibration.fit_cases_ob": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T12:37:06.597481+00:00",
+    "timestamp": "2026-10-28T13:02:26.193117+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.held_out_cases_ss": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T12:37:06.599450+00:00",
+    "timestamp": "2026-10-28T13:02:26.194898+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.mean_held_out_wasserstein": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T12:37:06.600853+00:00",
+    "timestamp": "2026-10-28T13:02:26.196171+00:00",
     "unit": "dist",
-    "value": 35.80357052875415
+    "value": 35.34910293775904
   },
   "calibration.status": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T12:37:06.601975+00:00",
+    "timestamp": "2026-10-28T13:02:26.197401+00:00",
     "unit": "",
     "value": "CALIBRATED"
   },
   "calibration.total_cases": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T12:37:06.595036+00:00",
+    "timestamp": "2026-10-28T13:02:26.190991+00:00",
     "unit": "cases",
     "value": 250
   },
