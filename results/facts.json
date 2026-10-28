@@ -34,6 +34,27 @@
     "unit": "cases",
     "value": 250
   },
+  "environment.r2_dm_return": {
+    "description": "",
+    "source_file": "src/chaosrl/env/probes.py",
+    "timestamp": "2026-10-28T12:45:35.915752+00:00",
+    "unit": "return",
+    "value": -3.8246660141200395
+  },
+  "environment.r2_rnd_return": {
+    "description": "",
+    "source_file": "src/chaosrl/env/probes.py",
+    "timestamp": "2026-10-28T12:45:35.916905+00:00",
+    "unit": "return",
+    "value": -20.854189665347324
+  },
+  "environment.scale100_action_count": {
+    "description": "",
+    "source_file": "src/chaosrl/env/chaos_env.py",
+    "timestamp": "2026-10-28T12:45:35.926064+00:00",
+    "unit": "actions",
+    "value": 1800
+  },
   "simulator.scale100_compound_weaknesses": {
     "description": "",
     "source_file": "src/chaosrl/simulator/generator.py",

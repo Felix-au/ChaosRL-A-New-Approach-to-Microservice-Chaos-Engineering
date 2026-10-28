@@ -10,6 +10,9 @@ It contains every verified number produced by experiment runs.
 | `calibration.mean_held_out_wasserstein` | 35.8036 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
 | `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
 | `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
+| `environment.r2_dm_return` | -3.8247 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
+| `environment.r2_rnd_return` | -20.8542 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
+| `environment.scale100_action_count` | 1800 | actions | `src/chaosrl/env/chaos_env.py` | 2026-10-28T12:45:35 |
 | `simulator.scale100_compound_weaknesses` | 2 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
 | `simulator.scale100_decoys` | 13 | decoys | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
 | `simulator.scale100_simple_weaknesses` | 6 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |

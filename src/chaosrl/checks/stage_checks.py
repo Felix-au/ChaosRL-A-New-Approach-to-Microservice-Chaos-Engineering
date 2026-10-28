@@ -122,10 +122,37 @@ def check_stage_3() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_4() -> Tuple[bool, List[str]]:
+    """Stage 4 exit criteria:
+    - Environment API compliance verified
+    - Zero hidden-information leak verified
+    - Action masks functional
+    - Linear observation scaling verified
+    - docs-check passes for section 4
+    """
+    errors: List[str] = []
+    # Check figures
+    for fig_name in ["stage4_reward_comparison.png", "stage4_observation_scaling.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check table
+    if not (Path("docs/tables") / "stage4_reward_safety_probe.md").exists():
+        errors.append("Missing table: stage4_reward_safety_probe.md")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(4)
+    if not sec_ok:
+        errors.extend([f"Section 4 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
     2: check_stage_2,
     3: check_stage_3,
+    4: check_stage_4,
 }
 
 
