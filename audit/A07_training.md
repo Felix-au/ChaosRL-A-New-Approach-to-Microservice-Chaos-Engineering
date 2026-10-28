@@ -77,3 +77,4 @@ Rigorous seed isolation ensures that the Top 5 candidate selection in Stage 8 an
 
 1. **Unified Step-Level Telemetry Schema:** Standardize intermediate loss and step logging across tabular and evolutionary agents to produce uniform schema across all 12 models.
 2. **Multi-Seed Variance Logging:** Record per-seed checkpoint evaluation variance directly inside `results/run_metadata.json` for enhanced traceability.
+

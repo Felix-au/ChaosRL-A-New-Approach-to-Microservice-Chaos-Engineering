@@ -1,0 +1,408 @@
+{
+  "baseline.bandit_ucb.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.521089+00:00",
+    "unit": "audc",
+    "value": 0.036375
+  },
+  "baseline.chaos_monkey.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.474954+00:00",
+    "unit": "audc",
+    "value": 0.0395
+  },
+  "baseline.chaos_monkey.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.526276+00:00",
+    "unit": "damage",
+    "value": 178.26
+  },
+  "baseline.chaos_monkey.recall": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.523522+00:00",
+    "unit": "recall",
+    "value": 0.075
+  },
+  "baseline.chaos_monkey_2.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.518334+00:00",
+    "unit": "audc",
+    "value": 0.06625
+  },
+  "baseline.heuristic.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.477746+00:00",
+    "unit": "audc",
+    "value": 0.10537500000000002
+  },
+  "baseline.heuristic.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.527471+00:00",
+    "unit": "damage",
+    "value": 262.54
+  },
+  "baseline.heuristic.recall": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.479012+00:00",
+    "unit": "recall",
+    "value": 0.175
+  },
+  "baseline.oracle.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.473579+00:00",
+    "unit": "audc",
+    "value": 0.24825
+  },
+  "baseline.oracle.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.524954+00:00",
+    "unit": "damage",
+    "value": 42.93
+  },
+  "baseline.oracle.recall": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.522278+00:00",
+    "unit": "recall",
+    "value": 0.25
+  },
+  "baseline.random_all.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/baselines/eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:19.476382+00:00",
+    "unit": "audc",
+    "value": 0.090875
+  },
+  "baseline.random_all.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.530595+00:00",
+    "unit": "damage",
+    "value": 169221.92
+  },
+  "baseline.round_robin.audc": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.519898+00:00",
+    "unit": "audc",
+    "value": 0.0955
+  },
+  "baseline.round_robin.damage": {
+    "description": "",
+    "source_file": "eval_baselines.py",
+    "timestamp": "2026-10-28T12:59:46.528748+00:00",
+    "unit": "damage",
+    "value": 568691.78
+  },
+  "calibration.fit_cases_ob": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T15:46:23.459183+00:00",
+    "unit": "cases",
+    "value": 125
+  },
+  "calibration.held_out_cases_ss": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T15:46:23.460958+00:00",
+    "unit": "cases",
+    "value": 125
+  },
+  "calibration.mean_held_out_wasserstein": {
+    "description": "",
+    "source_file": "results/calibration/fitted_parameters.json",
+    "timestamp": "2026-10-28T15:46:23.462578+00:00",
+    "unit": "dist",
+    "value": 35.885766167806366
+  },
+  "calibration.status": {
+    "description": "",
+    "source_file": "results/calibration/fitted_parameters.json",
+    "timestamp": "2026-10-28T15:46:23.464164+00:00",
+    "unit": "",
+    "value": "CALIBRATED"
+  },
+  "calibration.total_cases": {
+    "description": "",
+    "source_file": "data_raw/parsed_cases.json",
+    "timestamp": "2026-10-28T15:46:23.457445+00:00",
+    "unit": "cases",
+    "value": 250
+  },
+  "candidates.cross_check_diff": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.089520+00:00",
+    "unit": "reward",
+    "value": 0.0019
+  },
+  "candidates.custom_ppo_reward": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.090973+00:00",
+    "unit": "reward",
+    "value": -0.0418
+  },
+  "candidates.max_parameter_count": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.631061+00:00",
+    "unit": "parameters",
+    "value": 47123
+  },
+  "candidates.mean_throughput": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.629291+00:00",
+    "unit": "steps/sec",
+    "value": 88.2
+  },
+  "candidates.pool_size": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.632568+00:00",
+    "unit": "candidates",
+    "value": 12
+  },
+  "candidates.sb3_ppo_reward": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.092672+00:00",
+    "unit": "reward",
+    "value": -0.0437
+  },
+  "ensemble.audc_gain": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.156586+00:00",
+    "unit": "audc",
+    "value": 0.023
+  },
+  "ensemble.best_ensemble_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.155102+00:00",
+    "unit": "audc",
+    "value": 0.098
+  },
+  "ensemble.best_ensemble_name": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.153317+00:00",
+    "unit": "name",
+    "value": "E3: Gated Controller"
+  },
+  "ensemble.top1_single_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/ensemble/eval_ensembles.py",
+    "timestamp": "2026-10-28T14:44:36.151591+00:00",
+    "unit": "audc",
+    "value": 0.075
+  },
+  "environment.r2_dm_return": {
+    "description": "",
+    "source_file": "src/chaosrl/env/probes.py",
+    "timestamp": "2026-10-28T12:45:35.915752+00:00",
+    "unit": "return",
+    "value": -3.8246660141200395
+  },
+  "environment.r2_rnd_return": {
+    "description": "",
+    "source_file": "src/chaosrl/env/probes.py",
+    "timestamp": "2026-10-28T12:45:35.916905+00:00",
+    "unit": "return",
+    "value": -20.854189665347324
+  },
+  "environment.scale100_action_count": {
+    "description": "",
+    "source_file": "src/chaosrl/env/chaos_env.py",
+    "timestamp": "2026-10-28T12:45:35.926064+00:00",
+    "unit": "actions",
+    "value": 1800
+  },
+  "final.generalization.family_m_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.767084+00:00",
+    "unit": "audc",
+    "value": 0.0448
+  },
+  "final.generalization.scale500_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.765542+00:00",
+    "unit": "audc",
+    "value": 0.0007
+  },
+  "final.scale100.best_ensemble.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.755835+00:00",
+    "unit": "audc",
+    "value": 0.05
+  },
+  "final.scale100.best_ensemble.recall": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.757348+00:00",
+    "unit": "recall",
+    "value": 0.05
+  },
+  "final.scale100.chaos_monkey.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.759091+00:00",
+    "unit": "audc",
+    "value": 0.0853
+  },
+  "final.scale100.chaosrl_top1.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.752610+00:00",
+    "unit": "audc",
+    "value": 0.05
+  },
+  "final.scale100.chaosrl_top1.recall": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.754198+00:00",
+    "unit": "recall",
+    "value": 0.05
+  },
+  "final.scale100.heuristic.audc": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.760806+00:00",
+    "unit": "audc",
+    "value": 0.0489
+  },
+  "final.scale100.p_value_vs_chaos_monkey": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.762386+00:00",
+    "unit": "p-value",
+    "value": 1.0
+  },
+  "final.scale100.p_value_vs_heuristic": {
+    "description": "",
+    "source_file": "src/chaosrl/evaluate/final_eval.py",
+    "timestamp": "2026-10-28T15:36:32.764003+00:00",
+    "unit": "p-value",
+    "value": 1.0
+  },
+  "simulator.scale100_compound_weaknesses": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.913555+00:00",
+    "unit": "weaknesses",
+    "value": 2
+  },
+  "simulator.scale100_decoys": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.914639+00:00",
+    "unit": "decoys",
+    "value": 13
+  },
+  "simulator.scale100_simple_weaknesses": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.912356+00:00",
+    "unit": "weaknesses",
+    "value": 6
+  },
+  "simulator.throughput_scale100": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.187845+00:00",
+    "unit": "exp/min",
+    "value": 7914.44902706215
+  },
+  "simulator.throughput_scale20": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.185962+00:00",
+    "unit": "exp/min",
+    "value": 22912.709450801907
+  },
+  "simulator.throughput_scale300": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.189159+00:00",
+    "unit": "exp/min",
+    "value": 2479.7425696585724
+  },
+  "stage1.hypotheses_count": {
+    "description": "",
+    "source_file": "docs/section01_design.md",
+    "timestamp": "2026-10-28T12:27:15.789908+00:00",
+    "unit": "hypotheses",
+    "value": 4
+  },
+  "stage1.planned_hours": {
+    "description": "",
+    "source_file": "configs/budget.yaml",
+    "timestamp": "2026-10-28T12:27:15.789071+00:00",
+    "unit": "hours",
+    "value": 36.0
+  },
+  "stage1.risks_count": {
+    "description": "",
+    "source_file": "generate_stage1.py",
+    "timestamp": "2026-10-28T12:27:15.788072+00:00",
+    "unit": "risks",
+    "value": 10
+  },
+  "stage1.status": {
+    "description": "",
+    "source_file": "generate_stage1.py",
+    "timestamp": "2026-10-28T12:27:15.786337+00:00",
+    "unit": "",
+    "value": "COMPLETED"
+  },
+  "training.best_candidate_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.497783+00:00",
+    "unit": "audc",
+    "value": 0.0938
+  },
+  "training.best_candidate_id": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.496119+00:00",
+    "unit": "candidate",
+    "value": "C12"
+  },
+  "training.shuffled_control_drop": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.501927+00:00",
+    "unit": "audc",
+    "value": 0.0587
+  },
+  "training.shuffled_obs_audc": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.500614+00:00",
+    "unit": "audc",
+    "value": 0.035
+  },
+  "training.tuning_rounds_completed": {
+    "description": "",
+    "source_file": "src/chaosrl/train/tuning.py",
+    "timestamp": "2026-10-28T14:38:01.499282+00:00",
+    "unit": "rounds",
+    "value": 6
+  }
+}

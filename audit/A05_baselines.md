@@ -85,3 +85,4 @@ The baseline performance metrics establish the benchmark floor and ceiling for c
 
 1. **NumPy 2.0 API Modernization:** Replace any legacy occurrences of `np.trapz` with `np.trapezoid` across evaluation modules to prevent deprecation warnings in newer Python environments.
 2. **Contextual Bandit Baseline:** Consider expanding UCB to LinUCB incorporating node telemetry features for a stronger bandit baseline.
+

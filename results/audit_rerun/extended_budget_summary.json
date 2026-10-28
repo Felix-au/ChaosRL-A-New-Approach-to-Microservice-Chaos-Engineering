@@ -1,0 +1,30 @@
+[
+  {
+    "budget": 25,
+    "chaos_monkey": 0.0078125,
+    "heuristic": 0.046875,
+    "top1": 0.0546875,
+    "ensemble": 0.0
+  },
+  {
+    "budget": 50,
+    "chaos_monkey": 0.0546875,
+    "heuristic": 0.1328125,
+    "top1": 0.0625,
+    "ensemble": 0.0
+  },
+  {
+    "budget": 100,
+    "chaos_monkey": 0.078125,
+    "heuristic": 0.1796875,
+    "top1": 0.0625,
+    "ensemble": 0.0625
+  },
+  {
+    "budget": 200,
+    "chaos_monkey": 0.1015625,
+    "heuristic": 0.21875,
+    "top1": 0.078125,
+    "ensemble": 0.0625
+  }
+]

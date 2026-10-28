@@ -1,0 +1,15 @@
+<!-- Table: stage4_observation_spec -->
+
+| Index | Feature Name | Type | Range | Description |
+| --- | --- | --- | --- | --- |
+| 0 | latency_ratio | Dynamic | [0.0, 10.0] | Service base latency normalized against 20ms baseline |
+| 1 | error_rate | Dynamic | [0.0, 1.0] | Active error rate from packet loss or dependency faults |
+| 2 | cpu_utilization | Dynamic | [0.0, 100.0] | Background and dynamic CPU load percentage |
+| 3 | healthy_replica_fraction | Dynamic | [0.0, 1.0] | Ratio of surviving healthy replicas to total replicas |
+| 4 | in_degree_normalized | Structural | [0.0, 1.0] | Number of incoming callers normalized by N |
+| 5 | out_degree_normalized | Structural | [0.0, 1.0] | Number of downstream callees normalized by N |
+| 6 | layer_normalized | Structural | [0.0, 1.0] | Topological tier: 0.0=Gateway, 0.5=Business, 1.0=Data |
+| 7 | replica_count_normalized | Structural | [0.0, 1.0] | Configured replica capacity normalized by max (4) |
+| 8 | colocation_ratio | Structural | [0.0, 1.0] | Fraction of physical nodes hosting service replicas |
+| 9 | total_tests_count | Historical | [0.0, 100.0] | Cumulative experiments injected into this service |
+| 10-15 | tests_by_fault_type | Historical | [0.0, 50.0] | Counts of individual fault injections (kill, node, delay, loss, cpu, err) |

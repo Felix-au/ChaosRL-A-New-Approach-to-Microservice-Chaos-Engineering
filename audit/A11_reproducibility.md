@@ -76,3 +76,4 @@ The high software quality, clean CLI packaging, and deterministic execution ensu
 
 1. **Docker Containerization:** Package the environment in a reproducible OCI container image (Dockerfile) pinned to Python 3.11/3.14 and specific wheel hashes for long-term archival.
 2. **GitHub Actions CI/CD:** Add an automated continuous integration workflow executing `pytest tests/` and `python -m chaosrl quick` on every pull request.
+

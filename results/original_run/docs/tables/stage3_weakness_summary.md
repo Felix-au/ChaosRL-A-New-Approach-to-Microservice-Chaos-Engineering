@@ -1,0 +1,8 @@
+<!-- Table: stage3_weakness_summary -->
+
+| Scale | Family | Total Services | Simple Weaknesses | Compound Weaknesses | Decoy Hubs | Physical Nodes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 20 | L | 20 | 3 | 1 | 4 | 4 |
+| 100 | L | 100 | 6 | 2 | 13 | 20 |
+| 300 | L | 300 | 18 | 6 | 42 | 60 |
+| 500 | M | 500 | 30 | 10 | 5 | 100 |

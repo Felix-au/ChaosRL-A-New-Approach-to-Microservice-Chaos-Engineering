@@ -16,3 +16,4 @@
 - **What the reader sees:** Slide index, topic, empirical takeaways, and fact keys referenced in the executive presentation deck.
 - **What it implies:** The presentation deck covers all required research phases and can be delivered with complete scientific defensibility once updated with true test facts.
 - **Traceability link:** Outline file [PRESENTATION_OUTLINE.md](file:///c:/Users/Felix/Desktop/chaos%20final/docs/PRESENTATION_OUTLINE.md) and test [test_audit_s12_presentation.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s12_presentation.py).
+

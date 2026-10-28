@@ -5,6 +5,16 @@ It contains every verified number produced by experiment runs.
 
 | Key | Value | Unit | Source File | Timestamp |
 |---|---|---|---|---|
+| `audit.generalization.family_m_audc` | 0.0004 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.generalization.scale500_audc` | 0.0000 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.chaos_monkey.audc` | 0.0320 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.chaosrl_ensemble.audc` | 0.0801 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.chaosrl_ensemble.recall` | 0.0833 | recall | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.chaosrl_top1.audc` | 0.0762 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.chaosrl_top1.recall` | 0.0833 | recall | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.heuristic.audc` | 0.1145 | audc | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.n_systems` | 30 | systems | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
+| `audit.scale100.combined.p_value_vs_chaos_monkey` | 0.0037 | p-value | `audit/run_extended_evaluation.py` | 2026-10-28T20:59:12 |
 | `baseline.bandit_ucb.audc` | 0.0364 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.chaos_monkey.audc` | 0.0395 | audc | `src/chaosrl/agents/baselines/eval_baselines.py` | 2026-10-28T12:59:19 |
 | `baseline.chaos_monkey.damage` | 178.2600 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
@@ -20,11 +30,11 @@ It contains every verified number produced by experiment runs.
 | `baseline.random_all.damage` | 169221.92 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.audc` | 0.0955 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.damage` | 568691.78 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
-| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
-| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
-| `calibration.mean_held_out_wasserstein` | 36.1162 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T13:31:57 |
-| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T13:31:57 |
-| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:31:57 |
+| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T20:47:58 |
+| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T20:47:58 |
+| `calibration.mean_held_out_wasserstein` | 35.9374 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T20:47:58 |
+| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T20:47:58 |
+| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T20:47:58 |
 | `candidates.cross_check_diff` | 0.0019 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
 | `candidates.custom_ppo_reward` | -0.0418 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
 | `candidates.max_parameter_count` | 47123 | parameters | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |

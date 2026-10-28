@@ -136,3 +136,4 @@ def test_t_s06_05_untrained_noise_floor():
     # Negative control: Infinite returns must fail
     with pytest.raises(AssertionError):
         assert not np.all(np.isfinite(returns))
+

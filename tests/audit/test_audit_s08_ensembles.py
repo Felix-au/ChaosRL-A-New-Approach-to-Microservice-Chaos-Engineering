@@ -147,3 +147,4 @@ def test_t_s08_05_leave_one_out_ensemble_ablation():
         act = sv.select_action(obs, deterministic=True)
         assert 0 <= act < env.num_actions
         assert obs["action_mask"][act] == 1
+

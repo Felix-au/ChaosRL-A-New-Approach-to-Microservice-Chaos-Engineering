@@ -1,4 +1,74 @@
 {
+  "audit.generalization.family_m_audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.762704+00:00",
+    "unit": "audc",
+    "value": 0.0004
+  },
+  "audit.generalization.scale500_audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.761104+00:00",
+    "unit": "audc",
+    "value": 0.0
+  },
+  "audit.scale100.combined.chaos_monkey.audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.755501+00:00",
+    "unit": "audc",
+    "value": 0.032
+  },
+  "audit.scale100.combined.chaosrl_ensemble.audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.752444+00:00",
+    "unit": "audc",
+    "value": 0.0801
+  },
+  "audit.scale100.combined.chaosrl_ensemble.recall": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.753971+00:00",
+    "unit": "recall",
+    "value": 0.0833
+  },
+  "audit.scale100.combined.chaosrl_top1.audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.748796+00:00",
+    "unit": "audc",
+    "value": 0.0762
+  },
+  "audit.scale100.combined.chaosrl_top1.recall": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.750906+00:00",
+    "unit": "recall",
+    "value": 0.0833
+  },
+  "audit.scale100.combined.heuristic.audc": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.757052+00:00",
+    "unit": "audc",
+    "value": 0.1145
+  },
+  "audit.scale100.combined.n_systems": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.747086+00:00",
+    "unit": "systems",
+    "value": 30
+  },
+  "audit.scale100.combined.p_value_vs_chaos_monkey": {
+    "description": "",
+    "source_file": "audit/run_extended_evaluation.py",
+    "timestamp": "2026-10-28T20:59:12.759350+00:00",
+    "unit": "p-value",
+    "value": 0.0037
+  },
   "baseline.bandit_ucb.audc": {
     "description": "",
     "source_file": "eval_baselines.py",
@@ -107,35 +177,35 @@
   "calibration.fit_cases_ob": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T15:46:23.459183+00:00",
+    "timestamp": "2026-10-28T21:01:56.489654+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.held_out_cases_ss": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T15:46:23.460958+00:00",
+    "timestamp": "2026-10-28T21:01:56.491297+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.mean_held_out_wasserstein": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T15:46:23.462578+00:00",
+    "timestamp": "2026-10-28T21:01:56.492935+00:00",
     "unit": "dist",
-    "value": 35.885766167806366
+    "value": 35.93737049643662
   },
   "calibration.status": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T15:46:23.464164+00:00",
+    "timestamp": "2026-10-28T21:01:56.494735+00:00",
     "unit": "",
     "value": "CALIBRATED"
   },
   "calibration.total_cases": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T15:46:23.457445+00:00",
+    "timestamp": "2026-10-28T21:01:56.487966+00:00",
     "unit": "cases",
     "value": 250
   },

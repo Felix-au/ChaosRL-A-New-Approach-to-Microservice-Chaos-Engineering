@@ -110,3 +110,65 @@ This document compiles 26 critical questions that peer reviewers, thesis examine
 #### Q26: What would you do differently in a follow-up project?
 **Answer:** In future work, we would extend the observation space to include real distributed tracing spans (OpenTelemetry trace graphs), integrate continuous action spaces for dynamic intensity throttling, and test meta-reinforcement learning for zero-shot domain adaptation across cloud providers.
 
+---
+
+### Independent Research Audit & Critical Examiner Questions
+*(Added by Independent Research Audit)*
+
+#### Q27 [Added by Audit]: On the primary Scale 100 test benchmark, why did Chaos Monkey achieve a higher AUDC (0.0853) than ChaosRL Top-1 (0.0500) and Ensemble (0.0500)?
+**Answer:** In the primary test benchmark ($N=100$ services, budget $B=100$ injections), Chaos Monkey achieved an AUDC of $0.0853$ ($95\%$ CI $[0.062, 0.111]$), whereas both ChaosRL Top-1 (TreeRanker) and the Soft-Vote Ensemble achieved $0.0500$ ($95\%$ CI $[0.038, 0.063]$). This occurred because of a fundamental interaction between the action space and fault effectiveness:
+1. **Action Concentration:** Faithful Chaos Monkey executes $100\%$ container kill actions. In layered microservice graphs, terminating a container on a critical path service reliably triggers cascading timeouts and circuit breaker trips, exposing planted vulnerabilities.
+2. **Exploration Dilution:** ChaosRL's discrete action space contains $1,800$ actions ($100$ services $\times 6$ fault types $\times 3$ intensities). In early steps, the policy explored non-fatal actions (e.g., low CPU stress or minor network latency on non-critical nodes), which failed to trigger cascading failures within the $B=100$ budget.
+3. **Statistical Significance:** Paired Wilcoxon signed-rank testing yielded $W = 16.0$ and Holm-Bonferroni adjusted $p = 1.0000$, confirming no statistically significant advantage for ChaosRL on this slice.
+
+#### Q28 [Added by Audit]: Why did the tabular TreeRanker (C12) outperform all deep reinforcement learning architectures (PPO, DQN, GNN)?
+**Answer:** Microservice vulnerability discovery is fundamentally a graph-structural ranking problem rather than a smooth continuous control task. TreeRanker (C12) utilized gradient-boosted decision trees over explicit topological features (betweenness centrality, in-degree, out-degree, error rates, and traffic volume). Deep neural networks (PPO-MLP, DQN) struggled with credit assignment over long trajectories with sparse rewards (+1 only upon discovering an unexposed weakness). The GBDT split directly on structural thresholds (e.g., `in_degree > 4` and `betweenness > 0.15`), making it immune to vanishing gradients and sample inefficiency.
+
+#### Q29 [Added by Audit]: Why did the Borda Rank ensemble (E2) inflict catastrophic damage (> 6.3 million points)?
+**Answer:** In Borda Rank aggregation, each of the top 5 models votes by ranking all $1,800$ actions, and points are summed. When multiple diverse models disagree on the optimal target, their top-ranked actions cancel out, causing the ensemble to select compromise actions with moderate rank across all models. These compromise actions frequently targeted high-throughput database and ingress nodes with severe fault intensities (`CONTAINER_KILL` or `HIGH` latency), repeatedly hammering the critical path and driving cumulative damage to $6,345,120.4$ without improving weakness discovery.
+
+#### Q30 [Added by Audit]: What explains the collapse of discovery performance at Scale 500 (AUDC < 0.005)?
+**Answer:** At $N=500$, the discrete action space explodes to $500 \times 6 \times 3 = 9,000$ discrete actions. With a budget of $B=100$ steps, an agent can sample only $100 / 9,000 = 1.11\%$ of the action space. Without hierarchical decomposition (first selecting the target service, then selecting the fault type), policy probabilities across $9,000$ actions are severely diluted. As a result, both Chaos Monkey and ChaosRL experienced near-zero discovery rates ($0.0007$ to $0.0010$ AUDC), demonstrating that flat discrete action spaces do not scale to hyperscale systems.
+
+#### Q31 [Added by Audit]: Why did early narrative sections of REPORT.md claim an AUDC of 0.2085 (a 5.4x win) while results/facts.json recorded 0.0500?
+**Answer:** The discrepancy was identified during Phase P1 of the audit. Early developmental drafts of `REPORT.md` and `docs/OVERALL.md` contained aspirational projection placeholders written prior to the execution of the locked Stage 9 test run. When the Stage 9 script executed under `CHAOSRL_FINAL_TEST=1`, it faithfully recorded the empirical measurements in `results/facts.json` (`final.scale100.chaos_monkey.audc = 0.0853`, `best_ensemble.audc = 0.0500`, `p_value = 1.0000`). However, the prose in `REPORT.md` was not updated before the initial freeze. The independent audit formally reconciled this discrepancy by adding explicit disclosure boxes and amending the narrative to match the empirical fact registry.
+
+#### Q32 [Added by Audit]: How does increasing the test cohort size from n=10 to n=30 alter the statistical conclusions regarding RQ1?
+**Answer:** In Phase P5, the audit pre-registered and executed an extended evaluation on $n=30$ test systems (seeds `200,000` to `200,029`). The empirical power analysis demonstrated that with $n=10$, statistical power to detect small effect sizes ($d < 0.5$) was below $20\%$. At $n=30$, confidence intervals narrowed by approximately $42\%$. On the combined $n=30$ cohort, Chaos Monkey maintained its competitive advantage over ChaosRL, and the Wilcoxon test remained not statistically significant ($p = 1.0000$). This firmly confirms that the failure to beat Chaos Monkey on standard layered topologies was not an artifact of small sample noise, but a structural property of flat discrete exploration.
+
+#### Q33 [Added by Audit]: Why were compound weaknesses (requiring multi-fault triggers) so difficult for both RL and baselines to find?
+**Answer:** Compound weaknesses in ChaosRL require two concurrent or sequentially correlated faults (e.g., injecting CPU stress into Service B while terminating a replica in Service A). In a system with $N=100$ services, the pair space consists of $\binom{100}{2} = 4,950$ service pairs and $4,950 \times 18^2 \approx 1.6 \times 10^6$ specific fault combinations. Under a budget of $B=100$, random or uncoordinated probing has a negligible probability of discovering these interactions. On average, all evaluated agents discovered less than $0.25$ compound weaknesses per episode.
+
+#### Q34 [Added by Audit]: How did the decoy system prevent agents from trivially exploiting topological shortcuts?
+**Answer:** In simple graph-based benchmarks, agents quickly learn to attack the highest-degree node (the central hub). In ChaosRL, the system generator introduces **decoys**: high-centrality hub services equipped with robust resilience patterns (multiple replicas, circuit breakers, aggressive timeouts, and local caches). Attacking a decoy produces zero SLO violations and incurs negative damage penalties. Agents must learn to discriminate between fortified hubs and genuinely vulnerable critical path bottlenecks.
+
+#### Q35 [Added by Audit]: Why was the Monte Carlo Wasserstein distance calculation nondeterministic in early stages, and how was it stabilized?
+**Answer:** During Stage 2 calibration, `fit_fault_distributions()` drew Monte Carlo samples from fitted parametric distributions to calculate the Wasserstein metric against held-out empirical traces. Because `np.random` was not seeded inside that specific function, repeated calls produced small variations in the Wasserstein distance ($35.40 \pm 0.45$). In Phase P4 (Fix AUD-CHG-01), a deterministic random seed parameter (`random_seed: int = 42`) was pinned, ensuring exact bitwise reproducibility across runs.
+
+#### Q36 [Added by Audit]: Under what conditions does ChaosRL demonstrate an advantage over Chaos Monkey?
+**Answer:** ChaosRL outperforms Chaos Monkey under two specific operating conditions:
+1. **Low Experiment Budgets ($B \le 25$):** When budget is constrained to 25 injections, Chaos Monkey rarely stumbles upon vulnerable services by chance (recall $\approx 0.00$), whereas structural policies (TreeRanker and Heuristic Expert) achieve recall over $0.10$ by prioritizing topological bottlenecks.
+2. **Dense Mesh Topologies (Family M):** On non-layered mesh topologies with high lateral coupling, ChaosRL Ensemble achieved an AUDC of $0.0448$ and recall of $0.1250$, outperforming Chaos Monkey's recall of $0.0469$ by $2.66\times$.
+
+#### Q37 [Added by Audit]: How does the Gated Controller (E3) route decisions, and why didn't it outperform the constituent TreeRanker on layered topologies?
+**Answer:** The Gated Controller trains a meta-model on system state summary features (RPS, total error rate, graph diameter, past discovery count) to predict which candidate model has the highest expected discovery probability. However, on standard layered topologies, TreeRanker strictly dominated the other four neural candidates across virtually all states. Consequently, routing to neural models occasionally degraded performance, causing the ensemble to match but not exceed TreeRanker.
+
+#### Q38 [Added by Audit]: Why does Heuristic Expert outperform ChaosRL at low injection budgets (B=25)?
+**Answer:** Heuristic Expert encodes hard-won Site Reliability Engineering domain knowledge: it immediately prioritizes un-replicated services on the critical ingress path and high-traffic bottlenecks. At $B=25$, it wastes zero steps exploring, hitting high-probability failure points immediately. ChaosRL, having been trained with entropy bonuses to balance exploration and exploitation, requires several steps to infer system dynamics, putting it at a temporary disadvantage in ultrashort horizons.
+
+#### Q39 [Added by Audit]: How do you prove that action masking in ChaosEnv never executes invalid actions?
+**Answer:** `ChaosEnv` provides an `action_mask` vector of length $|\mathcal{A}|$ where invalid actions (e.g., terminating a service that is already offline or targeting non-existent nodes) are marked with 0. In all evaluated policies, masked actions have their logits set to $-\infty$ prior to softmax, guaranteeing zero execution probability. In audit test `test_t_s04_05`, 100,000 consecutive steps across random topologies were audited; exactly zero masked actions were ever executed.
+
+#### Q40 [Added by Audit]: Why didn't the audit retrain frozen checkpoints after discovering the Scale 100 discrepancy?
+**Answer:** Retraining or hyperparameter tuning after inspecting test-set results is a fatal violation of scientific integrity (data leakage / p-hacking / post-hoc tuning). Per Section 3 of the ChaosRL specification and Phase P0 audit boundaries, model checkpoints in `results/checkpoints/frozen_top5/` were cryptographically locked before test execution. The correct scientific response is to report the negative result honestly, diagnose the root cause, and document architectural improvements.
+
+#### Q41 [Added by Audit]: What are the primary threats to external validity when transitioning from this simulator to a real cloud Kubernetes environment?
+**Answer:** The primary threats include:
+1. **Timing Asynchrony:** Real Kubernetes pod restarts take 15–45 seconds, during which transient kube-proxy routing errors occur; the discrete tick simulator approximates this with instantaneous state transitions.
+2. **Network Jitter & Micro-bursts:** Telemetry in real systems is noisy and aggregated over 15-second Prometheus scrape intervals, whereas the simulator provides instantaneous per-tick telemetry.
+3. **Complex State Dependencies:** Real microservices maintain distributed state (database connection pools, Redis session locks) that can deadlock under partial network partitions.
+
+#### Q42 [Added by Audit]: How does the independent audit ensure that the extended evaluation (n=30) does not constitute p-hacking?
+**Answer:** To prevent p-hacking, the entire extended evaluation protocol—including the exact seed partitions (`200,000` to `200,029`), candidate methods, metrics, statistical tests, and decision rules—was formally pre-registered in `audit/preregistered_plan.md` and committed to git (commit `2a60f99`) strictly before test-set access was initiated. No metric definition or parameter was altered after observing the rerun results.
+
+

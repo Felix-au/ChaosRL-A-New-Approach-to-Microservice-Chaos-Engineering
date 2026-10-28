@@ -1,0 +1,91 @@
+{
+  "total_cases_parsed": 250,
+  "fault_types_covered": [
+    "cpu",
+    "delay",
+    "disk",
+    "loss",
+    "mem"
+  ],
+  "systems_covered": [
+    "Online Boutique",
+    "Sock Shop"
+  ],
+  "fault_statistics": {
+    "cpu": {
+      "case_count": 50,
+      "systems": [
+        "Online Boutique",
+        "Sock Shop"
+      ],
+      "latency_ratio_mean": 1.2012,
+      "latency_ratio_p50": 1.0,
+      "latency_ratio_p90": 1.9770000000000003,
+      "latency_ratio_std": 0.5385485679119386,
+      "cpu_delta_mean": 37.6364,
+      "cpu_delta_p50": 31.295,
+      "cpu_delta_p90": 79.67500000000001,
+      "gw_latency_ratio_mean": 1.1287999999999998
+    },
+    "delay": {
+      "case_count": 50,
+      "systems": [
+        "Online Boutique",
+        "Sock Shop"
+      ],
+      "latency_ratio_mean": 34.6366,
+      "latency_ratio_p50": 21.535,
+      "latency_ratio_p90": 90.54400000000001,
+      "latency_ratio_std": 37.490023505460755,
+      "cpu_delta_mean": 0.0152,
+      "cpu_delta_p50": 0.0,
+      "cpu_delta_p90": 0.06,
+      "gw_latency_ratio_mean": 5.9922
+    },
+    "disk": {
+      "case_count": 50,
+      "systems": [
+        "Online Boutique",
+        "Sock Shop"
+      ],
+      "latency_ratio_mean": 3.8782,
+      "latency_ratio_p50": 1.075,
+      "latency_ratio_p90": 11.074000000000002,
+      "latency_ratio_std": 4.162103165468151,
+      "cpu_delta_mean": 7.832000000000001,
+      "cpu_delta_p50": 3.23,
+      "cpu_delta_p90": 21.644000000000002,
+      "gw_latency_ratio_mean": 1.1322
+    },
+    "loss": {
+      "case_count": 50,
+      "systems": [
+        "Online Boutique",
+        "Sock Shop"
+      ],
+      "latency_ratio_mean": 4.542800000000001,
+      "latency_ratio_p50": 1.02,
+      "latency_ratio_p90": 6.041000000000038,
+      "latency_ratio_std": 9.710946820985068,
+      "cpu_delta_mean": 0.0384,
+      "cpu_delta_p50": 0.0,
+      "cpu_delta_p90": 0.16,
+      "gw_latency_ratio_mean": 1.3918000000000001
+    },
+    "mem": {
+      "case_count": 50,
+      "systems": [
+        "Online Boutique",
+        "Sock Shop"
+      ],
+      "latency_ratio_mean": 12.107399999999998,
+      "latency_ratio_p50": 1.3050000000000002,
+      "latency_ratio_p90": 47.24300000000003,
+      "latency_ratio_std": 23.150841609755787,
+      "cpu_delta_mean": 33.708999999999996,
+      "cpu_delta_p50": 31.135,
+      "cpu_delta_p90": 70.886,
+      "gw_latency_ratio_mean": 1.7542
+    }
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "method": "Chaos Monkey",
+    "audc": 0.055999999999999994,
+    "recall": 0.0875,
+    "damage": 185.7594292015404,
+    "simple_found": 0.7,
+    "compound_found": 0.0
+  },
+  {
+    "method": "Heuristic Expert",
+    "audc": 0.06831250000000001,
+    "recall": 0.125,
+    "damage": 218.25398612419713,
+    "simple_found": 0.85,
+    "compound_found": 0.15
+  },
+  {
+    "method": "ChaosRL Top-1",
+    "audc": 0.0381875,
+    "recall": 0.04375,
+    "damage": 32628.284503093746,
+    "simple_found": 0.35,
+    "compound_found": 0.0
+  },
+  {
+    "method": "ChaosRL Ensemble",
+    "audc": 0.00043750000000000006,
+    "recall": 0.04375,
+    "damage": 132.5779687856197,
+    "simple_found": 0.35,
+    "compound_found": 0.0
+  },
+  {
+    "method": "Oracle (Upper Bound)",
+    "audc": 0.155625,
+    "recall": 0.15625,
+    "damage": 38.567290190305286,
+    "simple_found": 1.25,
+    "compound_found": 0.0
+  }
+]

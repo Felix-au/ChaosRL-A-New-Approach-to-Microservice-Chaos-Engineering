@@ -11,3 +11,4 @@
 - **What the reader sees:** Simulator execution speed across microservice topologies spanning 20 to 300 nodes, comparing original documented throughput against independent audit benchmarks.
 - **What it implies:** Vectorized NumPy propagation scales near-linearly ($\mathcal{O}(N)$ to $\mathcal{O}(N^{1.1})$), executing over 770 simulation steps per second even on 100-node microservice clusters on single-thread CPU.
 - **Traceability link:** Original metrics in [facts.json](file:///c:/Users/Felix/Desktop/chaos%20final/results/facts.json), benchmark routine [benchmark_engine_throughput](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/simulator/engine.py#L102-L122), and audit test [test_audit_s03_simulator.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s03_simulator.py#L190-L225).
+

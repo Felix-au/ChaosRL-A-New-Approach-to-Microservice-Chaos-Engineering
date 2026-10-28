@@ -8,3 +8,4 @@
 | **R04** | Topological index exploitation | Vectorized node-level scoring with permutation invariant message passing | `src/chaosrl/agents/candidates/networks.py` | **YES** |
 | **R05** | Ensemble signal dilution | Diversity-constrained selection ($\le 2$ models per family) + gating | `src/chaosrl/agents/ensemble/meta_controllers.py` | **YES** |
 | **R06** | Hardware thermal throttling | CPU-only PyTorch execution with single-threaded workers | `src/chaosrl/evaluate/final_eval.py` | **YES** |
+

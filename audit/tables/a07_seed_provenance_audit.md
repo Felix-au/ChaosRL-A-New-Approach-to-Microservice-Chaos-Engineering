@@ -10,3 +10,4 @@
 - **What the reader sees:** Seed boundaries, counts, and pairwise set intersections across training, validation, and test splits.
 - **What it implies:** Seed disjointness is absolute ($\text{Train} \cap \text{Val} \cap \text{Test} = \emptyset$), preventing data leakage or memorization of validation/test topologies.
 - **Traceability link:** Pre-registered plan [preregistered_plan.md](file:///c:/Users/Felix/Desktop/chaos%20final/audit/preregistered_plan.md#L20-L40), metrics logs [results/training/](file:///c:/Users/Felix/Desktop/chaos%20final/results/training/), and test [test_audit_s07_training.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s07_training.py#L75-L100).
+

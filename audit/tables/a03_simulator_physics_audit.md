@@ -13,3 +13,4 @@
 - **What the reader sees:** Verification results across six fundamental physical invariants of the discrete-time simulator engine.
 - **What it implies:** The simulation environment satisfies physical conservation laws, zero unprovoked steady-state false alarms, and 100% reachability of planted faults.
 - **Traceability link:** Code paths [engine.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/simulator/engine.py#L24-L60), [dynamics.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/simulator/dynamics.py#L66-L113), and test suite [test_audit_s03_simulator.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s03_simulator.py#L25-L160).
+

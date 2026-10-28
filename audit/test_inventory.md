@@ -68,3 +68,4 @@ This document catalogues every verification test planned and executed during the
 | **T-S11-04** | S11 | Performance | Wall-clock execution timing comparison against documented runtime profiles | CLM-S11-01 | Total wall-clock time within limits | Flags excessive execution overhead | **LOW** |
 | **T-S12-01** | S12 | Consistency | Traceability audit of presentation outline against verified facts registry | CLM-S12-01, CLM-S12-02, CLM-S12-03 | Every slide number matches facts registry | Fails on ungrounded slide claims | **HIGH** |
 | **T-S12-02** | S12 | Defense | Slide-by-slide defense audit: verify defensibility of talking points and add examiner notes | CLM-S12-01, CLM-S12-02, CLM-S12-03 | All slides backed by verified empirical evidence | Fails if slide over-claims beyond evidence | **HIGH** |
+

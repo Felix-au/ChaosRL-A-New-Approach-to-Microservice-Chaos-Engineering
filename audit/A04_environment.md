@@ -79,3 +79,4 @@ By verifying that the state observation space does not leak ground-truth informa
 
 1. **Gymnasium Vectorized Env Wrapper:** Implement a lightweight `SyncVectorEnv` wrapper to allow parallel multi-environment stepping for batched training.
 2. **Explicit Observation Normalization Bounds:** Clamp all node features into $[0.0, 1.0]$ with an explicit `np.clip` prior to returning observations to ensure zero risk of floating-point overflow.
+

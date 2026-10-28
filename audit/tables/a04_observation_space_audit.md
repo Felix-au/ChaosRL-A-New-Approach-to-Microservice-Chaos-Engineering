@@ -15,3 +15,4 @@
 - **What the reader sees:** Detailed feature layout and dimensionality specifications for both Black-Box and Gray-Box observation modes in ChaosEnv.
 - **What it implies:** Telemetry signals scale strictly as $\mathcal{O}(N)$ without leaking planted weakness identities or target service IDs.
 - **Traceability link:** Environment class [ChaosEnv](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/env/chaos_env.py#L82-L91), feature constructor [_get_observation](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/env/chaos_env.py#L219-L260), and test [test_audit_s04_environment.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s04_environment.py#L85-L105).
+

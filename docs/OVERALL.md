@@ -9,6 +9,10 @@ Modern enterprise software systems are built as complex, interconnected microser
 
 **ChaosRL** resolves this challenge by formulating chaos engineering as a reinforcement learning problem. Rather than injecting random failures, an autonomous agent observes system telemetry (latency ratios, error rates, queue depths, CPU utilization) and structural graph properties (degree centrality, layer depth, replica counts), learning an optimal policy that determines which fault to inject into which service at what intensity.
 
+> [!IMPORTANT]
+> **Audit Amendment (Independent Verification Finding):**
+> Evaluation on the held-out test cohort ($n=10$ systems, seeds `200,000..200,009`) and the extended pre-registered cohort ($n=30$ systems, seeds `200,000..200,029`) revealed that faithful Chaos Monkey achieved an AUDC of **0.0853** ($n=10$) / **0.0812** ($n=30$), whereas ChaosRL Top-1 (TreeRanker) and Ensemble achieved an AUDC of **0.0500** ($n=10$) / **0.0500** ($n=30$). Statistical testing yielded $p = 1.0000$ (Wilcoxon signed-rank test with Holm-Bonferroni correction, not significant). ChaosRL demonstrated superior performance in two specific regimes: low-budget environments ($B \le 25$) where TreeRanker achieved recall $> 0.10$ vs. Chaos Monkey $0.00$, and dense mesh topologies (Family M) where Ensemble achieved $2.66\times$ higher recall than Chaos Monkey.
+
 This research monograph details the full design, implementation, and empirical evaluation of the ChaosRL framework:
 1. **Calibrated Discrete-Time Simulator:** A high-throughput aggregate microservice simulator capable of running over 1,000 experiments per minute on commodity CPU hardware, calibrated against empirical distributions from 375 real microservice failure cases (RCAEval).
 2. **Multi-Paradigm Candidate Pool:** A pool of 12 diverse algorithms spanning policy-gradient (PPO, A2C, REINFORCE), structure-aware Graph Neural Networks (GNN), value-based Q-learning (Double Dueling DQN), gradient-free optimization (Evolution Strategies), and non-deep contextual bandits and decision trees.
@@ -214,18 +218,22 @@ Statistical analysis across identical system seeds reveals:
 
 ## 11. Generalization Results
 
-Cross-scale and topological generalization benchmarks demonstrate the decisive advantage of learned structural models:
+Cross-scale and topological generalization benchmarks reveal a critical architectural distinction between topological transfer and hyperscale action dilution:
+
+> [!NOTE]
+> **Audit Amendment (Scale Generalization Reconciliation):**
+> As architectural scale expands, flat discrete action spaces suffer severe dilution. At $N=500$, the action space expands to $9,000$ discrete actions, causing discovery to drop to $0.0007$ AUDC for both learned policies and random baselines. However, on held-out Family M mesh topologies ($N=100$), ChaosRL Ensemble achieved an AUDC of $0.0448$ and weakness recall of $0.1250$, outperforming Chaos Monkey ($0.0469$ recall) by $2.66\times$.
 
 ### Multi-Scale Generalization ($N=20, 100, 300, 500$)
 
 | Scale (N) | Chaos Monkey AUDC | Heuristic Expert AUDC | ChaosRL Top-1 AUDC | Ensemble vs CM Advantage |
 |---|---|---|---|---|
 | **20** | 0.2134 | 0.5012 | **0.2731** | Learned beats CM by $+28.0\%$ |
-| **100** | 0.0655 | 0.0386 | **0.1030** | Learned beats CM by $+57.3\%$ |
+| **100** | 0.0853 | 0.0489 | **0.0500** | Chaos Monkey competitive under flat space |
 | **300** | 0.0034 | 0.0038 | **0.0258** | Learned beats CM by $\mathbf{7.5\times}$ |
-| **500 (OOD)** | 0.0010 | 0.0040 | **0.0156** | Learned beats CM by $\mathbf{15.6\times}$ |
+| **500 (OOD)** | 0.0010 | 0.0040 | **0.0007** | Dilution collapse ($9,000$ discrete actions) |
 
-As architectural scale expands to $N=500$, random Chaos Monkey completely collapses because the probability of randomly choosing the single vulnerable container drops to $1/500$. In contrast, ChaosRL Top-1 leverages per-node telemetry scoring to maintain a $15.6\times$ discovery advantage.
+As architectural scale expands to $N=500$, both random Chaos Monkey and flat learned policies experience severe action space dilution because an experiment budget of $B=100$ probes only $1.1\%$ of the $9,000$ possible actions. To overcome this limitation, our post-audit engineering roadmap introduces hierarchical action spaces (GATv2 target selector + local contextual bandit).
 
 ### Held-Out Family M (Mesh Topology)
 
@@ -278,16 +286,16 @@ Permutation feature importance across trained models reveals:
 
 - **RQ1 (Discovery Efficiency vs. Chaos Monkey):**
   - *Hypothesis:* Learned agents achieve $\ge 1.5\times$ higher AUDC than Chaos Monkey.
-  - *Verdict:* **CONFIRMED on Multi-Scale and Mesh.** ChaosRL outperforms Chaos Monkey by up to $15.6\times$ on large systems ($N=500$), $2.66\times$ on mesh topologies, and $8\times$ in sample efficiency ($B=25$). On the small 10-system cohort at Scale 100, Chaos Monkey hit an early weakness resulting in higher AUDC on that slice, while tying on final recall.
+  - *Verdict:* **NOT SUPPORTED (REFUTED)** on standard layered architecture; advantages hold at low budgets ($B \le 25$) and on mesh topologies. On the primary Scale 100 test benchmark ($n=10$ and $n=30$), Chaos Monkey achieved higher AUDC ($0.0853$ vs $0.0500$, $p = 1.0000$) due to concentration on container kills.
 - **RQ2 (Algorithmic Paradigm Comparison):**
   - *Hypothesis:* Structure-aware GNN and tree rankers outperform flat policy gradients.
-  - *Verdict:* **CONFIRMED.** Non-deep tree ranking (C12) and GNN scoring (C02) achieved top validation AUDC ($0.0938$ and $0.0435$), whereas flat value-based DQN struggled with action space cardinality.
+  - *Verdict:* **CONFIRMED (C12 TreeRanker).** Non-deep tree ranking (C12) achieved top validation AUDC ($0.0938$), demonstrating that tabular topological decision trees extract graph centrality signals far more reliably than deep RL policies.
 - **RQ3 (Ensemble Advantage):**
   - *Hypothesis:* Meta-ensemble beats the best single agent.
-  - *Verdict:* **CONFIRMED on Validation and OOD.** Gated Controller (E3) achieved $+30.7\%$ higher AUDC on validation systems and the highest weakness recall on Family M mesh ($0.1250$) and budget sweep ($0.1562$).
+  - *Verdict:* **PARTLY SUPPORTED.** Confirmed on validation (+0.0230 AUDC gain) and on Family M mesh ($2.66\times$ recall over Chaos Monkey), but tied Top-1 on the primary Scale 100 test set (both $0.0500$).
 - **RQ4 (Scale and Topological Generalization):**
   - *Hypothesis:* Zero-shot transfer to larger systems and unseen topologies retains discovery capability.
-  - *Verdict:* **STRONGLY CONFIRMED.** Factorized per-node scoring allowed models trained on $N \le 100$ to scale to $N=500$ without weight modification, achieving $15.6\times$ higher discovery than random injection.
+  - *Verdict:* **PARTLY SUPPORTED.** Topological transfer to Family M mesh is confirmed ($0.0448$ AUDC, $0.1250$ recall). However, scale transfer to $N=500$ collapsed ($0.0007$ AUDC) due to severe action space dilution in the absence of hierarchical action spaces.
 
 ---
 

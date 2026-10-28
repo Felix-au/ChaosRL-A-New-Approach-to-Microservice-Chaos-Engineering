@@ -11,3 +11,4 @@
 - **What the reader sees:** Pre-registered hypotheses for RQ1 through RQ4 compared side-by-side with original claims and verified empirical test evidence.
 - **What it implies:** Across the locked test evaluation, RQ1, RQ3, and RQ4 are refuted on the $n=10$ sample: learned agents did not outperform Chaos Monkey, ensembles provided zero gain over Top-1, and performance collapsed at $N=500$.
 - **Traceability link:** Pre-registered plan [preregistered_plan.md](file:///c:/Users/Felix/Desktop/chaos%20final/audit/preregistered_plan.md), facts [facts.json](file:///c:/Users/Felix/Desktop/chaos%20final/results/facts.json), and statistical tests [test_audit_s10_analysis.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s10_analysis.py#L15-L45).
+

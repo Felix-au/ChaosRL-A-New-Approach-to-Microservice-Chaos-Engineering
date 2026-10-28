@@ -42,16 +42,24 @@ This outline specifies an 8-to-10 slide presentation deck summarizing ChaosRL fo
 ---
 
 ### Slide 6: Main Evaluation Results (RQ1 & RQ2)
-- **Title:** Empirical Discovery Performance Across Scales 20, 100, and 300
-- **Visuals:** Main discovery curves (AUDC) with 95% bootstrap confidence intervals and damage comparison scatter plot.
-- **Key Message:** ChaosRL agents achieve higher weakness discovery recall in fewer experiments while causing substantially lower cumulative SLO damage than Chaos Monkey and Random-All.
+- **Title:** Empirical Discovery Performance: The Reality of Scale 100
+- **Visuals:** [Figure: stage9_discovery_curves_all_methods](figures/stage9_discovery_curves_all_methods.png) with 95% bootstrap confidence intervals, and [Table: a13_extended_scale100_comparison](../audit/tables/a13_extended_scale100_comparison.md).
+- **Key Message:** On standard layered topologies ($N=100$), Chaos Monkey achieved AUDC of $0.0853$ vs. ChaosRL Top-1 and Ensemble at $0.0500$ ($p = 1.0000$, not statistically significant). However, ChaosRL excels in two critical operating regimes: (1) low experiment budgets ($B \le 25$) where TreeRanker achieves $> 0.10$ recall while Chaos Monkey achieves $0.00$, and (2) tabular topological ranking (TreeRanker / C12) decisively outperforming deep RL policies.
+- **Defend-This Speaker Notes:**
+  - *"Why did Chaos Monkey remain competitive?"* Chaos Monkey concentrates 100% of its budget on container terminations, which reliably trigger cascading timeouts on single-replica services. In contrast, flat RL policies dilute exploration across 1,800 actions including low-impact latency and CPU stress.
+  - *"Why did TreeRanker beat deep RL?"* Microservice vulnerability discovery is a graph-structural ranking problem, not continuous trajectory tracking. GBDT directly splits on betweenness and degree thresholds, avoiding sample-inefficiency bottlenecks that crippled PPO and DQN under sparse rewards.
 
 ---
 
 ### Slide 7: Out-of-Distribution Generalization (RQ4)
-- **Title:** Zero-Shot Generalization: Scale 500 & Unseen Mesh Topologies
-- **Visuals:** Generalization retention bar chart comparing in-distribution Family L performance against out-of-distribution Family M.
-- **Key Message:** Graph-structured and per-service representations allow models trained on small layered systems to generalize effectively to large, unseen mesh topologies.
+- **Title:** Generalization Frontiers: Topological Transfer vs. Scale Dilution
+- **Visuals:** [Figure: stage9_scale_generalization](figures/stage9_scale_generalization.png) and [Table: a13_extended_family_m](../audit/tables/a13_extended_family_m.md).
+- **Key Message:** Generalization reveals a stark dichotomy:
+  1. **Topological Transfer (Family M Mesh):** Confirmed. On dense mesh graphs, ChaosRL Ensemble achieved an AUDC of $0.0448$ and weakness recall of $0.1250$, outperforming Chaos Monkey ($0.0469$ recall) by $2.66\times$.
+  2. **Hyperscale Dilution ($N=500$):** Refuted. When scaled to 500 services, the action space expands to $9,000$ discrete actions, causing discovery performance to collapse ($< 0.005$ AUDC) for both learned policies and random baselines.
+- **Defend-This Speaker Notes:**
+  - *"Why does scaling fail at N=500?"* A flat discrete action space of 9,000 actions with a budget of 100 steps samples only $1.1\%$ of the action catalog. Without hierarchical action decomposition (separating service target selection from fault type parameterization), flat policies cannot explore effectively.
+  - *"How does the architecture evolve?"* Our post-audit engineering roadmap introduces a 2-level hierarchical policy (GATv2 target selector + local contextual bandit), restoring sample efficiency to $O(N) + O(18)$.
 
 ---
 

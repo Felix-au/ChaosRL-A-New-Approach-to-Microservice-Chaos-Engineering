@@ -1,0 +1,128 @@
+{
+  "Original Slice (n=10)": [
+    {
+      "comparison": "ChaosRL Top-1 vs Chaos Monkey",
+      "mean_diff": 0.03225,
+      "stat_w": 27.0,
+      "p_raw": 0.12109375,
+      "cohen_d": 0.5428992896313762,
+      "power": 0.3358025082895362,
+      "p_adj": 0.484375,
+      "sig": "Not Significant"
+    },
+    {
+      "comparison": "ChaosRL Top-1 vs Heuristic Expert",
+      "mean_diff": -0.05487499999999999,
+      "stat_w": 12.0,
+      "p_raw": 0.947265625,
+      "cohen_d": -0.5514617983458414,
+      "power": 0.34459646612963846,
+      "p_adj": 1.0,
+      "sig": "Not Significant"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs Chaos Monkey",
+      "mean_diff": 0.031375,
+      "stat_w": 26.0,
+      "p_raw": 0.1484375,
+      "cohen_d": 0.522050071843255,
+      "power": 0.3147726320711208,
+      "p_adj": 0.4453125,
+      "sig": "Not Significant"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs ChaosRL Top-1",
+      "mean_diff": -0.0008749999999999999,
+      "stat_w": 1.0,
+      "p_raw": 1.0,
+      "cohen_d": -0.2708831922193679,
+      "power": 0.1198944806802287,
+      "p_adj": 1.0,
+      "sig": "Not Significant"
+    }
+  ],
+  "Extended Slice (n=20)": [
+    {
+      "comparison": "ChaosRL Top-1 vs Chaos Monkey",
+      "mean_diff": 0.050187499999999996,
+      "stat_w": 133.0,
+      "p_raw": 0.003732535256254258,
+      "cohen_d": 0.7697476502548347,
+      "power": 0.9038687090952702,
+      "p_adj": 0.011197605768762775,
+      "sig": "p = 0.0112"
+    },
+    {
+      "comparison": "ChaosRL Top-1 vs Heuristic Expert",
+      "mean_diff": -0.029999999999999992,
+      "stat_w": 68.0,
+      "p_raw": 0.9164449633493417,
+      "cohen_d": -0.3242682295632332,
+      "power": 0.28048871346961607,
+      "p_adj": 0.9164449633493417,
+      "sig": "Not Significant"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs Chaos Monkey",
+      "mean_diff": 0.056499999999999995,
+      "stat_w": 150.0,
+      "p_raw": 0.002482228998837705,
+      "cohen_d": 0.7905898838460383,
+      "power": 0.9180419157827657,
+      "p_adj": 0.00992891599535082,
+      "sig": "p = 0.0099"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs ChaosRL Top-1",
+      "mean_diff": 0.0063125,
+      "stat_w": 14.5,
+      "p_raw": 0.6219214640569226,
+      "cohen_d": 0.22102191022680645,
+      "power": 0.15553733197216102,
+      "p_adj": 1.0,
+      "sig": "Not Significant"
+    }
+  ],
+  "Combined Cohort (n=30)": [
+    {
+      "comparison": "ChaosRL Top-1 vs Chaos Monkey",
+      "mean_diff": 0.04420833333333333,
+      "stat_w": 275.0,
+      "p_raw": 0.001231502672433366,
+      "cohen_d": 0.7030267078782465,
+      "power": 0.9608204822750429,
+      "p_adj": 0.003694508017300098,
+      "sig": "p = 0.0037"
+    },
+    {
+      "comparison": "ChaosRL Top-1 vs Heuristic Expert",
+      "mean_diff": -0.03829166666666668,
+      "stat_w": 127.5,
+      "p_raw": 0.9846077407269123,
+      "cohen_d": -0.4076580428698673,
+      "power": 0.578717517180397,
+      "p_adj": 0.9846077407269123,
+      "sig": "Not Significant"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs Chaos Monkey",
+      "mean_diff": 0.048125,
+      "stat_w": 298.0,
+      "p_raw": 0.0009295015916132081,
+      "cohen_d": 0.7086209169516714,
+      "power": 0.963260845981683,
+      "p_adj": 0.0037180063664528323,
+      "sig": "p = 0.0037"
+    },
+    {
+      "comparison": "ChaosRL Ensemble vs ChaosRL Top-1",
+      "mean_diff": 0.003916666666666667,
+      "stat_w": 25.5,
+      "p_raw": 0.8373136810307841,
+      "cohen_d": 0.16707707609090514,
+      "power": 0.14343371532895027,
+      "p_adj": 1.0,
+      "sig": "Not Significant"
+    }
+  ]
+}

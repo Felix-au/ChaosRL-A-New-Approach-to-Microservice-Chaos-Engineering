@@ -78,3 +78,4 @@ The cryptographic freeze locked in Stage 8 guarantees that the final evaluation 
 
 1. **Gating Router Diversity:** Include topological graph diameter and clustering coefficients in the Gated Controller meta-features to further assist cross-topology routing.
 2. **Dynamic Temperature Scaling:** Incorporate softmax temperature scaling in Soft Vote to sharpen consensus among agreeing models.
+

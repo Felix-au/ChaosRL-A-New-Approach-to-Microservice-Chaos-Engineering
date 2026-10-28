@@ -153,3 +153,4 @@ def test_t_s04_05_observation_noise_robustness():
     nan_features[0, 0] = np.nan
     with pytest.raises(AssertionError):
         assert np.all(np.isfinite(nan_features))
+

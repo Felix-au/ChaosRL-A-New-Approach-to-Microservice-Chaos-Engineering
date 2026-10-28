@@ -11,3 +11,4 @@
 - **What the reader sees:** Taxonomy of four empirical failure modes observed during test evaluations, detailing manifestation, affected families, root causes, and mitigations.
 - **What it implies:** Performance degradation at large scales ($N=500$) and compound weakness blindness stem from action space dilution and reward-risk trade-offs rather than software bugs.
 - **Traceability link:** Failure mode analysis in [section10_analysis_limitations.md](file:///c:/Users/Felix/Desktop/chaos%20final/docs/section10_analysis_limitations.md#L14-L20) and audit test [test_audit_s10_analysis.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s10_analysis.py#L48-L70).
+

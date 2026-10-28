@@ -19,3 +19,4 @@
 - **What the reader sees:** Architecture, algorithmic family, parameter count, and CPU inference throughput across all 12 candidate agents in the Stage 6 pool.
 - **What it implies:** The pool spans 8 distinct machine learning families (policy gradient, structure-aware, recurrent, value-based, curriculum, imitation, curiosity, and supervised ranking), all operating under identical action masking.
 - **Traceability link:** Registry [registry.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/agents/candidates/registry.py#L1-L60), smoke runner [smoke_runner.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/agents/candidates/smoke_runner.py#L25-L65), and test [test_audit_s06_candidates.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s06_candidates.py#L20-L45).
+

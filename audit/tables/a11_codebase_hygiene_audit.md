@@ -13,3 +13,4 @@
 - **What the reader sees:** Verification checks across hardware constraints, thread management, memory budgets, and security invariants.
 - **What it implies:** The repository operates strictly within defined machine boundaries (CPU-only, peak RAM $< 1.5$ GB vs 9.0 GB ceiling) with zero network leakage or path brittleness.
 - **Traceability link:** Configuration [pyproject.toml](file:///c:/Users/Felix/Desktop/chaos%20final/pyproject.toml) and security scan [test_audit_s11_reproducibility.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s11_reproducibility.py#L60-L85).
+

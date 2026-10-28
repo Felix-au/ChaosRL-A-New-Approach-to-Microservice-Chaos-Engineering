@@ -10,3 +10,4 @@
 - **What the reader sees:** Mathematical formulation and safety penalty terms across the three evaluated reward functions ($R_1$, $R_2$, $R_3$).
 - **What it implies:** Default reward $R_2$ establishes a Pareto frontier by heavily penalizing destructive outages, preventing learned agents from collapsing into destructive brute-force denial-of-service behaviors.
 - **Traceability link:** Environment reward logic [chaos_env.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/env/chaos_env.py#L175-L188), adversarial probe [probes.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/env/probes.py#L41-L95), and test [test_audit_s04_environment.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s04_environment.py#L55-L84).
+

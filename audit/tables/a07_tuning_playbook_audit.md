@@ -13,3 +13,4 @@
 - **What the reader sees:** Pre- and post-tuning validation metrics, empirical deltas, and standard error thresholds for the six below-median candidates in Round 2.
 - **What it implies:** Tuning strictly followed the pre-registered decision playbook without cherry-picking: only candidates exhibiting improvements exceeding one standard error (C04, C05) were accepted; all others were reverted to preserve baseline weights.
 - **Traceability link:** Original tuning ledger [tuning_log.csv](file:///c:/Users/Felix/Desktop/chaos%20final/results/tuning_log.csv) and test suite [test_audit_s07_training.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s07_training.py#L40-L70).
+

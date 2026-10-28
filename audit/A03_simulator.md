@@ -84,3 +84,4 @@ The high execution throughput ($> 770$ steps/s on Scale 100) and strict determin
 
 1. **State Vector Cleansing:** Ensure `noise_std = 0.0` suppresses *all* telemetry noise terms, including the additive $0.001 \cdot |\mathcal{N}(0, 1)|$ term, for pure deterministic simulation when requested.
 2. **Compound Weakness Logging:** Log partial hits (e.g. 1 of 2 required faults triggered) in telemetry to allow agents to observe subtle intermediate shifts.
+

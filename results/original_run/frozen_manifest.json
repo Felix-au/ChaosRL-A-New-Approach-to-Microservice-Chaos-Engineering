@@ -1,0 +1,47 @@
+[
+  {
+    "rank": 1,
+    "candidate_id": "C12",
+    "name": "TreeRanker",
+    "family": "supervised",
+    "frozen_file": "rank1_C12_TreeRanker.pkl",
+    "sha256": "ea63ee26a99f9fda8b383e6b26e02000b76c2cf987f68627c64fca80a7d21625",
+    "validation_audc": 0.0938
+  },
+  {
+    "rank": 2,
+    "candidate_id": "C09",
+    "name": "PPO-RND",
+    "family": "exploration",
+    "frozen_file": "rank2_C09_PPO-RND.pt",
+    "sha256": "645415e9ae31ddf084ddf97e476cc3b9898ac52546aaf38bfa8df9f079ac8655",
+    "validation_audc": 0.0489
+  },
+  {
+    "rank": 3,
+    "candidate_id": "C02",
+    "name": "PPO-GNN",
+    "family": "structure_aware",
+    "frozen_file": "rank3_C02_PPO-GNN.pt",
+    "sha256": "335b00e2c3574026fcca6327819001779b96677a2c64d9737262e20a48191474",
+    "validation_audc": 0.0435
+  },
+  {
+    "rank": 4,
+    "candidate_id": "C03",
+    "name": "PPO-GRU",
+    "family": "recurrent",
+    "frozen_file": "rank4_C03_PPO-GRU.pt",
+    "sha256": "6ae5bb53d9d70d2cf4a1bff06ca6ff579edefcb470a8c48be17ad7ff2088627e",
+    "validation_audc": 0.039
+  },
+  {
+    "rank": 5,
+    "candidate_id": "C06",
+    "name": "REINFORCE",
+    "family": "policy_gradient",
+    "frozen_file": "rank5_C06_REINFORCE.pt",
+    "sha256": "c6fb7d2a7fa30b42a3e20e92662df08b2909a117db1b4c16ea2464334424f5cd",
+    "validation_audc": 0.0339
+  }
+]

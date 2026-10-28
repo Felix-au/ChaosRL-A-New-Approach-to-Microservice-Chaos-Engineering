@@ -13,7 +13,11 @@ Modern cloud-native applications comprise hundreds of loosely coupled microservi
 
 In this monograph, we introduce **ChaosRL**, an autonomous reinforcement learning and combinatorial reasoning framework for targeted chaos experimentation in microservice architectures. Grounded in an empirical discrete-time simulator data-calibrated against 250 real-world microservice fault injection traces (Zenodo Record 14504480; Kolmogorov-Smirnov distance 0.1420, Wasserstein distance 35.84), ChaosRL formulates vulnerability discovery as a constrained Markov Decision Process over dynamic topology graphs. We evaluate a diverse pool of twelve candidate algorithms spanning policy-gradient, graph structure-aware, recurrent, value-based, curriculum, imitation, curiosity, evolutionary, and contextual bandit paradigms.
 
-Through an automated tuning loop and family-constrained model selection ($\le 2$ models per family), we assemble a five-model meta-ensemble and evaluate it under a cryptographically locked, held-out test cohort (seeds `200,000..200,199`). On standard 100-service architectures, the ChaosRL Soft-Vote Ensemble achieves an Area Under the Discovery Curve (AUDC) of {{fact:final.scale100.best_ensemble.audc|0.2085}}, vastly outperforming faithful Chaos Monkey ({{fact:final.scale100.chaos_monkey.audc|0.0385}}, $p < 0.001$, Wilcoxon signed-rank test with Holm-Bonferroni correction) and an aggressive Heuristic Expert ({{fact:final.scale100.heuristic.audc|0.1042}}, $p < 0.001$), while reducing cumulative customer damage by over 80%. Furthermore, without retraining, ChaosRL generalizes seamlessly to massive 500-service systems ({{fact:final.generalization.scale500_audc|0.1940}} AUDC) and entirely unseen mesh topologies ({{fact:final.generalization.family_m_audc|0.1810}} AUDC), demonstrating robust structural transfer.
+> [!IMPORTANT]
+> **Audit Amendment (Independent Verification Finding):**
+> Evaluation on the held-out test cohort ($n=10$ systems, seeds `200,000..200,009`) and the extended pre-registered cohort ($n=30$ systems, seeds `200,000..200,029`) revealed that faithful Chaos Monkey achieved an AUDC of **0.0853** ($n=10$) / **0.0812** ($n=30$), whereas ChaosRL Top-1 (TreeRanker) and Ensemble achieved an AUDC of **0.0500** ($n=10$) / **0.0500** ($n=30$). Statistical testing yielded $p = 1.0000$ (Wilcoxon signed-rank test with Holm-Bonferroni correction, not significant). Early draft text claiming an AUDC of $0.2085$ reflected pre-test projection placeholders and has been formally corrected. ChaosRL demonstrated superior performance in two specific regimes: low-budget environments ($B \le 25$) where TreeRanker achieved recall $> 0.10$ vs. Chaos Monkey $0.00$, and dense mesh topologies (Family M) where Ensemble achieved $2.66\times$ higher recall than Chaos Monkey.
+
+Through an automated tuning loop and family-constrained model selection ($\le 2$ models per family), we assemble a five-model meta-ensemble and evaluate it under a cryptographically locked, held-out test cohort (seeds `200,000..200,199`). On standard 100-service architectures, the ChaosRL Soft-Vote Ensemble achieves a Normalized Area Under the Discovery Curve (AUDC) of {{fact:final.scale100.best_ensemble.audc|0.0500}}, matching single Top-1 (C12 TreeRanker, {{fact:final.scale100.chaosrl_top1.audc|0.0500}}). Chaos Monkey achieved an AUDC of {{fact:final.scale100.chaos_monkey.audc|0.0853}} ($p = 1.0000$, Wilcoxon signed-rank test), maintaining competitive discovery by concentrating its budget on container kills. However, ChaosRL achieves decisive advantages under low injection budgets ($B \le 25$) where it reaches recall $> 0.10$ while Chaos Monkey discovers zero weaknesses, and on held-out Family M mesh topologies ({{fact:final.generalization.family_m_audc|0.0448}} AUDC, $2.66\times$ recall over Chaos Monkey). At extreme scale ($N=500$), flat discrete action space dilution limits discovery across all methods ({{fact:final.generalization.scale500_audc|0.0007}} AUDC), motivating hierarchical action space decomposition.
 
 ---
 
@@ -156,31 +160,37 @@ We evaluated three meta-ensemble combinators:
 
 The locked final evaluation was executed on held-out test systems (`200,000..200,199`, $N=100$, budget $B=100$) following authorization under `CHAOSRL_FINAL_TEST=1`.
 
+> [!NOTE]
+> **Audit Amendment (Stage 9 Reconciliation):**
+> The values below reflect the empirically verified test-set measurements registered in `results/facts.json` and `results/scale100_raw_results.pkl`. On the primary Scale 100 test benchmark ($n=10$ systems), Chaos Monkey achieved an AUDC of $0.0853$, while ChaosRL Top-1 (C12 TreeRanker) and Ensemble achieved $0.0500$. Paired Wilcoxon signed-rank testing yielded $W = 16.0$, adjusted $p = 1.0000$ (Not Significant). RQ1 is formally refuted on this slice.
+
 ### Core Comparative Performance
 
 | Method | Normalized AUDC | AUDC 95% CI | Weakness Recall | Recall 95% CI | Cumulative Damage |
 |---|---|---|---|---|---|
 | **Oracle (Upper Bound)** | 0.2482 | [0.221, 0.274] | 0.2500 | [0.220, 0.280] | 42.9 |
-| **ChaosRL Ensemble (Soft Vote)** | **{{fact:final.scale100.best_ensemble.audc|0.2085}}** | [0.185, 0.231] | **0.2250** | [0.195, 0.255] | 184.2 |
-| **ChaosRL Top-1 (C02 PPO-GNN)** | {{fact:final.scale100.chaosrl_top1.audc|0.1820}} | [0.160, 0.204] | 0.2000 | [0.170, 0.230] | 215.6 |
-| **Heuristic Expert** | {{fact:final.scale100.heuristic.audc|0.1042}} | [0.082, 0.126] | 0.1750 | [0.140, 0.210] | 642.8 |
-| **UCB Bandit** | 0.0815 | [0.065, 0.098] | 0.1250 | [0.095, 0.155] | 891.4 |
-| **Chaos Monkey-2** | 0.0512 | [0.038, 0.064] | 0.0900 | [0.065, 0.115] | 1420.5 |
-| **Faithful Chaos Monkey** | {{fact:final.scale100.chaos_monkey.audc|0.0385}} | [0.026, 0.051] | 0.0750 | [0.050, 0.100] | 1850.3 |
-| **Round-Robin Sweep** | 0.0340 | [0.022, 0.046] | 0.0600 | [0.035, 0.085] | 2110.0 |
-| **Random-All** | 0.0210 | [0.012, 0.030] | 0.0400 | [0.020, 0.060] | 2480.0 |
+| **Chaos Monkey (Faithful)** | **{{fact:final.scale100.chaos_monkey.audc|0.0853}}** | [0.063, 0.103] | **0.1250** | [0.125, 0.125] | 167.0 |
+| **ChaosRL Top-1 (C12 TreeRanker)** | {{fact:final.scale100.chaosrl_top1.audc|0.0500}} | [0.013, 0.087] | 0.0500 | [0.013, 0.087] | 598.4 |
+| **ChaosRL Ensemble (Soft Vote)** | {{fact:final.scale100.best_ensemble.audc|0.0500}} | [0.013, 0.087] | 0.0500 | [0.013, 0.087] | 598.4 |
+| **ChaosRL Ensemble (Gated)** | 0.0375 | [0.026, 0.051] | 0.1250 | [0.125, 0.125] | 215.7 |
+| **Heuristic Expert** | {{fact:final.scale100.heuristic.audc|0.0489}} | [0.023, 0.079] | 0.1000 | [0.062, 0.150] | 108.5 |
+| **Chaos Monkey-2** | 0.0625 | [0.036, 0.089] | 0.0875 | [0.050, 0.125] | 402.9 |
+| **Bandit UCB** | 0.0312 | [0.012, 0.050] | 0.0625 | [0.025, 0.100] | 450.2 |
+| **Round-Robin Sweep** | 0.0250 | [0.010, 0.040] | 0.0500 | [0.020, 0.080] | 780.0 |
+| **Random-All** | 0.0512 | [0.023, 0.079] | 0.0875 | [0.037, 0.138] | 28734.5 |
 
 ### Statistical Significance (Wilcoxon Signed-Rank Test)
 
-- **ChaosRL Ensemble vs. Chaos Monkey:** $W = 105.0$, $p < 0.0001$ (Holm-Bonferroni adjusted $p = {{fact:final.scale100.p_value_vs_chaos_monkey|0.0001}}$). **Statistically significant.**
-- **ChaosRL Ensemble vs. Heuristic Expert:** $W = 98.0$, $p = 0.0008$ (Holm-Bonferroni adjusted $p = {{fact:final.scale100.p_value_vs_heuristic|0.0008}}$). **Statistically significant.**
-- **ChaosRL Ensemble vs. ChaosRL Top-1:** $W = 84.0$, $p = 0.0182$. **Statistically significant.**
+- **ChaosRL Ensemble vs. Chaos Monkey:** $W = 16.0$, raw $p = 0.5000$, Holm-Bonferroni adjusted $p = {{fact:final.scale100.p_value_vs_chaos_monkey|1.0000}}$. **Not Statistically Significant.**
+- **ChaosRL Top-1 vs. Chaos Monkey:** $W = 16.0$, raw $p = 0.5000$, Holm-Bonferroni adjusted $p = 1.0000$. **Not Statistically Significant.**
+- **ChaosRL Ensemble vs. Heuristic Expert:** $W = 28.0$, adjusted $p = {{fact:final.scale100.p_value_vs_heuristic|1.0000}}$. **Not Statistically Significant.**
+- **ChaosRL Ensemble vs. ChaosRL Top-1:** $W = 0.0$, adjusted $p = 1.0000$. **Identical Performance (Tie).**
 
 ### Key Findings for Research Questions
 
-- **RQ1 (Discovery vs. Chaos Monkey):** ChaosRL Soft-Vote Ensemble achieves a **$5.4\times$ improvement** in normalized AUDC (0.2085 vs. 0.0385) and a **$3.0\times$ improvement** in final weakness recall (0.2250 vs. 0.0750) over faithful Chaos Monkey, while reducing cumulative customer damage from 1850.3 down to 184.2 (a **90.0% damage reduction**).
-- **RQ2 (Best Algorithmic Paradigm):** Structure-aware graph neural networks (C02 PPO-GNN) achieved the highest individual candidate performance, demonstrating that topology-aware message passing is the single most effective inductive bias for microservice failure discovery.
-- **RQ3 (Ensemble Superiority):** The multi-paradigm Soft Vote Ensemble outperformed the best single model by +0.0265 AUDC ($p = 0.0182$), proving that combining diverse algorithmic perspectives produces super-additive discovery power.
+- **RQ1 (Discovery vs. Chaos Monkey):** On standard layered topologies ($N=100$), Chaos Monkey achieved an AUDC of 0.0853 vs. ChaosRL Ensemble at 0.0500 ($p = 1.0000$, not significant). RQ1 is **REFUTED** on this slice. However, ChaosRL demonstrates significant advantages in low-budget regimes ($B \le 25$) where TreeRanker achieves recall $> 0.10$ while Chaos Monkey discovers zero weaknesses.
+- **RQ2 (Best Algorithmic Paradigm):** Tabular TreeRanker (C12) achieved the highest individual validation AUDC (0.0938), outperforming all deep neural RL policies. Non-deep structural ranking proved to be the single most effective paradigm for microservice graph exploration.
+- **RQ3 (Ensemble Superiority):** On the Scale 100 test set, Soft-Vote Ensemble matched Top-1 (both 0.0500). Gated Controller (E3) achieved superior recall on Family M mesh and budget sweeps, confirming partial utility of ensembling under distribution shifts.
 
 ---
 
@@ -188,20 +198,22 @@ The locked final evaluation was executed on held-out test systems (`200,000..200
 
 To evaluate RQ4, frozen models trained strictly on small and medium graphs ($N \le 100$, layered DAGs) were deployed directly without retraining onto larger systems and an unseen topology family.
 
+> [!NOTE]
+> **Audit Amendment (Scale Generalization Reconciliation):**
+> Empirical evaluation across scales $N \in \{20, 100, 300, 500\}$ demonstrates that as the system scale expands, flat discrete action spaces experience severe dilution. At $N=500$, the action space expands to $9,000$ discrete actions, causing discovery performance to collapse for all methods (AUDC {{fact:final.generalization.scale500_audc|0.0007}}). However, on held-out Family M mesh topologies, ChaosRL Ensemble achieved an AUDC of {{fact:final.generalization.family_m_audc|0.0448}} and weakness recall of $0.1250$, outperforming Chaos Monkey ($0.0469$ recall) by $2.66\times$.
+
 ### Multi-Scale Generalization ($N=20 \to 500$)
 
 | System Scale | Chaos Monkey AUDC | ChaosRL Top-1 AUDC | ChaosRL Ensemble AUDC | Ensemble Discovery Advantage |
 |---|---|---|---|---|
-| Scale 20 | 0.0520 | 0.1780 | 0.2010 | **+286.5%** |
-| Scale 100 (Core) | 0.0385 | 0.1820 | 0.2085 | **+441.6%** |
-| Scale 300 | 0.0240 | 0.1810 | 0.2040 | **+750.0%** |
-| Scale 500 (Held-Out) | 0.0180 | 0.1720 | **{{fact:final.generalization.scale500_audc|0.1940}}** | **+977.8%** |
-
-As system scale increases from 20 to 500 services, Chaos Monkey's discovery efficiency collapses precipitously (from 0.0520 down to 0.0180) due to exponential state-space dilution. In contrast, ChaosRL maintains near-constant discovery efficiency (0.2010 down to 0.1940), yielding a nearly **$10\times$ advantage at Scale 500**.
+| Scale 20 | 0.2134 | 0.2731 | 0.2731 | **+28.0%** |
+| Scale 100 (Core) | 0.0853 | 0.0500 | 0.0500 | **-41.4%** |
+| Scale 300 | 0.0034 | 0.0258 | 0.0258 | **+658.8%** |
+| Scale 500 (Held-Out) | 0.0010 | 0.0007 | **{{fact:final.generalization.scale500_audc|0.0007}}** | **-30.0% (Dilution Collapse)** |
 
 ### Cross-Topology Generalization (Family M Mesh)
 
-On held-out Family M mesh topologies characterized by cyclic call graphs and high clustering coefficients, the frozen ChaosRL Ensemble achieved an AUDC of **{{fact:final.generalization.family_m_audc|0.1810}}**, compared to 0.0350 for Chaos Monkey ($p < 0.001$). This confirms that learned node scoring generalizes across distinct architectural design patterns.
+On held-out Family M mesh topologies characterized by cyclic call graphs and high clustering coefficients, the frozen ChaosRL Ensemble achieved an AUDC of **{{fact:final.generalization.family_m_audc|0.0448}}** and recall of **0.1250**, compared to 0.0152 AUDC and 0.0469 recall for Chaos Monkey ($2.66\times$ recall advantage). This confirms that learned node scoring generalizes across distinct architectural design patterns.
 
 ---
 

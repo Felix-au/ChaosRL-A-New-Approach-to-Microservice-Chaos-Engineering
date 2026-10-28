@@ -15,3 +15,4 @@
 - **What the reader sees:** Parameter counts grouped by architecture family compared against the 1,000,000 parameter budget ceiling and memory footprints.
 - **What it implies:** Every model in the pool utilizes under 5% of the maximum allowed parameter budget, guaranteeing rapid CPU training and strict compliance with the 9 GB peak RAM constraint.
 - **Traceability link:** Original metrics in [stage6_candidate_smoke_benchmarks.csv](file:///c:/Users/Felix/Desktop/chaos%20final/docs/tables/stage6_candidate_smoke_benchmarks.csv), registry [registry.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/agents/candidates/registry.py), and test [test_audit_s06_candidates.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s06_candidates.py#L75-L95).
+

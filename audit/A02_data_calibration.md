@@ -82,3 +82,4 @@ Empirical parameters derived from this stage directly drive the fault dynamics i
 
 1. **Explicit Seed Pinning:** Ensure [calibrate.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/data/calibrate.py) initializes `np.random.seed(42)` at the function entrypoint to ensure bitwise reproducible test statistics across all runs.
 2. **Traceability Logging:** Embed dataset SHA-256 hashes directly in `fitted_parameters.json` for end-to-end cryptographic provenance.
+

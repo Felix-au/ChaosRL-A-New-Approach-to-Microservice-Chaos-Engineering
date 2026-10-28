@@ -14,3 +14,4 @@
 - **What the reader sees:** Verification outcomes, exit codes, and execution runtimes for all entrypoint subcommands in the `chaosrl` CLI.
 - **What it implies:** Every CLI workflow terminates cleanly with exit code 0, and the automated `quick` mode provides complete pipeline verification in under two seconds.
 - **Traceability link:** CLI entrypoint [cli.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/cli.py) and test [test_audit_s11_reproducibility.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s11_reproducibility.py#L15-L55).
+

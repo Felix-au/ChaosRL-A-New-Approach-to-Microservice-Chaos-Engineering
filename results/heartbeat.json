@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-10-28T15:46:21.388511+00:00",
+  "timestamp": "2026-10-28T21:01:54.659898+00:00",
   "stage": "testing",
   "progress_percent": 50.0,
   "eta_seconds": 120.0,
-  "memory_used_gb": 9.34,
-  "memory_available_gb": 4.51,
-  "memory_percent": 67.4
+  "memory_used_gb": 8.83,
+  "memory_available_gb": 5.01,
+  "memory_percent": 63.8
 }

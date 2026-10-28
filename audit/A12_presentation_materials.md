@@ -73,3 +73,4 @@ A presentation grounded in verifiable facts and scientific humility establishes 
 
 1. **Incorporate Extended Re-run Slides:** In Phase P6, provide backup slides contrasting the original $n=10$ test cohort against the extended $n=30$ high-power rerun.
 2. **Interactive Telemetry Visualizer:** Provide a recorded video clip of the discrete-event simulator stepping through a cascading failure to make Slide 3 visually compelling.
+

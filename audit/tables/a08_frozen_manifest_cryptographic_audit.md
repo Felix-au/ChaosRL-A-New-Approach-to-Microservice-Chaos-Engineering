@@ -12,3 +12,4 @@
 - **What the reader sees:** File sizes, manifest SHA-256 hashes, and audit recomputed SHA-256 hashes for all five frozen model checkpoints in `results/checkpoints/frozen_top5/`.
 - **What it implies:** Zero tampering or retrospective model tuning occurred; weights remained cryptographically frozen before, during, and after test set evaluation.
 - **Traceability link:** Manifest file [frozen_manifest.json](file:///c:/Users/Felix/Desktop/chaos%20final/results/frozen_manifest.json) and cryptographic verification test [test_audit_s08_ensembles.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s08_ensembles.py#L75-L100).
+

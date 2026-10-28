@@ -14,3 +14,4 @@
 - **What the reader sees:** Recall, Area Under the Discovery Curve (AUDC), and collateral damage metrics across 20 validation systems (Scale 100, seeds 100,000..100,019) with 95% bootstrap confidence intervals.
 - **What it implies:** Faithful Chaos Monkey incurs minimal damage but achieves very low recall (7.5%) due to modality blindness; Heuristic Expert achieves the best non-oracle balance (AUDC 0.1054, Damage 262.54).
 - **Traceability link:** Original validation table [stage5_baseline_validation_results.csv](file:///c:/Users/Felix/Desktop/chaos%20final/docs/tables/stage5_baseline_validation_results.csv), facts [facts.json](file:///c:/Users/Felix/Desktop/chaos%20final/results/facts.json), and test [test_audit_s05_baselines.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s05_baselines.py#L70-L105).
+

@@ -13,3 +13,4 @@
 - **What the reader sees:** Parameter fits and Wasserstein distances from the original calibration run compared against an independent re-run with explicit random seed initialization.
 - **What it implies:** Calibration parameters are numerically reproducible and held-out transfer metrics are grounded in empirical trace distributions from real microservice benchmarks.
 - **Traceability link:** Original source [stage2_calibration_metrics.csv](file:///c:/Users/Felix/Desktop/chaos%20final/docs/tables/stage2_calibration_metrics.csv), audit test [test_audit_s02_data.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s02_data.py#L90-L115), and calibration module [calibrate.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/data/calibrate.py#L34-L125).
+

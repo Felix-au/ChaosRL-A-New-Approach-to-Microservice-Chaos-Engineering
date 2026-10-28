@@ -109,3 +109,4 @@ Execute the Section 1 audit test suite:
 pytest tests/audit/test_audit_s01_design.py -v
 ```
 All 4 tests execute deterministically in $< 1.0$ second.
+

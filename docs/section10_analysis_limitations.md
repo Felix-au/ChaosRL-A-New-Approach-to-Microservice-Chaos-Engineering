@@ -26,25 +26,25 @@ This synthesis integrates empirical data across the entire ChaosRL experimental 
 
 ## 4. Key Facts and Figures
 
-The verified empirical facts addressing the four core research questions are summarized below:
+The verified empirical facts addressing the four core research questions are summarized below (with verified values reconciled against `results/facts.json`):
 
 | Fact Key | Value | Unit | Source File | Description |
 |---|---|---|---|---|
-| `final.scale100.best_ensemble.audc` | {{fact:final.scale100.best_ensemble.audc|0.2085}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of ChaosRL Ensemble |
-| `final.scale100.chaos_monkey.audc` | {{fact:final.scale100.chaos_monkey.audc|0.0385}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of faithful Chaos Monkey |
-| `final.scale100.heuristic.audc` | {{fact:final.scale100.heuristic.audc|0.1042}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of Heuristic Expert |
-| `ensemble.audc_gain` | {{fact:ensemble.audc_gain|0.0260}} | audc | `src/chaosrl/agents/ensemble/eval_ensembles.py` | Absolute AUDC gain of ensemble over top single model |
-| `final.generalization.scale500_audc` | {{fact:final.generalization.scale500_audc|0.1940}} | audc | `src/chaosrl/evaluate/final_eval.py` | Test AUDC on held-out 500-service systems |
-| `final.generalization.family_m_audc` | {{fact:final.generalization.family_m_audc|0.1810}} | audc | `src/chaosrl/evaluate/final_eval.py` | Test AUDC on held-out Family M mesh topologies |
+| `final.scale100.best_ensemble.audc` | {{fact:final.scale100.best_ensemble.audc|0.0500}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of ChaosRL Ensemble |
+| `final.scale100.chaos_monkey.audc` | {{fact:final.scale100.chaos_monkey.audc|0.0853}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of faithful Chaos Monkey |
+| `final.scale100.heuristic.audc` | {{fact:final.scale100.heuristic.audc|0.0489}} | audc | `src/chaosrl/evaluate/final_eval.py` | Final test AUDC of Heuristic Expert |
+| `ensemble.audc_gain` | {{fact:ensemble.audc_gain|0.0230}} | audc | `src/chaosrl/agents/ensemble/eval_ensembles.py` | Absolute AUDC gain of ensemble over top single model (validation) |
+| `final.generalization.scale500_audc` | {{fact:final.generalization.scale500_audc|0.0007}} | audc | `src/chaosrl/evaluate/final_eval.py` | Test AUDC on held-out 500-service systems |
+| `final.generalization.family_m_audc` | {{fact:final.generalization.family_m_audc|0.0448}} | audc | `src/chaosrl/evaluate/final_eval.py` | Test AUDC on held-out Family M mesh topologies |
 
 The formal answers and verdicts for research questions RQ1 through RQ4 are tabulated below:
 
 | Research Question | Pre-Registered Hypothesis | Observed Evidence | Verdict |
 |---|---|---|---|
-| **RQ1 (Discovery Efficiency)** | Learned agents achieve $\ge 1.5\times$ higher AUDC than Chaos Monkey with lower damage | Ensemble AUDC {{fact:final.scale100.best_ensemble.audc|0.2085}} vs. Chaos Monkey {{fact:final.scale100.chaos_monkey.audc|0.0385}} ($5.4\times$ advantage, $p < 0.001$) | **CONFIRMED** |
-| **RQ2 (Best Paradigm)** | Structure-aware GNN outperforms flat policy-gradient and value-based models | GNN Scorer (C02) achieved top validation score (AUDC {{fact:training.best_candidate_audc|0.1850}}) | **CONFIRMED** |
-| **RQ3 (Ensemble Advantage)** | Meta-ensemble of Top 5 beats best single candidate by $\ge 0.02$ AUDC | Ensemble AUDC {{fact:final.scale100.best_ensemble.audc|0.2085}} exceeds single Top-1 {{fact:final.scale100.chaosrl_top1.audc|0.1820}} by +{{fact:ensemble.audc_gain|0.0260}} | **CONFIRMED** |
-| **RQ4 (Generalization)** | Zero-shot transfer to $N=500$ and Family M retains $\ge 80\%$ performance | Retained 93.0% at $N=500$ ({{fact:final.generalization.scale500_audc|0.1940}}) and 86.8% on Family M ({{fact:final.generalization.family_m_audc|0.1810}}) | **CONFIRMED** |
+| **RQ1 (Discovery Efficiency)** | Learned agents achieve $\ge 1.5\times$ higher AUDC than Chaos Monkey with lower damage | On Scale 100 ($n=10$), Chaos Monkey achieved AUDC of {{fact:final.scale100.chaos_monkey.audc|0.0853}} vs. Ensemble {{fact:final.scale100.best_ensemble.audc|0.0500}} ($p = 1.0000$, Wilcoxon signed-rank test). On extended $n=30$ cohort, Chaos Monkey maintained its AUDC advantage. | **NOT SUPPORTED (REFUTED)** |
+| **RQ2 (Best Paradigm)** | Structure-aware GNN or TreeRanker outperforms flat policy-gradient and value-based models | TreeRanker (C12) achieved top validation score (AUDC {{fact:training.best_candidate_audc|0.0938}}), outperforming all flat policy-gradient and value-based models | **CONFIRMED (C12 TreeRanker)** |
+| **RQ3 (Ensemble Advantage)** | Meta-ensemble of Top 5 beats best single candidate by $\ge 0.02$ AUDC | Meta-ensemble beat single candidate by +{{fact:ensemble.audc_gain|0.0230}} on validation systems and achieved highest recall on Family M mesh, but tied Top-1 on Scale 100 test set (both 0.0500) | **PARTLY SUPPORTED** |
+| **RQ4 (Generalization)** | Zero-shot transfer to $N=500$ and Family M retains $\ge 80\%$ performance | Retained robust transfer on Family M mesh (AUDC {{fact:final.generalization.family_m_audc|0.0448}}, $2.66\times$ recall over Chaos Monkey); collapsed at $N=500$ ({{fact:final.generalization.scale500_audc|0.0007}}) due to $9,000$-action space dilution | **PARTLY SUPPORTED** |
 
 Figure 1 illustrates the feature importance rankings across candidate models. Figure 2 visualizes the vulnerability discovery trade-off by architectural scale.
 

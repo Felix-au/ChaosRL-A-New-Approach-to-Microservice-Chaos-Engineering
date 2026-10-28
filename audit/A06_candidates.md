@@ -88,3 +88,4 @@ The small parameter footprint ($\le 47,123$ weights) and fast inference ($> 73$ 
 
 1. **Quantization & TorchScript Export:** Export final PyTorch candidate checkpoints to TorchScript or ONNX runtime for even lower inference overhead in production test harnesses.
 2. **Contextual Bandit Speedup:** Vectorize the LinUCB matrix inversion update to improve throughput above 100 steps/s.
+

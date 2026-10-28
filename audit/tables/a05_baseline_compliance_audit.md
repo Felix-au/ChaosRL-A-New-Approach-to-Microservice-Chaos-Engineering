@@ -14,3 +14,4 @@
 - **What the reader sees:** Policy constraints, action domains, and information boundaries across all seven evaluated non-learned baseline strategies.
 - **What it implies:** Baselines faithfully implement their respective specifications; non-oracle baselines operate with zero access to hidden weakness configurations.
 - **Traceability link:** Agent definitions in [baselines.py](file:///c:/Users/Felix/Desktop/chaos%20final/src/chaosrl/agents/baselines/baselines.py#L12-L236) and audit verification in [test_audit_s05_baselines.py](file:///c:/Users/Felix/Desktop/chaos%20final/tests/audit/test_audit_s05_baselines.py#L25-L65).
+

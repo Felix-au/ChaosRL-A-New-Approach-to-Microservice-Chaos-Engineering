@@ -76,3 +76,4 @@ Reporting negative results honestly is fundamental to scientific integrity. Rath
 
 1. **Adopt Hierarchical Action Selection:** Decompose the $18N$ flat discrete action space into a two-level hierarchical policy: Level 1 selects the candidate service via GNN graph pooling, and Level 2 selects the fault type and intensity.
 2. **Re-evaluate on Extended Cohort:** Execute the pre-registered extended test suite ($n=30$ Scale 100 systems) in Phase P5 to establish whether the $0.0500$ vs $0.0853$ outcome holds under high statistical power.
+

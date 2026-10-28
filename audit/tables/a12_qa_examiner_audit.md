@@ -12,3 +12,4 @@
 - **What the reader sees:** Strategic defense responses and empirical grounding for challenging thesis examiner questions across the five most vulnerable research topics.
 - **What it implies:** Anticipating hard questions and defending with factual humility rather than ungrounded claims produces an unassailable oral defense.
 - **Traceability link:** Monograph [QA.md](file:///c:/Users/Felix/Desktop/chaos%20final/docs/QA.md) and audit synthesis [A10_analysis_limitations.md](file:///c:/Users/Felix/Desktop/chaos%20final/audit/A10_analysis_limitations.md).
+
