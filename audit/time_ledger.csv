@@ -1,0 +1,9 @@
+phase,planned_min,actual_min,start_time,end_time,status,notes
+P0 Setup and inventory,10,2.0,2026-10-29T01:19:40+05:30,2026-10-29T01:21:40+05:30,COMPLETED,Directory setup baseline preservation 226 files hashed
+P1 Claim ledger,10,1.5,2026-10-29T01:21:40+05:30,2026-10-29T01:23:10+05:30,COMPLETED,Generated claim_ledger.csv with 72 claims covering S1-S12
+P2 Test inventory and pre-registered plan,10,,2026-10-29T01:23:10+05:30,,RUNNING,Write test_inventory.md and preregistered_plan.md before test set access
+P3 Section-by-section audit tests,45,,,,PLANNED,Execute comprehensive test catalogue across S1-S12
+P4 Fixes and regression tests,15,,,,PLANNED,Prove defects with tests and apply minimal fixes
+P5 Extended re-evaluation,35,,,,PLANNED,Run extended test cohort and compute statistical power
+P6 Documentation, slides, Q&A reconciliation,25,,,,PLANNED,Update docs with audit amendments and expand Q&A
+P7 Final checks and summary,10,,,,PLANNED,Verify checklist and emit final audit summary
