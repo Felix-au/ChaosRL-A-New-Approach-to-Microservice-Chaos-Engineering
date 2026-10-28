@@ -107,37 +107,79 @@
   "calibration.fit_cases_ob": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:02:26.193117+00:00",
+    "timestamp": "2026-10-28T13:14:48.593722+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.held_out_cases_ss": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:02:26.194898+00:00",
+    "timestamp": "2026-10-28T13:14:48.595048+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.mean_held_out_wasserstein": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:02:26.196171+00:00",
+    "timestamp": "2026-10-28T13:14:48.596341+00:00",
     "unit": "dist",
-    "value": 35.34910293775904
+    "value": 35.47751624454339
   },
   "calibration.status": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:02:26.197401+00:00",
+    "timestamp": "2026-10-28T13:14:48.597624+00:00",
     "unit": "",
     "value": "CALIBRATED"
   },
   "calibration.total_cases": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:02:26.190991+00:00",
+    "timestamp": "2026-10-28T13:14:48.592204+00:00",
     "unit": "cases",
     "value": 250
+  },
+  "candidates.cross_check_diff": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.089520+00:00",
+    "unit": "reward",
+    "value": 0.0019
+  },
+  "candidates.custom_ppo_reward": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.090973+00:00",
+    "unit": "reward",
+    "value": -0.0418
+  },
+  "candidates.max_parameter_count": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.631061+00:00",
+    "unit": "parameters",
+    "value": 47123
+  },
+  "candidates.mean_throughput": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.629291+00:00",
+    "unit": "steps/sec",
+    "value": 88.2
+  },
+  "candidates.pool_size": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/smoke_runner.py",
+    "timestamp": "2026-10-28T13:13:00.632568+00:00",
+    "unit": "candidates",
+    "value": 12
+  },
+  "candidates.sb3_ppo_reward": {
+    "description": "",
+    "source_file": "src/chaosrl/agents/candidates/cross_check_sb3.py",
+    "timestamp": "2026-10-28T13:12:39.092672+00:00",
+    "unit": "reward",
+    "value": -0.0437
   },
   "environment.r2_dm_return": {
     "description": "",

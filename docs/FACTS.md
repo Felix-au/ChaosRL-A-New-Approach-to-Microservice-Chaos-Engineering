@@ -20,11 +20,17 @@ It contains every verified number produced by experiment runs.
 | `baseline.random_all.damage` | 169221.92 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.audc` | 0.0955 | audc | `eval_baselines.py` | 2026-10-28T12:59:46 |
 | `baseline.round_robin.damage` | 568691.78 | damage | `eval_baselines.py` | 2026-10-28T12:59:46 |
-| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
-| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
-| `calibration.mean_held_out_wasserstein` | 35.3894 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:54:16 |
-| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:54:16 |
-| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:54:16 |
+| `calibration.fit_cases_ob` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
+| `calibration.held_out_cases_ss` | 125 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
+| `calibration.mean_held_out_wasserstein` | 35.3505 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T13:03:46 |
+| `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T13:03:46 |
+| `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T13:03:46 |
+| `candidates.cross_check_diff` | 0.0019 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
+| `candidates.custom_ppo_reward` | -0.0418 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
+| `candidates.max_parameter_count` | 47123 | parameters | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
+| `candidates.mean_throughput` | 88.2000 | steps/sec | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
+| `candidates.pool_size` | 12 | candidates | `src/chaosrl/agents/candidates/smoke_runner.py` | 2026-10-28T13:13:00 |
+| `candidates.sb3_ppo_reward` | -0.0437 | reward | `src/chaosrl/agents/candidates/cross_check_sb3.py` | 2026-10-28T13:12:39 |
 | `environment.r2_dm_return` | -3.8247 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.r2_rnd_return` | -20.8542 | return | `src/chaosrl/env/probes.py` | 2026-10-28T12:45:35 |
 | `environment.scale100_action_count` | 1800 | actions | `src/chaosrl/env/chaos_env.py` | 2026-10-28T12:45:35 |

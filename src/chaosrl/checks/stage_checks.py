@@ -194,12 +194,62 @@ def check_stage_5() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_6() -> Tuple[bool, List[str]]:
+    """Stage 6 exit criteria:
+    - All 12 candidates registered in CANDIDATE_REGISTRY
+    - Smoke benchmarks table exists
+    - Throughput and parameter count figures exist
+    - Facts registered: pool_size, mean_throughput, max_parameter_count
+    - Invariant: max_parameter_count < 1,000,000 (CPU budget)
+    - docs-check passes for section 6
+    """
+    errors: List[str] = []
+
+    # Check registry completeness
+    from chaosrl.agents.candidates.registry import CANDIDATE_REGISTRY
+    if len(CANDIDATE_REGISTRY) != 12:
+        errors.append(f"Candidate registry has {len(CANDIDATE_REGISTRY)} entries, expected 12")
+
+    for i in range(1, 13):
+        cid = f"C{i:02d}"
+        if cid not in CANDIDATE_REGISTRY:
+            errors.append(f"Missing candidate in registry: {cid}")
+
+    # Check figures
+    for fig_name in ["stage6_candidate_throughput.png", "stage6_candidate_parameter_counts.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check table
+    if not (Path("docs/tables") / "stage6_candidate_smoke_benchmarks.md").exists():
+        errors.append("Missing table: stage6_candidate_smoke_benchmarks.md")
+
+    # Check facts and invariants
+    facts = load_all_facts()
+    for req_fact in ["candidates.pool_size", "candidates.mean_throughput", "candidates.max_parameter_count"]:
+        if req_fact not in facts:
+            errors.append(f"Missing fact: {req_fact}")
+
+    if "candidates.max_parameter_count" in facts:
+        max_p = facts["candidates.max_parameter_count"]["value"]
+        if max_p > 1000000:
+            errors.append(f"Machine constraint violated: max parameters {max_p} exceeds 1M limit")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(6)
+    if not sec_ok:
+        errors.extend([f"Section 6 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
     2: check_stage_2,
     3: check_stage_3,
     4: check_stage_4,
     5: check_stage_5,
+    6: check_stage_6,
 }
 
 

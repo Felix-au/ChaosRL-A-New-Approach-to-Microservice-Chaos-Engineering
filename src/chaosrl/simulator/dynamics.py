@@ -50,6 +50,8 @@ class SystemDynamics:
 
         # Adjacency matrix: A[u, v] = 1 if u calls v
         self.adj = system.adjacency.copy()
+        # Precomputed callee arrays for ultra-fast vectorised backward propagation
+        self.callees = [np.where(self.adj[u, :] > 0)[0] for u in range(self.n)]
 
         # Dynamic state vectors
         self.healthy_replicas = self.total_replicas.copy()
@@ -162,13 +164,13 @@ class SystemDynamics:
         # In microservices (Tail at Scale), p99 tail latency is driven by the slowest critical path branch
         # and downstream callee errors propagate upstream to callers
         for u in range(self.n - 1, -1, -1):
-            downstream = np.where(self.adj[u, :] > 0)[0]
-            if len(downstream) > 0:
-                active_callees = [v for v in downstream if self.cb_open[v] == 0.0]
-                if active_callees:
-                    max_callee_lat = float(np.max([p99_latency[v] for v in active_callees]))
-                    avg_callee_lat = float(np.mean([p50_latency[v] for v in active_callees]))
-                    callee_err = float(np.mean([error_rate[v] for v in active_callees]))
+            callees = self.callees[u]
+            if len(callees) > 0:
+                active_callees = callees[self.cb_open[callees] == 0.0]
+                if len(active_callees) > 0:
+                    max_callee_lat = float(np.max(p99_latency[active_callees]))
+                    avg_callee_lat = float(np.mean(p50_latency[active_callees]))
+                    callee_err = float(np.mean(error_rate[active_callees]))
                     p99_latency[u] += max_callee_lat * 0.85
                     p50_latency[u] += avg_callee_lat * 0.60
                     error_rate[u] = np.clip(error_rate[u] + callee_err * 0.80, 0.0, 1.0)
