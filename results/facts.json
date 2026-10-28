@@ -34,6 +34,48 @@
     "unit": "cases",
     "value": 250
   },
+  "simulator.scale100_compound_weaknesses": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.913555+00:00",
+    "unit": "weaknesses",
+    "value": 2
+  },
+  "simulator.scale100_decoys": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.914639+00:00",
+    "unit": "decoys",
+    "value": 13
+  },
+  "simulator.scale100_simple_weaknesses": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/generator.py",
+    "timestamp": "2026-10-28T12:42:06.912356+00:00",
+    "unit": "weaknesses",
+    "value": 6
+  },
+  "simulator.throughput_scale100": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.187845+00:00",
+    "unit": "exp/min",
+    "value": 7914.44902706215
+  },
+  "simulator.throughput_scale20": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.185962+00:00",
+    "unit": "exp/min",
+    "value": 22912.709450801907
+  },
+  "simulator.throughput_scale300": {
+    "description": "",
+    "source_file": "src/chaosrl/simulator/engine.py",
+    "timestamp": "2026-10-28T12:42:04.189159+00:00",
+    "unit": "exp/min",
+    "value": 2479.7425696585724
+  },
   "stage1.hypotheses_count": {
     "description": "",
     "source_file": "docs/section01_design.md",

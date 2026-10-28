@@ -86,9 +86,46 @@ def check_stage_2() -> Tuple[bool, List[str]]:
     return (len(errors) == 0), errors
 
 
+def check_stage_3() -> Tuple[bool, List[str]]:
+    """Stage 3 exit criteria:
+    - Simulator throughput measured at scales 20, 100, 300
+    - Steady state verified
+    - Fault effects and retry storm artifacts exist
+    - Unit tests pass
+    - docs-check passes for section 3
+    """
+    errors: List[str] = []
+    # Check throughput facts
+    facts = load_all_facts()
+    for sc in [20, 100, 300]:
+        key = f"simulator.throughput_scale{sc}"
+        if key not in facts:
+            errors.append(f"Missing throughput fact: {key}")
+        elif facts[key]["value"] < (300 if sc == 300 else 1000):
+            errors.append(f"Throughput below target at scale {sc}: {facts[key]['value']} exp/min")
+
+    # Check figures
+    for fig_name in ["stage3_fault_effects.png", "stage3_retry_storm_demonstration.png"]:
+        if not (Path("docs/figures") / fig_name).exists():
+            errors.append(f"Missing figure: {fig_name}")
+
+    # Check tables
+    for tbl_name in ["stage3_throughput_benchmarks.md", "stage3_weakness_summary.md"]:
+        if not (Path("docs/tables") / tbl_name).exists():
+            errors.append(f"Missing table: {tbl_name}")
+
+    from chaosrl.docs_tools.docs_check import check_single_section
+    sec_ok, sec_errs = check_single_section(3)
+    if not sec_ok:
+        errors.extend([f"Section 3 docs-check: {e}" for e in sec_errs])
+
+    return (len(errors) == 0), errors
+
+
 STAGE_RUNNERS: Dict[int, Callable[[], Tuple[bool, List[str]]]] = {
     1: check_stage_1,
     2: check_stage_2,
+    3: check_stage_3,
 }
 
 

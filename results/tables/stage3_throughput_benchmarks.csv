@@ -1,0 +1,4 @@
+Scale (N Services),Throughput (Exp/Min),Target (Exp/Min),Status
+20,22912.7,1000,EXCEEDED
+100,7914.4,1000,EXCEEDED
+300,2479.7,300,EXCEEDED

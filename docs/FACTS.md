@@ -10,6 +10,12 @@ It contains every verified number produced by experiment runs.
 | `calibration.mean_held_out_wasserstein` | 35.8036 | dist | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
 | `calibration.status` | CALIBRATED |  | `results/calibration/fitted_parameters.json` | 2026-10-28T12:37:06 |
 | `calibration.total_cases` | 250 | cases | `data_raw/parsed_cases.json` | 2026-10-28T12:37:06 |
+| `simulator.scale100_compound_weaknesses` | 2 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
+| `simulator.scale100_decoys` | 13 | decoys | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
+| `simulator.scale100_simple_weaknesses` | 6 | weaknesses | `src/chaosrl/simulator/generator.py` | 2026-10-28T12:42:06 |
+| `simulator.throughput_scale100` | 7914.45 | exp/min | `src/chaosrl/simulator/engine.py` | 2026-10-28T12:42:04 |
+| `simulator.throughput_scale20` | 22912.71 | exp/min | `src/chaosrl/simulator/engine.py` | 2026-10-28T12:42:04 |
+| `simulator.throughput_scale300` | 2479.74 | exp/min | `src/chaosrl/simulator/engine.py` | 2026-10-28T12:42:04 |
 | `stage1.hypotheses_count` | 4 | hypotheses | `docs/section01_design.md` | 2026-10-28T12:27:15 |
 | `stage1.planned_hours` | 36.0000 | hours | `configs/budget.yaml` | 2026-10-28T12:27:15 |
 | `stage1.risks_count` | 10 | risks | `generate_stage1.py` | 2026-10-28T12:27:15 |
