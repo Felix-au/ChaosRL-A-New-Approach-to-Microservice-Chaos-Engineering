@@ -107,35 +107,35 @@
   "calibration.fit_cases_ob": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:31:57.779923+00:00",
+    "timestamp": "2026-10-28T15:46:23.459183+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.held_out_cases_ss": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:31:57.781863+00:00",
+    "timestamp": "2026-10-28T15:46:23.460958+00:00",
     "unit": "cases",
     "value": 125
   },
   "calibration.mean_held_out_wasserstein": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:31:57.783745+00:00",
+    "timestamp": "2026-10-28T15:46:23.462578+00:00",
     "unit": "dist",
-    "value": 36.11615433504797
+    "value": 35.885766167806366
   },
   "calibration.status": {
     "description": "",
     "source_file": "results/calibration/fitted_parameters.json",
-    "timestamp": "2026-10-28T13:31:57.785088+00:00",
+    "timestamp": "2026-10-28T15:46:23.464164+00:00",
     "unit": "",
     "value": "CALIBRATED"
   },
   "calibration.total_cases": {
     "description": "",
     "source_file": "data_raw/parsed_cases.json",
-    "timestamp": "2026-10-28T13:31:57.777754+00:00",
+    "timestamp": "2026-10-28T15:46:23.457445+00:00",
     "unit": "cases",
     "value": 250
   },

@@ -43,8 +43,10 @@ def cmd_check(args: argparse.Namespace) -> int:
     """Run exit criteria checks."""
     if args.stage is not None:
         stages = [args.stage]
+    elif getattr(args, "all", False):
+        stages = list(range(1, 12))
     else:
-        stages = [1]  # Default or all registered
+        stages = list(range(1, 12))
 
     overall_pass = True
     for s in stages:

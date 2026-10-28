@@ -17,7 +17,7 @@ The ChaosRL reproducibility infrastructure comprises:
 - **Cross-Platform CLI (`src/chaosrl/cli.py`):** Unified command-line interface supporting:
   - `python -m chaosrl check --all`: Runs all programmatic exit criteria across stages 1 through 11.
   - `python -m chaosrl docs-check --all`: Validates documentation standards, word counts, mandatory headings, figure captions, and fact registry links.
-  - `python -m chaosrl docs-build`: Resolves all `{{fact:...}}` placeholders into compiled Markdown.
+  - `python -m chaosrl docs-build`: Resolves all fact placeholders into compiled Markdown.
   - `python -m chaosrl quick`: Executes an end-to-end smoke verification pipeline.
   - `python -m chaosrl resume`: Recovers and resumes execution from the latest valid checkpoint.
 - **Run Metadata Logging (`results/run_metadata.json`):** Captures exact host OS, CPU core count, thread limits, memory limits, and Python environment details.
