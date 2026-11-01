@@ -1,0 +1,82 @@
+{
+  "title": "ChaosRL System Architecture & Execution Pipeline",
+  "stages": [
+    {
+      "id": "stage1",
+      "number": "01",
+      "name": "Empirical Calibration",
+      "description": "Calibrated against real-world Train-Ticket & Sock-Shop microservice traces. Fits log-normal service execution latencies, Pareto cascading tails, and queue saturations.",
+      "artifacts": [
+        "calibration_metrics.csv",
+        "empirical_effects.csv"
+      ],
+      "color": "#38bdf8"
+    },
+    {
+      "id": "stage2",
+      "number": "02",
+      "name": "Gymnasium Environment",
+      "description": "High-throughput vector simulation (~12,000 steps/sec). Simulates DAG cascading propagation, timeouts, circuit breakers, retry storms, and resource exhaustion.",
+      "artifacts": [
+        "observation_spec.csv",
+        "reward_safety_probe.csv"
+      ],
+      "color": "#818cf8"
+    },
+    {
+      "id": "stage3",
+      "number": "03",
+      "name": "Candidate Model Pool",
+      "description": "Trains 12 diverse algorithms across 5 distinct paradigm families: Tabular Trees, Deep RL (PPO, DQN, A2C), Contextual Bandits, Graph Neural Networks, and Evolutionary Strategies.",
+      "artifacts": [
+        "training_summary.csv",
+        "tuning_log.csv"
+      ],
+      "color": "#a855f7"
+    },
+    {
+      "id": "stage4",
+      "number": "04",
+      "name": "Top-5 Selection & Freeze",
+      "description": "Selects top 5 Pareto-optimal candidates by sample efficiency, recall, and safety. SHA-256 frozen into immutable manifest.",
+      "artifacts": [
+        "frozen_manifest.json",
+        "stage8_top5_frozen_manifest.csv"
+      ],
+      "color": "#ec4899"
+    },
+    {
+      "id": "stage5",
+      "number": "05",
+      "name": "Ensemble Formulation",
+      "description": "Constructs 3 ensemble architectures (Soft Vote, Borda Rank, Gated Controller) aggregating complementary strengths.",
+      "artifacts": [
+        "ensemble_validation_results.csv"
+      ],
+      "color": "#f43f5e"
+    },
+    {
+      "id": "stage6",
+      "number": "06",
+      "name": "Rigorous Evaluation",
+      "description": "Evaluated against Netflix Chaos Monkey, Heuristic Expert, and Random-All across scales N=20 to 500, budgets B=25 to 200, and Family M mesh topologies with rigorous statistical hypothesis testing.",
+      "artifacts": [
+        "main_comparison_scale100.csv",
+        "statistical_tests.csv"
+      ],
+      "color": "#22c55e"
+    },
+    {
+      "id": "stage7",
+      "number": "07",
+      "name": "Independent Audit & Verification",
+      "description": "Independent verification audit: 72 pre-registered claims audited, expanded evaluation from n=10 to n=30 systems (3x statistical power), verifying TreeRanker's 2.38x AUDC advantage (p=0.0037).",
+      "artifacts": [
+        "claim_ledger.csv",
+        "test_access_log.csv",
+        "a13_extended_scale100_comparison.md"
+      ],
+      "color": "#eab308"
+    }
+  ]
+}
