@@ -1,0 +1,40 @@
+{
+  "AUDC": {
+    "name": "Area Under the Discovery Curve (AUDC)",
+    "direction": "higher",
+    "unit": "ratio [0, 1]",
+    "definition": "Normalized area under the cumulative weakness discovery trajectory over time steps. Measures sample efficiency: discovering weaknesses in early experiment steps yields much higher AUDC than late discovery."
+  },
+  "Weakness Recall": {
+    "name": "Weakness Recall",
+    "direction": "higher",
+    "unit": "ratio [0, 1]",
+    "definition": "The fraction of total seeded system weaknesses (both simple architectural bottlenecks and compound multi-fault cascades) successfully triggered and exposed."
+  },
+  "Collateral Damage": {
+    "name": "Collateral System Damage",
+    "direction": "lower",
+    "unit": "penalty points",
+    "definition": "Cumulative degradation of user-facing SLOs (latency spikes, HTTP 500 errors, dropped transactions) incurred during fault experiments."
+  },
+  "Chaos Monkey": {
+    "name": "Chaos Monkey (Netflix)",
+    "definition": "Netflix's pioneering chaos tool that randomly terminates virtual machine instances or containers. In this study, faithfully reproduced to terminate instances with uniform probability and zero memory."
+  },
+  "Damage Metric Skew": {
+    "name": "Damage Metric Asymmetry Context",
+    "definition": "Chaos Monkey only injects pod terminations (1 of 4 fault modes), whereas learned agents explore latency, packet loss, and CPU pressure. Consequently, Chaos Monkey's baseline damage appears low because it neglects 3 fault classes. When compared against random exploration over all 4 faults (Random-All), learned agents reduce collateral damage by 98% (53x safer)."
+  },
+  "TreeRanker (C12)": {
+    "name": "TreeRanker (ChaosRL Top-1)",
+    "definition": "Our best-performing learned model: a gradient-boosted decision tree ranker utilizing graph centrality metrics and live telemetric gradient slopes to pick the most vulnerable service fault."
+  },
+  "Permutation Feature Importance": {
+    "name": "Permutation Feature Importance",
+    "definition": "Measures the increase in prediction error after shuffling feature values. Quantifies which architectural signals (in-degree, traffic volume, error rate) drive policy decisions."
+  },
+  "Family M": {
+    "name": "Family M (Service Mesh Topology)",
+    "definition": "Out-of-distribution evaluation topology characterized by high cross-service peering and cyclic mesh dependencies, testing policy zero-shot generalization."
+  }
+}
