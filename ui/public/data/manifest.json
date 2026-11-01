@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-10-29T03:16:49.390833",
+  "build_version": "1.0.0",
+  "data_files": {
+    "architecture.json": {
+      "size_bytes": 3012,
+      "sha256": "55fdff582201004f485cd6523b3cc3152159b5e42cb2ce8b397b98384d63b5a9"
+    },
+    "build_report.json": {
+      "size_bytes": 494,
+      "sha256": "b474cbb35957bc9e2cd1953be18459897e7d4711fed20387ed03f6b5320ad82d"
+    },
+    "curves.json": {
+      "size_bytes": 70576,
+      "sha256": "a1d82f2133a87fc8a5adef8feee2d1348db8718797c58f6326b16a6ba13a0000"
+    },
+    "docs_index.json": {
+      "size_bytes": 549391,
+      "sha256": "70e63619edaffcef8e47820d1d46a114f23c4b0daab8ed9da9d64157b8d688a1"
+    },
+    "glossary.json": {
+      "size_bytes": 2517,
+      "sha256": "5b9724b96e254590a4ec38112e6a8f6d0a746be162a52b24b346e845551f9368"
+    },
+    "manifest.json": {
+      "size_bytes": 1542,
+      "sha256": "8e423c686d40615d228841463abd051a87eef175db42440016c7eacbb28ab3a1"
+    },
+    "methods.json": {
+      "size_bytes": 8304,
+      "sha256": "5f617839f35e3461bf3f5fac3faac9afd74687fee1676a42ff28de50fdb3cddc"
+    },
+    "post_audit.json": {
+      "size_bytes": 11961,
+      "sha256": "f356f794a64cbb1b560c05beb9e9ddb01ea4debdf4f281dd6d2c2420540c164f"
+    },
+    "pre_audit.json": {
+      "size_bytes": 8082,
+      "sha256": "212820eb1f9befd4c5e05fb9c1782f020bc4590ec4396f0e2e4ce602dcb84c2c"
+    },
+    "rigor.json": {
+      "size_bytes": 1258,
+      "sha256": "6a6fe0b23a867701fe36dbee3dc67fd8eb564df6925804bd4ba31bea4793a7bc"
+    }
+  }
+}
