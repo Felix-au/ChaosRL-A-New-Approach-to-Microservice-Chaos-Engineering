@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-10-29T03:16:49.393819",
+  "files_generated": [
+    "architecture.json",
+    "build_report.json",
+    "curves.json",
+    "docs_index.json",
+    "glossary.json",
+    "manifest.json",
+    "methods.json",
+    "post_audit.json",
+    "pre_audit.json",
+    "rigor.json"
+  ],
+  "integrity_checks": {
+    "no_hand_typed_values": true,
+    "dual_run_support": true,
+    "statistical_power_verified": true,
+    "curves_generated": true
+  }
+}
