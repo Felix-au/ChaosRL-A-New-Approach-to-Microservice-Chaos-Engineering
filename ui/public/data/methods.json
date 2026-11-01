@@ -1,0 +1,286 @@
+[
+  {
+    "id": "C12",
+    "tag": "C12",
+    "name": "TreeRanker (ChaosRL Top-1)",
+    "family": "Tabular / Tree",
+    "type": "learned",
+    "is_top5": true,
+    "is_headline": true,
+    "rank": 1,
+    "description": "Gradient-boosted style decision tree ranker prioritizing services by in-degree, centrality, downstream error cascading probability, and telemetric degradation gradients.",
+    "hyperparams": {
+      "max_depth": 5,
+      "min_samples_split": 4,
+      "criterion": "friedman_mse",
+      "features": 18
+    },
+    "parameters": 1420,
+    "training_time_s": 14.2,
+    "frozen_hash": "a9f8b2c1d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0"
+  },
+  {
+    "id": "C01",
+    "tag": "C01",
+    "name": "PPO-MLP",
+    "family": "Deep RL",
+    "type": "learned",
+    "is_top5": true,
+    "is_headline": false,
+    "rank": 2,
+    "description": "Proximal Policy Optimization with two 64-unit MLP layers and generalized advantage estimation (GAE).",
+    "hyperparams": {
+      "hidden_layers": [
+        64,
+        64
+      ],
+      "lr": 0.0003,
+      "clip_eps": 0.2,
+      "gamma": 0.99
+    },
+    "parameters": 8940,
+    "training_time_s": 78.4,
+    "frozen_hash": "b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2"
+  },
+  {
+    "id": "C07",
+    "tag": "C07",
+    "name": "LinUCB-Graph",
+    "family": "Contextual Bandit",
+    "type": "learned",
+    "is_top5": true,
+    "is_headline": false,
+    "rank": 3,
+    "description": "Linear Upper Confidence Bound contextual bandit incorporating topology graph embeddings and recent service latency.",
+    "hyperparams": {
+      "alpha": 0.15,
+      "feature_dim": 12,
+      "ridge_lambda": 1.0
+    },
+    "parameters": 240,
+    "training_time_s": 8.1,
+    "frozen_hash": "c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3"
+  },
+  {
+    "id": "C03",
+    "tag": "C03",
+    "name": "DQN-EpsGreedy",
+    "family": "Deep RL",
+    "type": "learned",
+    "is_top5": true,
+    "is_headline": false,
+    "rank": 4,
+    "description": "Deep Q-Network with experience replay buffer and decayed epsilon-greedy exploration.",
+    "hyperparams": {
+      "hidden_layers": [
+        64,
+        64
+      ],
+      "lr": 0.001,
+      "buffer_size": 10000,
+      "target_update": 200
+    },
+    "parameters": 8940,
+    "training_time_s": 64.9,
+    "frozen_hash": "d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4"
+  },
+  {
+    "id": "C09",
+    "tag": "C09",
+    "name": "ActorCritic-GCN",
+    "family": "Graph RL",
+    "type": "learned",
+    "is_top5": true,
+    "is_headline": false,
+    "rank": 5,
+    "description": "Graph Convolutional Network Actor-Critic processing service dependency adjacency directly into spatial graph convolution embeddings.",
+    "hyperparams": {
+      "gcn_channels": 32,
+      "mlp_hidden": 64,
+      "lr": 0.0005,
+      "entropy_coef": 0.01
+    },
+    "parameters": 14200,
+    "training_time_s": 112.5,
+    "frozen_hash": "e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5"
+  },
+  {
+    "id": "e1_soft",
+    "tag": "e1_soft",
+    "name": "ChaosRL Ensemble (Soft Vote)",
+    "family": "Ensemble",
+    "type": "ensemble",
+    "is_top5": false,
+    "is_headline": true,
+    "rank": 1,
+    "description": "Probability-weighted soft consensus across the Top-5 frozen candidate policies.",
+    "hyperparams": {
+      "weights": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.1
+      ],
+      "temperature": 1.0
+    },
+    "parameters": 33740,
+    "training_time_s": 0.0,
+    "frozen_hash": "ensemble_soft_v1"
+  },
+  {
+    "id": "e2_borda",
+    "tag": "e2_borda",
+    "name": "ChaosRL Ensemble (Borda Rank)",
+    "family": "Ensemble",
+    "type": "ensemble",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 2,
+    "description": "Positional voting Borda count aggregating individual candidate rankings across actions.",
+    "hyperparams": {
+      "decay": "linear"
+    },
+    "parameters": 33740,
+    "training_time_s": 0.0,
+    "frozen_hash": "ensemble_borda_v1"
+  },
+  {
+    "id": "e3_gated",
+    "tag": "e3_gated",
+    "name": "ChaosRL Ensemble (Gated Controller)",
+    "family": "Ensemble",
+    "type": "ensemble",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 3,
+    "description": "Metacognitive gating controller switching dynamically between policies based on phase and budget.",
+    "hyperparams": {
+      "gate_threshold": 0.6
+    },
+    "parameters": 34100,
+    "training_time_s": 15.0,
+    "frozen_hash": "ensemble_gated_v1"
+  },
+  {
+    "id": "chaos_monkey",
+    "tag": "chaos_monkey",
+    "name": "Chaos Monkey (Faithful)",
+    "family": "Baseline",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 4,
+    "description": "Netflix-faithful baseline: randomly terminates running service instances (pod kill only). Has no telemetry memory, no graph awareness, and injects zero latency, packet loss, or CPU faults.",
+    "hyperparams": {
+      "fault_type": "pod_kill_only",
+      "policy": "uniform_random"
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_chaos_monkey"
+  },
+  {
+    "id": "chaos_monkey_2",
+    "tag": "chaos_monkey_2",
+    "name": "Chaos Monkey-2",
+    "family": "Baseline",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 3,
+    "description": "Simultaneous dual-instance termination variant of Chaos Monkey.",
+    "hyperparams": {
+      "fault_type": "pod_kill_only",
+      "targets": 2
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_chaos_monkey_2"
+  },
+  {
+    "id": "random_all",
+    "tag": "random_all",
+    "name": "Random-All",
+    "family": "Baseline",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 2,
+    "description": "Uniform random selection over all 4 fault dimensions (pod kill, latency injection, packet loss, CPU burn). High discovery potential but severe collateral system damage.",
+    "hyperparams": {
+      "distribution": "uniform_4d"
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_random_all"
+  },
+  {
+    "id": "round_robin",
+    "tag": "round_robin",
+    "name": "Round-Robin Sweep",
+    "family": "Baseline",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 5,
+    "description": "Deterministic cyclic sweep through all service-fault pairs.",
+    "hyperparams": {
+      "order": "lexicographical"
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_round_robin"
+  },
+  {
+    "id": "bandit_ucb",
+    "tag": "bandit_ucb",
+    "name": "Bandit UCB",
+    "family": "Baseline",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 6,
+    "description": "Non-contextual multi-armed bandit maintaining empirical success counters per service arm.",
+    "hyperparams": {
+      "c": 1.414
+    },
+    "parameters": 100,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_bandit_ucb"
+  },
+  {
+    "id": "heuristic",
+    "tag": "heuristic",
+    "name": "Heuristic Expert",
+    "family": "Expert",
+    "type": "baseline",
+    "is_top5": false,
+    "is_headline": true,
+    "rank": 1,
+    "description": "Handcrafted rules targeting high betweenness centrality, single-replica bottlenecks, database dependency chains, and aggressive timeouts.",
+    "hyperparams": {
+      "ruleset": "critical_path_v2"
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "baseline_heuristic"
+  },
+  {
+    "id": "oracle",
+    "tag": "oracle",
+    "name": "Oracle (Upper Bound)",
+    "family": "Reference",
+    "type": "oracle",
+    "is_top5": false,
+    "is_headline": false,
+    "rank": 0,
+    "description": "Theoretical omniscient controller with full access to simulator hidden state and weakness injection triggers.",
+    "hyperparams": {
+      "omniscient": true
+    },
+    "parameters": 0,
+    "training_time_s": 0.0,
+    "frozen_hash": "reference_oracle"
+  }
+]
