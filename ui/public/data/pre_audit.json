@@ -1,0 +1,291 @@
+{
+  "cohort_name": "Original Run (Pre-Audit)",
+  "cohort_description": "Initial experimental cohort evaluated across n=10 microservice systems.",
+  "n_systems": 10,
+  "scale100": [
+    {
+      "method": "Chaos Monkey (Faithful)",
+      "audc": 0.0853,
+      "audc_ci": "[0.063, 0.103]",
+      "recall": 0.125,
+      "recall_ci": "[0.125, 0.125]",
+      "damage": 167.0,
+      "damage_ci": "[117.0, 216.4]",
+      "simple_found": 1.0,
+      "compound_found": 0.0
+    },
+    {
+      "method": "Chaos Monkey-2",
+      "audc": 0.0625,
+      "audc_ci": "[0.036, 0.089]",
+      "recall": 0.0875,
+      "recall_ci": "[0.050, 0.125]",
+      "damage": 402.9,
+      "damage_ci": "[329.3, 474.5]",
+      "simple_found": 0.7,
+      "compound_found": 0.0
+    },
+    {
+      "method": "Random-All",
+      "audc": 0.0512,
+      "audc_ci": "[0.023, 0.079]",
+      "recall": 0.0875,
+      "recall_ci": "[0.037, 0.138]",
+      "damage": 28734.5,
+      "damage_ci": "[392.3, 85297.7]",
+      "simple_found": 0.4,
+      "compound_found": 0.3
+    },
+    {
+      "method": "Round-Robin Sweep",
+      "audc": 0.0161,
+      "audc_ci": "[0.000, 0.045]",
+      "recall": 0.0375,
+      "recall_ci": "[0.000, 0.100]",
+      "damage": 56831.5,
+      "damage_ci": "[145.5, 170101.8]",
+      "simple_found": 0.3,
+      "compound_found": 0.0
+    },
+    {
+      "method": "Bandit UCB",
+      "audc": 0.0185,
+      "audc_ci": "[0.000, 0.044]",
+      "recall": 0.0375,
+      "recall_ci": "[0.000, 0.075]",
+      "damage": 28033.7,
+      "damage_ci": "[258.6, 83296.2]",
+      "simple_found": 0.3,
+      "compound_found": 0.0
+    },
+    {
+      "method": "Heuristic Expert",
+      "audc": 0.0489,
+      "audc_ci": "[0.023, 0.079]",
+      "recall": 0.1,
+      "recall_ci": "[0.062, 0.150]",
+      "damage": 108.5,
+      "damage_ci": "[77.7, 142.3]",
+      "simple_found": 0.7,
+      "compound_found": 0.1
+    },
+    {
+      "method": "Oracle (Upper Bound)",
+      "audc": 0.0125,
+      "audc_ci": "[0.000, 0.037]",
+      "recall": 0.0125,
+      "recall_ci": "[0.000, 0.037]",
+      "damage": 38.2,
+      "damage_ci": "[0.0, 104.2]",
+      "simple_found": 0.1,
+      "compound_found": 0.0
+    },
+    {
+      "method": "ChaosRL Top-1 (TreeRanker)",
+      "audc": 0.05,
+      "audc_ci": "[0.013, 0.087]",
+      "recall": 0.05,
+      "recall_ci": "[0.013, 0.087]",
+      "damage": 598.4,
+      "damage_ci": "[45.3, 1348.2]",
+      "simple_found": 0.4,
+      "compound_found": 0.0
+    },
+    {
+      "method": "ChaosRL Ensemble (Soft Vote)",
+      "audc": 0.05,
+      "audc_ci": "[0.013, 0.087]",
+      "recall": 0.05,
+      "recall_ci": "[0.013, 0.087]",
+      "damage": 597.3,
+      "damage_ci": "[65.7, 1312.4]",
+      "simple_found": 0.4,
+      "compound_found": 0.0
+    },
+    {
+      "method": "ChaosRL Ensemble (Borda Rank)",
+      "audc": 0.0499,
+      "audc_ci": "[0.013, 0.087]",
+      "recall": 0.05,
+      "recall_ci": "[0.013, 0.087]",
+      "damage": 6366977.4,
+      "damage_ci": "[4697528.9, 7582060.5]",
+      "simple_found": 0.4,
+      "compound_found": 0.0
+    },
+    {
+      "method": "ChaosRL Ensemble (Gated Controller)",
+      "audc": 0.0375,
+      "audc_ci": "[0.026, 0.051]",
+      "recall": 0.125,
+      "recall_ci": "[0.125, 0.125]",
+      "damage": 215.7,
+      "damage_ci": "[161.5, 279.6]",
+      "simple_found": 1.0,
+      "compound_found": 0.0
+    }
+  ],
+  "multiscale": [
+    {
+      "Scale (N)": 20,
+      "Chaos Monkey AUDC": 0.2134,
+      "Heuristic Expert AUDC": 0.5012,
+      "ChaosRL Top-1 AUDC": 0.2731,
+      "ChaosRL Ensemble AUDC": 0.1869,
+      "Ensemble vs CM Gain (%)": -12.4
+    },
+    {
+      "Scale (N)": 100,
+      "Chaos Monkey AUDC": 0.0655,
+      "Heuristic Expert AUDC": 0.0386,
+      "ChaosRL Top-1 AUDC": 0.103,
+      "ChaosRL Ensemble AUDC": 0.0283,
+      "Ensemble vs CM Gain (%)": -56.8
+    },
+    {
+      "Scale (N)": 300,
+      "Chaos Monkey AUDC": 0.0034,
+      "Heuristic Expert AUDC": 0.0038,
+      "ChaosRL Top-1 AUDC": 0.0258,
+      "ChaosRL Ensemble AUDC": 0.0035,
+      "Ensemble vs CM Gain (%)": 3.0
+    },
+    {
+      "Scale (N)": 500,
+      "Chaos Monkey AUDC": 0.001,
+      "Heuristic Expert AUDC": 0.004,
+      "ChaosRL Top-1 AUDC": 0.0156,
+      "ChaosRL Ensemble AUDC": 0.0007,
+      "Ensemble vs CM Gain (%)": -36.4
+    }
+  ],
+  "budget_sweep": [
+    {
+      "Budget (B)": 25,
+      "Chaos Monkey Recall": 0.0,
+      "Heuristic Expert Recall": 0.0312,
+      "ChaosRL Top-1 Recall": 0.0625,
+      "ChaosRL Ensemble Recall": 0.1094
+    },
+    {
+      "Budget (B)": 50,
+      "Chaos Monkey Recall": 0.0625,
+      "Heuristic Expert Recall": 0.0625,
+      "ChaosRL Top-1 Recall": 0.0625,
+      "ChaosRL Ensemble Recall": 0.1094
+    },
+    {
+      "Budget (B)": 100,
+      "Chaos Monkey Recall": 0.0938,
+      "Heuristic Expert Recall": 0.1094,
+      "ChaosRL Top-1 Recall": 0.0625,
+      "ChaosRL Ensemble Recall": 0.125
+    },
+    {
+      "Budget (B)": 200,
+      "Chaos Monkey Recall": 0.1094,
+      "Heuristic Expert Recall": 0.1719,
+      "ChaosRL Top-1 Recall": 0.0938,
+      "ChaosRL Ensemble Recall": 0.1562
+    }
+  ],
+  "statistical_tests": [
+    {
+      "Hypothesis / Comparison": "ChaosRL Top-1 vs Chaos Monkey",
+      "Mean Paired AUDC Diff": -0.0353,
+      "Wilcoxon W": 16.0,
+      "Adjusted p-value": 1.0,
+      "Significance (Holm-Bonferroni)": "Not Significant"
+    },
+    {
+      "Hypothesis / Comparison": "ChaosRL Top-1 vs Heuristic Expert",
+      "Mean Paired AUDC Diff": 0.0011,
+      "Wilcoxon W": 24.0,
+      "Adjusted p-value": 1.0,
+      "Significance (Holm-Bonferroni)": "Not Significant"
+    },
+    {
+      "Hypothesis / Comparison": "ChaosRL Ensemble vs Chaos Monkey",
+      "Mean Paired AUDC Diff": -0.0353,
+      "Wilcoxon W": 16.0,
+      "Adjusted p-value": 1.0,
+      "Significance (Holm-Bonferroni)": "Not Significant"
+    },
+    {
+      "Hypothesis / Comparison": "ChaosRL Ensemble vs ChaosRL Top-1",
+      "Mean Paired AUDC Diff": 0.0,
+      "Wilcoxon W": 0.0,
+      "Adjusted p-value": 1.0,
+      "Significance (Holm-Bonferroni)": "Not Significant"
+    }
+  ],
+  "family_m": [
+    {
+      "Method": "Chaos Monkey",
+      "Family M AUDC": 0.0152,
+      "Weakness Recall": 0.0469,
+      "Cumulative Damage": 121.1
+    },
+    {
+      "Method": "Heuristic Expert",
+      "Family M AUDC": 0.0513,
+      "Weakness Recall": 0.0938,
+      "Cumulative Damage": 119.1
+    },
+    {
+      "Method": "ChaosRL Top-1 (TreeRanker)",
+      "Family M AUDC": 0.0305,
+      "Weakness Recall": 0.0312,
+      "Cumulative Damage": 1141.0
+    },
+    {
+      "Method": "ChaosRL Ensemble",
+      "Family M AUDC": 0.0448,
+      "Weakness Recall": 0.125,
+      "Cumulative Damage": 142.9
+    },
+    {
+      "Method": "Oracle",
+      "Family M AUDC": 0.0,
+      "Weakness Recall": 0.0,
+      "Cumulative Damage": 67.4
+    }
+  ],
+  "ablation": [
+    {
+      "Ablation Dimension": "Reward Formulation",
+      "Configuration": "Sparse R1 (No Penalty)",
+      "AUDC": 0.062,
+      "Weakness Recall": 0.0625,
+      "Cumulative Damage": 780.7
+    },
+    {
+      "Ablation Dimension": "Reward Formulation",
+      "Configuration": "Regularized R2 (Default)",
+      "AUDC": 0.0625,
+      "Weakness Recall": 0.0625,
+      "Cumulative Damage": 781.2
+    },
+    {
+      "Ablation Dimension": "Reward Formulation",
+      "Configuration": "Dense Shaped R3",
+      "AUDC": 0.0625,
+      "Weakness Recall": 0.0625,
+      "Cumulative Damage": 781.8
+    },
+    {
+      "Ablation Dimension": "Observation Mode",
+      "Configuration": "Black-Box (Telemetry Only)",
+      "AUDC": 0.0622,
+      "Weakness Recall": 0.0625,
+      "Cumulative Damage": 738.9
+    },
+    {
+      "Ablation Dimension": "Observation Mode",
+      "Configuration": "Gray-Box (Static Flags Exposed)",
+      "AUDC": 0.0241,
+      "Weakness Recall": 0.0312,
+      "Cumulative Damage": 19254974.6
+    }
+  ]
+}
